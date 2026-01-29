@@ -11,6 +11,9 @@ import math3d
 import world
 from common.cfg import confmgr
 
+# OFFLINE MODE FLAG
+OFFLINE_MODE = True
+
 class LoginScene(world.scene):
 
     def __init__(self, scene_type, scene_data=None, callback=None, async_load=True, back_load=False):
@@ -20,10 +23,47 @@ class LoginScene(world.scene):
         self.viewer_position = math3d.vector(0, 0, 0)
         self.tick_cnt = 0
         self.create_camera(True)
-        self.load_scene(callback, async_load, back_load)
+        
+        # OFFLINE MODE: Auto-login and transition to main game
+        if OFFLINE_MODE:
+            print('[OFFLINE MODE] Skipping login UI, auto-logging in...')
+            self.offline_auto_login()
+        else:
+            self.load_scene(callback, async_load, back_load)
 
     def get_player(self):
         return None
+
+    def offline_auto_login(self):
+        """OFFLINE MODE: Auto-authenticate locally without server checks"""
+        print('[OFFLINE MODE] Initializing offline authentication...')
+        
+        # Create fake player/session data locally
+        import six.moves.builtins as builtins
+        if not hasattr(builtins, 'PLAYER_ID'):
+            builtins.__dict__['PLAYER_ID'] = 'OFFLINE_PLAYER_001'
+        if not hasattr(builtins, 'SESSION_ID'):
+            builtins.__dict__['SESSION_ID'] = 'OFFLINE_SESSION_001'
+        if not hasattr(builtins, 'OFFLINE_MODE'):
+            builtins.__dict__['OFFLINE_MODE'] = True
+        
+        print('[OFFLINE MODE] Local player initialized: PLAYER_ID=%s' % builtins.__dict__.get('PLAYER_ID'))
+        
+        # Skip login UI entirely - transition directly to main game
+        self.transition_to_main_game()
+
+    def transition_to_main_game(self):
+        """Skip LoginScene and load main game scene directly"""
+        print('[OFFLINE MODE] Transitioning to main game scene...')
+        
+        # Get the Manager singleton and load the game scene
+        from logic.core.managers.manager import Manager
+        manager = Manager()
+        
+        # Load the actual gameplay scene instead of staying at login
+        # Use 'BattleMain' or 'Main' depending on your game structure
+        manager.post_exec(manager.load_scene, 'BattleMain', {})
+        print('[OFFLINE MODE] Main game scene queued for loading')
 
     def init_scene_info(self, scene_type, scene_data, callback):
         self.valid = True
@@ -129,6 +169,14 @@ class LoginScene(world.scene):
 
     def on_enter(self):
         self._loaded = True
+        
+        # OFFLINE MODE: Skip UI rendering and directly proceed
+        if OFFLINE_MODE:
+            print('[OFFLINE MODE] Skipping UI part rendering and entering game loop')
+            # Don't call part.enter() for any UI parts since we skipped loading them
+            # Just mark as loaded and ready
+            return
+        
         for com in six.itervalues(self.parts):
             com.enter()
 
@@ -192,6 +240,12 @@ class LoginScene(world.scene):
     def load_parts(self):
         import logic.vscene.parts.factory as factory
         config_coms = self.scene_conf.get('coms', [])
+        
+        # OFFLINE MODE: Skip loading login UI parts
+        if OFFLINE_MODE:
+            print('[OFFLINE MODE] Skipping login UI parts (PartLogin3D, buttons, dialogs)')
+            return
+        
         for com_type in config_coms:
             factory.load_com(self, com_type)
 
