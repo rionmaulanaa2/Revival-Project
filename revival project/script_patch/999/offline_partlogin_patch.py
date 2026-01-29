@@ -45,8 +45,8 @@ def patch_partlogin_for_offline():
             """Attempt login with offline credentials"""
             print('[OFFLINE] Attempting offline login: %s' % account)
             
-            from logic.vscene.parts.offline_login_helper import get_offline_login_helper
-            helper = get_offline_login_helper()
+            from logic.vscene import login_scene
+            helper = login_scene.get_offline_login_helper()
             
             if helper.verify_login(account, password):
                 print('[OFFLINE] Login successful for: %s' % account)
