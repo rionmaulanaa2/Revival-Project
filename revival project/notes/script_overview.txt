@@ -1,0 +1,1009 @@
+# Revival project quick code map (decompiled Python 2.7)
+
+## Lobby UI / interaction
+- script_patch/659/18015883872328087481.py (PVELobbyUI)
+  - Init sequence: init_parameter/status/widget -> season pass state -> red points -> lobby buttons -> item book info -> system checks.
+  - Maintains wifi/battery status, syncs time; hides battery on PC mode.
+  - Red points: update_all_red_point loops INIT_RED_POINT_MODULE (item/yueka/mall/battle_season/mech/equipment/talent/task). Uses show_lobby_lottery_red_point, check_lobby_red_point, get_LobbyUI_role_head_level, etc. Animation switch for lottery red point. Season pass red point gated by SYSTEM_BATTLE_PASS + check_lobby_red_point. Player info shows ID and head; records lottery tab clicks.
+  - Buttons: mall/lottery/season_pass/friends/mail/red_packet/more/mech/equip/talent/catalogue/task/setting/rank/bag/mode_choose. Lottery button jumps via jump_to_lottery; season pass via jump_to_season_pass with advance flag. Red packet button opens MainChat.
+  - Widgets: LobbyYueKaEntryWidget, InteractionInvokeBtnWidget(LobbyInteractionUI), LobbyVoiceWidget, red packet timer. Yueka red point if weekly/yueka/new_role_12_goods.
+  - HOT_KEY_FUNC_MAP: switch_interaction, open_lobby_chat. SIGNAL_INTENSITY icons. UI_VKB_CUSTOM.
+
+- script_patch/842/4701236930638842050.py (PartLobby)
+  - ScenePart for lobby scene lifecycle. On enter: installs LobbyRedPointData/LobbyMallData/MessageBoardManager, starts UILifetimeLogMgr listener, sets scene_type, initializes anticheat SDK, sets lobby BGM, enables keyboard control for PC, warms ShareManager, high-quality textures, disables dynamic culling, posts camera init, and triggers Nile/voice/device upload hooks.
+  - create_lobby_ui shows either LobbyUI or PVELobbyUI plus MainChat/NewChatPigeon, common item/desc/reward/lottery helper UIs, network lag UI; invokes LobbyGuideManager and underage check; emits lobby_ui_on_event. Handles login reconnect cleanup and reopen.
+  - Manages lobby dresser models: async loads up to 4 models into UI scene boxes, dresses them via dress_utils, plays idle/sit animations, and syncs camera track events. Maintains player_model_map/player_task_list; handles dress updates, team/prepare state animations, visit transitions; clears models/tasks on exit.
+  - BGM switching: chooses music based on mall UI visibility and player’s lobby BGM (visit vs self). Handles Nile SDK enter/resume, MUSDK checker, share capture enable/disable on background/foreground.
+
+- script_patch/468/15762625239624023448.py (LobbyInteractionUI)
+  - Validates chosen action: player exists, idx in action_dict, belongs to current role if item bound.
+  - try_action: uses lobby_player to send E_LOBBY_CELEBRATE for gestures/mecha gestures, E_EMOJI for emoticons, try_spray for sprays (generate_lobby_spray_info). Closes UI after action.
+
+- script_patch/468/649563468433145019.py (ComLobbyPuppetUserData)
+  - Stores lobby user data; events: get/set user data, role id, fashion info. _is_avatar False. Uses get_default_fashion on client.
+
+- script_patch/520/18179341603786580209.py (LLobbyAvatar)
+  - Unit with client components: ComCharacterLobby, ComAvatarUserData, lobby appearance (emoji/move/sound/movie/celebrate/chat), ComLobbyModel, lobby player sync send/recv, ComSpringAnim (+mirror), simple move/jump sync senders, ComWeaponLobby, ComJumpLobby, ComClimbLobby, ComHairLogic.
+
+- script_patch/89/12024761180406851933.py (LLobbyPuppet)
+  - Unit with client components: ComLobbyPuppetUserData, lobby appearance (teamate tips/emoji/move/sound/celebrate/chat), ComLobbyModel, lobby player sender, simple move/jump sync receivers, ComWeaponLobby, ComJumpLobby, ComClimbLobby, ComHairLogic.
+
+## Scene management
+- script_patch/422/14606205992556332510.py (Manager)
+  - ALIAS game_mgr. Registers agents (basic_manager, other_manager) with delay ticks; ingame agents include DebugManagerAgent, IngameManagerAgent, ExSceneManagerAgent. init_game_callback wires game callbacks (exit/pause/resume/vkb, permissions, file missing).
+  - load_scene: posts do_load_scene; if same scene_type+data, calls callback. do_load_scene picks LoginScene for Main/Intro/MainHuawei else general Scene; delegates to ex_scene_mgr_agent if present; otherwise _naive_do_load_scene (handles same-path reuse, on_exit, world active scene swap, gc, reinit).
+  - unload_scene, reload_scene; active_cur_scene optionally on_enter. Timers: logic/fix/post/render accessors, speed rate control. Queues for post/next/finish/delay/sync exec.
+
+- script_patch/230/1521057535965672440.py (ExSceneManagerAgent)
+  - Manages extra scenes (settle, PVE end), lobby-related scenes, scene stacks. Tracks extra_scene_map/loaded/added, scene_stack + scene_ui_map/stack, lobby_relatived_scene.
+  - load_extra_scene_background -> Scene(back_load=True, force_sync=True) with loaded_cb; special load logic for settle scenes (snow env reset).
+  - add_extra_scene: when loaded, posts actually_add_extra_scene to set active scene, on_enter, emit extra_scene_added, apply special add logic. pop_extra_scene removes and reactivates prior scene; pop_settle_scene removes settle/PVE end scenes.
+  - do_load_scene: when Lobby scene, archive reset and optional restart prompt if WEEK_PATCH_REVERTED. Pops lobby relative scenes; if release: on_exit, maybe reload camera data; else pushes onto stack. Creates/reuses Scene then active_cur_scene. Handles same-path reuse.
+  - pop_all_lobby_relative_scene trims stack to base and destroys stored lobby scenes. return_scene pops stack and restores previous scene (optionally destroying current). switch_scene swaps to new_scene, pushing current onto stack; ensures resolution reset; calls on_enter if not loaded.
+  - add_disposable_lobby_relatived_scene: creates Scene from scene_data/conf, applies background model texture/pos/scale/material params; binds sfx; stores and switch_scene; emits update_jiemian_scene_content.
+  - add_lobby_relatived_scene/load_lobby_relatived_scene: async load/back_load, handle scene_content_type, optional background texture and sfx, emits update_jiemian_scene_content.
+  - is_cur_lobby_relatived_scene checks current scene type or jiemian common content.
+
+## Event system
+- script_patch/691/18148569848324332657.py (EventHook2, EventNotifyer)
+  - EventHook2: weak-ref signal with += handlers, emit/fire, deferred removals during emit using game_mgr.next_exec; optional disable/play_sound flags; collect_handlers prunes dead refs.
+  - EventNotifyer (ALIAS emgr): global event bus holding name → EventHook2 map; create_event/add/remove/clear/flush/collect_handlers; hot_fix_mode allows duplicate creation.
+- game_mgr wiring: Manager.init_data instantiates EventNotifyer and update_event ticks collect_handlers each frame ([script_patch/422/14606205992556332510.py]). Access pattern: global_data.emgr.<event>.emit()/+= handler.
+
+## Timer system
+- script_patch/334/1063420130419379011.py (common.utils.timer)
+  - LOGIC vs CLOCK timer modes; LOGIC counts update ticks, CLOCK accumulates real dt (strict flag uses fixed interval subtraction). timedelta=True injects delta as first arg (after obj when bound).
+  - Timer.register(obj, func, args, interval, times=-1, paused=False, mode, timedelta=False, strict=False) returns id composed of GLOBAL_ID + timer-group (MAX_TIMER=10 groups). unregister/restart/check are group-safe; reset_all_timer_group() rewinds group counter after stop_game.
+  - Python fallback used when ctimer_wrapper unavailable; uses OrderedDict staging (_to_adds) merged each update; _addcount/_deccount callbacks let Manager lazily init or release render/post timers.
+- Manager usage: init_data builds _logic_timer, two _fix_logic_timer instances, _post_logic_timer, _render_timer ([script_patch/422/14606205992556332510.py]). logic_update updates _logic_timer; update_scene_fix_logic drives _fix_logic_timer; post_logic_update/render_update advance post/render timers. stop_game resets timers, cleans post/render pools, and rebinds callbacks for add/remove handling.
+
+## Camera core
+- script_patch/472/17165953801329074521.py (PartCamera)
+  - ScenePart creating SphericalCameraManager + CameraTargetManager; exposes camera state getters, yaw/pitch setters, fov/pos helpers, free-type checks. Binds events (enter/leave room camera, kill mecha). on_enter wires managers and registers SysAimPoisonWarning; on_exit destroys managers/UI.
+
+- script_patch/234/15126962143278207258.py (SphericalCameraManager)
+  - Holds active camera, current camera state, slerp helper, collision checker, follow component, added track component. Tracks yaw/pitch/roll, target/focus/default positions, fov, magnification, offsets, posture. Binds many events: yaw/pitch/fov setters, slerp targets, camera animations, switch_camera_state_event, update_camera_viewer_event, etc.
+  - on_enter grabs active scene camera, sets aspect for PC, registers post-logic timer update; sets force_check_distance from scene map UV size.
+  - switch_cam_state -> normal_switch_cam_state: creates new camera state via camera_state_pool (observe-aware), handles leave slerp actions, posture validation, modifies offsets, updates cam_data, applies enter settings (pos/focus/fov), manages collision check/slerp.
+  - actively_update_camera_fov loads fov from state enter setting; update_cam_viewer sets viewer_dir_offset; on_exit unregisters timers, destroys cam_state and components via camera_state_pool.
+
+- script_patch/829/10234891995184135756.py (CameraStatePool)
+  - Singleton ALIAS camera_state_pool; caches camera states and components. CAMERA_STATE_CLASS seeded from CameraStates.* TYPE/COMS; dynamic creation from confmgr c_camera_setting if missing. OBSERVE camera states cloned with ObserveCameraCom added. create/destroy camera_state/component with optional cache (global_data.enable_camera_state_cache).
+
+- script_patch/288/12251670246298571871.py (CameraTestUI)
+  - Debug UI to set custom camera params: default/focus positions, hfov. Hooks camera_switch_to_state_event, can emit switch_target_to_camera_state_event to DEBUG_MODE, updates PartCamera cam_manager config and slerp into it. Keyboard mappings for moving camera.
+
+- script_patch/962/1555954746978229823.py (CameraSettingUI)
+  - User-facing camera selection UI. Check groups to switch to FREE/FIRST/THIRD/PREVIEW/AIM magnifications via PartCamera.switch_cam_state. Mirrors current state in UI, toggles Y-slide invert. Uses camera_switch_to_state_event to update checks.
+
+## Character controllers
+- script_patch/620/17485016098020089777.py (ComCharacterBase)
+  - _init_character creates collision.Character with lobby stepheight, slope 70deg, padding/margin, enableLeaveOverlap, sets height via _get_character_logic_height; group/filter = GROUP_CHARACTER_INCLUDE; calls init_prs/init_character_callback/reset_phys_attr. _teleport helper, easy_static_test, walk direction setters.
+
+- script_patch/804/10879812872778567609.py (ComCharacter) excerpt
+  - After character init, sets MinGroundHeight, UnderGroundHitDist/StartY, MaxHorizonDistPerTime, MaxSectionCount, disables TestPos, sets behavior version/new behavior for non-robot, TestGroundUpMinY=0.5, filter/group include. Uses GROUP_CHARACTER_INCLUDE | GROUP_MECHA_BALL for mask. Sends E_CHRACTER_INITED.
+
+- script_patch/808/16034385150820047115.py (ComPreviewCharacter)
+  - Lightweight preview character with collision.Character width/height=CHARACTER_STAND_*; max_slope 60deg; force sync; filter/group robot. Handles move/yaw events, updates model position with smoothing when falling.
+
+- script_patch/951/3243321603004930749.py (ComPhantomCtrl excerpt)
+  - Recreates phantom character using physics conf (mecha); sets padding/margin, slope group, stepheight, jump/gravity/fall speed, offsets (XOffset, YOffset), behavior version, TestGroundUpMinY, MaxHorizonDistPerTime/SectionCount, min ground/underground hit distances. Adds to scene_col and emits scene_add_lift_user_event.
+
+## Mecha display / lobby models
+- script_patch/751/801497361884002105.py (PartMechaDisplay)
+  - ScenePart powering lobby mecha showroom. Registers many events (enter/leave visit, clear/reset display, rotate/reset, teammate add/del/update, fashion change, display quality change, chuchang preview). Tracks current mecha/clothing/shiny ids, teammate models, hologram assets, and save_cam_transform_mat for camera restore.
+  - on_enter builds main display model from player selection or visit data via get_lobby_selected_mecha_item_id/get_mecha_fashion + decal/color/pose; loads teammate mecha models with weapon sfx and team index; supports visit mode and custom skin data. Reset/clear handlers delete models and clean socket resources.
+  - Handles team/visit transitions: wipe models on enter/leave visit or team changes; on_avatar_finish_create replays pending leader info. Supports camera move to display position, rotation tween, and quality-based mirror_reflect toggles when UE models enabled.
+
+- script_patch/378/13056598024442120031.py (lobby_model_display_utils)
+  - Centralized display config helpers: reflect/shadow capability per scene type, display scene data, mecha display camera params (per mecha or fallback to 8002) with optional skin offset, role display camera data, and mecha change animations.
+  - Utility helpers for little mecha detection, resource path filtering, model path normalization, weapon ignore list, and pendant/socket lookups. Backed by lobby_model_display_conf entries.
+
+- script_patch/425/8147539577300582279.py (NewMechaNewbieGuideUI)
+  - Simple guide popup that plays show/loop animations then, on confirm, opens MechaDisplay via ui_mgr.show_ui.
+
+- script_patch/513/1416282214807697871.py (ActivityFirstPay)
+  - First-pay reward UI pulls mecha HangarConfig from mecha_display conf for preview; rewards can be role or mecha (battle id converted to lobby id). Manages button states (buy/claim), preview panel, replacement rewards if owned, and jump_to_display_detail_by_item_no.
+
+- script_patch/42/15902295231303831282.py (ActivityGrossCharge68New)
+  - Growth fund activity UI; on init calls MechaDisplay.refresh_mecha_tag_list for the reward mecha; buttons jump to charge or claim task reward, and open detail display for the featured item.
+
+## Note on offline/lobby patches
+- script_patch/785/785_17524466876519882393.py (current working file): patched offline flow for Login -> CharacterSelect -> Lobby, redpoint stub wiring, ground-aware teleport when entering lobby, camera_state_pool/gsetting/ex_scene_mgr_agent bootstrap.
+
+## Entity System Architecture
+
+### Core entity infrastructure
+
+- script_patch/578/5089913887406134034.py (EntityManager & EntityIdOrLocalId)
+  * EntityManager: Singleton managing all game entities (_entities dict, _update_entities dict).
+  * Static methods: addentity(entityid, entity, override), delentity(entityid), getentity(entityid), hasentity(entityid).
+  * Dynamic tracking: setdynamic(entityid, flag) toggles entity.is_dynamic between _static/_dynamic; manages _add_update_entity_marks/_del_update_entity_marks.
+  * Entity types: get_entities_by_type(ent_type) filters by __class__.__name__.
+  * Update lifecycle: _add_update_entity_marks/del_update_entity_marks control which entities tick; uses ENTITY_MARK placeholder during deletion.
+  * Sunshine integration: AddEntitySunshine/DelEntitySunshine for editor support, _edit_entities/_editEntityKey, EntitySetChangeListener.
+  * EntityIdOrLocalId: Static mapper for entityid<->localid sync (entityid_localids/localid_entityids dicts, localid_sync set); raw_encode/raw_decode helpers.
+
+- script_patch/599/7538143894515728378.py (EntityFactory)
+  * Singleton factory (extendabletype metaclass): register_entity(entitytype, entityclass), create_entity(entitytype, entityid).
+  * RPC registration: auto-registers entityclass methods via RpcIndexer on registration.
+  * get_entity_class(entitytype) accepts str or type.
+
+- script_patch/712/9714229792725311752.py (EntityPool)
+  * Entity caching system: _cache_dict defaultdict(list) keyed by entitytype.
+  * create_entity(entitytype, entityid): pops from cache if available, calls reuse(entityid); otherwise creates via EntityFactory.
+  * destroy_entity(entity): if is_cacheable(), calls cache() and stores in pool; else calls destroy().
+  * clear() destroys all cached entities and clears pool.
+
+- script_patch/908/7949893357124056091.py (EntityInfoCache)
+  * Base class for caching entity info: _entity_info dict, CONCERNS_VAL event config.
+  * Player tracking: add_player(ent_id), del_player(ent_id), on_add_player(lplayer), on_before_del_player.
+  * Event binding: bind_player_event(lplayer), unbind_player_event(lplayer), unbind_all_player(); uses _to_bind_events/_binded_event dicts.
+  * Info accessors: update_player_info(pid, key, val), get_player_info(pid), get_all_player_info().
+  * _get_all_entities(entity_type) -> EntityManager.get_entities_by_type.
+
+### Entity base classes
+
+- script_patch/642/13355986938726272295.py (ClientEntity / AvatarEntity / ArtTestAvatar) [already documented]
+  * ClientEntity: id/logger/server/data, EntityManager registration, cache/reuse, destroy, RPC salt, UI notice RPC.
+  * AvatarEntity: extends ClientEntity with battle_server link, become_player RPC stub.
+  * ArtTestAvatar: lightweight client-only avatar with logic hook, local settings (SST config), battle flags; ticks logic, always reports in_local_battle.
+
+- script_patch/52/15449988619469593219.py (BaseClientEntity)
+  * Base for all game client entities: battle_id, logic reference.
+  * Battle lifecycle: on_add_to_battle(battle_id), on_update_to_battle(battle_id), on_remove_from_battle().
+  * get_battle() -> EntityManager.getentity(battle_id).
+  * tick(delta) delegates to self.logic.tick if present.
+  * init_from_dict/update_from_dict/destroy hooks.
+
+- script_patch/886/4442883865151229064.py (BaseClientAvatar)
+  * Extends AvatarEntity for client avatars: logic, local_battle, new_local_battle, lose_conn.
+  * Network callbacks: reset_net_user_callback (ConnectHelper CB_ON_RELIABLE_MESSAGE_CANNOT_SENT).
+  * RPC routing: call_server_method/call_soul_method/call_misty_soul_method (handles local_battle/new_local_battle redirects).
+  * Hotfix: hotfix(file_name, hotfix_content, tip_type) compiles and execs code in __main__ dict.
+  * Client switches: client_switch(switch_key, switch_value, show_tip) -> _switch_func registry.
+  * Disconnect: on_lose_server, kicked_off(reason, args) with ConnectHelper integration, _change_to_login_and_restart flag.
+  * CustomMessageBroker: registers CMSG_TYPE_GAME_CRASH handler.
+
+### Unit system (ECS-like component architecture)
+
+- script_patch/345/625553916300752850.py (Unit)
+  * Core entity logic container (IUnit): wraps BaseClientEntity, holds _battle/_owner references.
+  * Component system: _coms dict, _add_com_order list, _update_coms set for ticking components; _has_dynamic_com flag.
+  * Share data: __bind_share_data() -> UnitShareData, DUMMY_SHARE_DATA for cached units.
+  * Event system: _event_mgr (SimpleEventManager), _pos_change_mgr (PosChangeMgr); binds send_event/regist_event/unregist_event/get_value.
+  * ev_g_* auto-accessor: __getattr__ dynamically creates event getters (ev_g_XXX -> _event_mgr._event_dict['XXX']), caches in __dict__, tracks in fast_acc_dict.
+  * Lifecycle: init_from_dict, update_from_dict, on_init_complete, on_post_init_complete, reset.
+  * Caching: is_cacheable, reuse(entity, battle), cache() (stores _add_com_order_origin).
+  * Getters: is_valid, is_enable, is_dead, is_defeated, is_player, is_robot, is_monster, is_mecha, is_pet.
+  * Component update: del_from_update_list/add_to_update_list with _start_update_coms/_stop_update_coms for mid-tick safety.
+
+### Avatar entities (player/controlled)
+
+- script_patch/897/8634094938116553681.py (Avatar)
+  * Client avatar built via manual_meta_class over ~130 imp* mixins (MEMBER_NAME_LST). post_meta_class_generator loads modules and injects methods/const fields.
+  * init_from_dict wires reconnect info, uid/abtest/switch_data into global_data, sets ccmini_mgr entity map, toggles feature flags (pve, oodle, lottery).
+  * on_become_player promotes to global_data.player/owner_entity, emits login success, updates settings/message_data/channel, starts time sync.
+
+- script_patch/680/4793438092126769798.py (LAvatar)
+  * Player Unit with 100+ client components (@component decorator): ComStatusHuman, ComHealth, ComShield, ComBackpackData, ComSpd, ComBuffData, ComAtAim, ComAttachHolder (shared); ComAttributeClient, ComDataRenderRotate, ComDataAppearance, ComDataCommonMotor, ComDataAnimator, ComDataLogicTransform, ComDataLogicLod, ComDataAimIK, ComHumanEffectMgr, ComHumanStateData, ComWeaponBarClient, ComController, ComSelector, ComSelectionHuman, ComHumanCollison, ComWeaponController, ComParachuteDriver/State/Follow, ComHitHintHuman, ComSound, ComThrowableDriver, ComAgony, ComItemUseClient, ComGroup, ComCamp, ComMap, ComSpectate, ComBuffClient, ComWaterHuman, ComWeaponEffectHuman, ComCamSyncSender, ComOB, ComCrash, ComPlayerGlobalReceiver/Sender, ComQTELocalBattleGuide, ComCtrlMecha, ComSkillClient, ComCameraTarget, ComMoveForce, ComMechaModule, ComBackpackClient, ComFlagUI, ComHumanMarkView, ComEmoji, ComEnv, ComMoveSyncClient, ComSignal (conditional), ComHairLogic, ComAntiCheat, ComArmorClient, ComPveSetting/Bless/MechaBreakthrough (PVE conditional), etc.
+  * init_from_dict: sets sd.ref_is_avatar=True, enable_sync=True, is_avatar=True; sets global_data.player_sd.
+  * ext_role_use_org_skin decorator.
+  * destroy: emits player_destroy_event, clears global_data.mecha/player_sd.
+
+- script_patch/520/18179341603786580209.py (LLobbyAvatar) [already documented]
+  * Lobby Unit: ComCharacterLobby, ComAvatarUserData, lobby appearance (emoji/move/sound/movie/celebrate/chat), ComLobbyModel, ComSpringAnim, ComWeaponLobby, ComJumpLobby, ComClimbLobby, ComHairLogic.
+
+### Puppet entities (other players/NPCs)
+
+- script_patch/315/16769014232148034941.py (Puppet)
+  * @Dynamic BaseClientEntity for other players: uid, lv, lobby_mecha_id, lobby_mecha_fashion, _is_robot.
+  * Caching: is_cacheable() -> True, cache() clears _data/uid/lv/_is_robot.
+  * on_add_to_battle: updates battle statistics (kill/kill_mecha/assist_mecha), creates LPuppetRobot or LPuppet logic, stores in global_data.war_puppets/war_lrobots/war_noteam_puppets, sets ccmini_mgr entityid map.
+  * on_remove_from_battle: removes from war dicts, deletes ccmini_mgr uid mapping, destroys logic.
+  * get_lobby_mecha_info() -> (lobby_mecha_id, lobby_mecha_fashion).
+
+- script_patch/535/722472100032985936.py (LPuppet)
+  * Puppet Unit with client components (@component): ComStatusHuman, ComHealth, ComShield, ComBackpackData, ComBuffData, ComAtAim (shared); ComAttributeClient, ComDataRenderRotate, ComDataAppearance, ComDataCommonMotor, ComDataAnimator, ComDataLogicTransform, ComDataLogicLod, ComDataLogicMovementFullFps, ComHumanEffectMgr, ComHumanStateData, ComWeaponBarClient, ComClientSynchronizer, ComController, ComHumanCollison, ComCtrlVehicle, ComSelector, ComSelectionHuman, ComHumanHurtAppearance, ComTrajectoryAppearance, ComShortcut, ComSound, ComShieldBloodSimUI, ComAgony, ComInterpolater, ComGroup, ComCamp, ComMap, ComThrowableDriver, ComWeaponController, ComGunShieldLogic, ComHumanBloodUI, ComCamSyncReceiver, ComCrash, ComBuffClient, ComWeaponEffectHuman, ComParachuteState/Follow, ComParachuteDriverGhost, ComAgentCapsuleGhost, ComCtrlMecha, ComSpeedUp, ComSkillClient, ComObserve, ComCameraTarget, ComHitHintHuman, ComMoveForce, ComMechaModule, ComFlagUI, ComHumanMarkView, ComPuppetSpectated, ComEmoji, ComEnv, ComGranbelmRuneClient (conditional), ComMoveSyncClient, ComSignal (conditional), ComIsland, ComOuterShield, ComRogueGift, ComHairLogic, ComFallReturnClient, ComArmorClient, ComHunterCoin, ComPveBless (PVE conditional), etc.
+  * init_from_dict: sets sd.ref_is_avatar=False, enable_sync=False; filter_com applies conditional components (granbelm_rune, signal, pve_com).
+  * destroy: emits puppet_destroy_event(self.id).
+
+- script_patch/89/12024761180406851933.py (LLobbyPuppet) [already documented]
+  * Lobby puppet: ComLobbyPuppetUserData, lobby appearance (teamate tips/emoji/move/sound/celebrate/chat), ComLobbyModel, ComWeaponLobby, ComJumpLobby, ComClimbLobby, ComHairLogic.
+
+### Mecha entities
+
+- script_patch/258/7754298622661251908.py (LMecha)
+  * Mecha Unit with 60+ client components (@component): ComSeats, ComBuffData, ComShield (shared); ComAttributeClient, ComDataRenderRotate, ComDataAnimator, ComDataAppearance, ComDataCommonMotor, ComDataLogicTransform, ComDataLogicLod, ComDataAimIK, ComDataLogicMovementFullFps, ComMechaModel, ComAnimMgr, ComInput, ComBehavior, ComStateData, ComMoveSyncAnimRateSender, ComMechaEffectMgr, ComMechaFootIK, ComHumanHurtAppearance, ComTrajectoryAppearance, ComStatusMechaClient, ComHealthMecha, ComMechaWeaponBarClient, ComClientSynchronizer, ComMechaCollison, ComMechaStaticCollision, ComBuffClient, ComMechaInjureClient, ComCamp, ComMaterialStatus, ComMechaAtkGun, ComThrowableDriver, ComMechaRecoil, ComMechaSound, ComMechaRepair, ComMechaActivateClient, ComControlLeaveAOI, ComSkillClient, ComMechaShieldCollision, ComMechaBloodUI, ComStateSimui, ComExplosiveContainerClient, ComMechaAimHelper, ComWaterMecha, ComAimLockedUI, ComCameraTarget, ComHitHintMecha, ComCamClipAni, ComCamSyncSender, ComParabolaTrackAppearance, ComMoveForce, ComHitFlag, ComHitFlagAppearance, ComJumpTrack, ComMessage, ComFlagUI, ComMechaMarkView, ComSpeedUp, ComMechaFuelClient, ComMechaSkillFuelClient, ComOuterShield, ComSelectionMecha, ComEmoji, ComEnv, ComSpringAnim, ComMoveSyncClient, ComSpectateSyncClient, ComMechaModuleBuff, ComHitJudge, ComAICollectLogMecha, ComHeatMagazine, ComMechaBlind.
+  * init_from_dict: sets model_sync_priority = game3d.ASYNC_ULTIMATE_HIGH.
+  * destroy: sends E_ON_LOGIC_DESTROY event.
+
+### Entity relationships
+- Avatar (ClientEntity) -> logic -> LAvatar (Unit) with 100+ components
+- Puppet (BaseClientEntity) -> logic -> LPuppet (Unit) with 70+ components  
+- Mecha -> LMecha (Unit) with 60+ components
+- EntityManager tracks all entities globally, EntityFactory creates them, EntityPool caches for reuse
+- Unit system provides ECS-like component architecture with event/position change managers
+
+- script_patch/987/14103411010637177556.py (impLobby)
+  - Lobby mixin: tracks mecha_open, selected lobby mecha (item/battle ids), teammate lobby mecha dict, login timestamps. Registers team/visit teammate events, handles add/del/update, and emits player_teammate_mech_* events. Provides req_change_lobby_mecha via lobby_select_mecha RPC and exposes lobby-selected/mecha-open getters.
+
+- script_patch/673/8917822208887230157.py (impLocalBattle)
+  - Local battle bootstrap: creates local battle server/client via EntityFactory for QTE/newbie battles, destroys/cleans on quit, and reinitializes lobby (combat_state reset). Supports handling RPC to local server/client and exposes helpers (in_local_battle, get_new_local_battle_mecha_ids).
+
+- script_patch/810/4352613271680192042.py (impMecha)
+  - Mecha inventory/customization: usual_mecha_ids, decals/colors, sub-skins, pose, SSS fashion mapping, mecha use time, PVE selected mecha. Provides dress_mecha_fashion/set_sss_fashion, shiny weapon, upgrade fashion, sub-skin, decal/color add/remove, and emits charm tips. Computes defaults and fallbacks for usual mecha list depending on battle/local data.
+
+- script_patch/719/961384092474332927.py (impMechaModule)
+  - Mecha module plans per mecha: plan storage/indices, validation, temp updates, and RPC to update plans/indices. Calculates owned module cards from config and inventory; exposes gain methods; emits update events via emgr.
+
+- script_patch/642/13355986938726272295.py (ClientEntity / AvatarEntity / ArtTestAvatar)
+  - ClientEntity base: owns id/logger/server/data, registers with EntityManager, provides cache/reuse, destroy, RPC salt setter, and UI notice RPC.
+  - AvatarEntity extends ClientEntity with battle_server link and become_player RPC stub.
+  - ArtTestAvatar: lightweight client-only avatar with logic hook, local settings (SST config), and battle flags; ticks logic and always reports in_local_battle.
+
+- script_patch/974/8820404447101676468.py (RpcMethodArgs excerpt)
+  - RPC arg converters (Str/Dict/Bool/List/Tuple/Uuid/etc.), including Avatar/MailBox placeholders; enforce type checks and default values for rpc_method decorators.
+
+## Avatar imp* mixin modules (comprehensive reference)
+
+Avatar class (script_patch/897/8634094938116553681.py) is composed of ~130 imp* mixin modules via manual_meta_class. Each mixin adds specific capabilities to the avatar:
+
+### Core systems
+
+- impBase (script_patch/360/688492682880968259.py)
+  * Base character attributes: create_time, user_name, urs, char_name, region_tag, intro.
+  * Currency: gold, diamond, yuanbao (fine/pay/free split).
+  * Metadata: sex (get/set), last_set_sex_time, login_country, game_ver, server_ver, fashion_value.
+  * Log info tracking, battle_tmp_consume, and UI lang setter.
+
+- impLevel (script_patch/588/17922634690713036267.py)
+  * Player level/experience: lv, exp, lv_reward_record (Record).
+  * Duo exp system: duo_exp_point, duo_exp_timestamp.
+  * Level reward claiming: receive_lv_reward(lv), receive_all_lv_reward(), update_lv_rewards RPC.
+  * reset_lv RPC clears reward record.
+
+- impTime (script_patch/743/3687540848783161112.py)
+  * Network time sync: game/battle heart_beat timers, RTT tracking, lag detection.
+  * Game sync: start/stop_game_sync_time(), game_heart_beat (GAME_HEART_BEAT_ITVL), sync_time/on_sync_time RPC.
+  * Battle sync: begin/stop_battle_sync_time (use_min_rtt option), battle_heart_beat (BATTLE_HEART_BEAT_ITVL).
+  * First server stamp: _first_server_stmp, on_first_game_time_fix (MIN_SERVER_FIX_TOLERANCE).
+  * Lag warnings: _lag_flag_game/battle (LAG_FLAG_NONE/BAD), emit net_lag_warn_event/net_lag_clear_event.
+  * Reconnect triggers: _mp_lag_trigger_cnt[TYPE_GAME/BATTLE], LAG_CNT_TO_RECONNECT_GAME/BATTLE.
+  * Network type check: check_network_type (ITVL_CHECK_NET_TYPE), _cur_network_type.
+  * Daily reset hooks: mention_per_day_0/5 RPC -> _call_meta_member_func.
+
+- impPlayer (script_patch/944/3072420857280749852.py)
+  * Player profile operations: req_change_sex (ONE_DAY_SECONDS cooldown), req_change_name, set_introduction (client_set_intro).
+  * Custom service: get_custom_service_token(lang), called on login.
+  * Guidance: req_guidance_no_show(guidance_id).
+  * on_change_data RPC: updates char_name/intro/sex, emits player_on_change_name/intro/sex, notifies channel.
+
+- impStat (script_patch/123/7856969999672210166.py)
+  * Career statistics: _career_stat (lifetime), _day_stat (daily), _history_season_stat_dict (per season).
+  * Global achievements: _global_achieve, _m_gl_achieve, _gl_state_data, _last_request_gl_time.
+  * Updates: update_career_stat/update_str_career_stat/update_day_stat RPC -> emit update_day_stat.
+  * Getters: get_stat(prop), get_day_stat(prop), is_best_record, get_total_cnt (chicken modes), get_death_total_cnt (death modes), get_avg_settle_score_grade.
+  * Battle stats: get_battle_stat_prop(battle_type, battle_prop), get_battle_continuous_victory, get_achieve_stat, is_best_battle_record.
+  * Player info: request_player_stat_info(uid, season_id), on_player_stat_info RPC -> message_data.set_player_stat_inf.
+  * History: request_player_history_game_result(uid, record_num=30), on_history_game_result RPC.
+  * Global: request_global_stat, on_global_stat_data RPC, request_global_achieve, on_global_achieve_data/on_update_global_achieve_data RPC.
+  * Rewards: try_get_global_achieve(achieve_id), on_get_global_achieve_result RPC.
+  * Choose record: _achieve_choose_record, _simulate_cache.
+
+- impItem (script_patch/388/14384161268818316902.py)
+  * Master inventory management: Inventory(self, True, True) for all player items.
+  * Item query/checks: get_item_by_no/id, has_enough_item, has_item_by_no/id, has_permanent_item_by_no.
+  * Currency integration: item_no == SHOP_ITEM_YUANBAO/DIAMON/GOLD -> get_yuanbao/diamond/gold().
+  * Filters by type/view_id: get_items_by_type, get_items_by_type_list, get_view_item_list.
+  * Capacity checks: check_can_add_item, check_knapsack_capacity.
+  * Circulation items: has_enough_circulation_items, get_circulation_item_num_by_no.
+  * Default items: adds DEFAULT_LOBBY_SKIN, DEFAULT_LOBBY_SKYBOX on check_items.
+  * refresh_inventory RPC, remove_all_item stub.
+
+- impClothing (script_patch/650/8044512232877196605.py)
+  * Clothing dress/undress: clothing_dict keyed by part_id.
+  * dress_clothing(dict) filters CLOTHING_DRESS_PARTS, emits player_dress_update_event.
+  * undress_clothing(parts_list) removes parts, emits player_dress_update_event.
+  * get_clothing() -> full dict; get_clothing_by_part_id(part_id) -> item_no.
+  * reset_clothing RPC syncs server clothing state.
+
+- impRole (script_patch/229/5434971966436774507.py)
+  * Role (character) management: role_id, role_open_seq.
+  * Fashion scheme caching: fashion_scheme dict, role_top_skin_scheme per role+skin_id.
+  * Role selection: get_role(), set_role RPC, try_set_role(), has_role, has_permanent_role.
+  * get_role_list() -> all L_ITEM_TYPE_ROLE items the player can_use.
+  * get_role_sex(role_id) -> sex from role_info config.
+  * Fashion dressing: dress_role_fashion(parts), dress_role_top_skin_fashion(skin_id), undress_role_fashion(role_id, parts_list).
+  * SFX/voice: try_equip_role_sfx, try_set_voice_item_use_state.
+  * Scheme upload/request: upload_fashion_scheme, request_fashion_scheme, respon_fashion_scheme RPC; upload_role_skin_scheme (stores settings_version, checks skin_plan validity).
+  * Top skin scheme: request_role_skin_scheme, respon_role_fashion_scheme RPC, imp_respon_role_fashion_scheme (builds role_top_skin_scheme dict, checks special actions/default decs, emits response event).
+
+### Social & communication
+
+- impFriend (script_patch/456/2546883627593225673.py)
+  * Friend list management: disable_social_types, receive_social_rewards, daily_gold_gift_uids, frds_remark (int uid:remark), top_frds.
+  * Search: search_friend(frd_uid, frd_name) -> search_friend_by_uid/name RPC, checks MIN_ADD_FRIEND_LV.
+  * Add/remove: req_add_friend (checks lv for non-Steam), agree_add_friend, req_recommend_friend, req_add_to_list/req_del_from_list.
+  * Messaging: req_friend_msg, req_blessing_msg, cache_to_friend_chat RPC.
+  * Online state: test_get_online_state (filter_extra uids), get_one_player_online_state, on_friends_state/on_one_player_state RPC.
+  * Role head info: request_player_role_head_info(uid_list), request_one_player_role_head_info, on_player_role_head_info RPC, friend_change_name RPC.
+  * Social ID queries: query_uid_by_facebook_id_list, query_uid_by_social_id_list.
+  * PVE wish debris: request_player_wish_debris_info, on_player_pve_wished_debris_id_info RPC.
+  * Events: add_to_list/del_from_list/init_frds/search_friend_result/on_recommend_friend RPC -> update message_data friends.
+
+- impChat (script_patch/467/10264714716052004741.py)
+  * Chat background: _chat_background_item_no, req_set_chat_background, on_set_chat_background RPC.
+  * Send: send_msg(channel, msg, voice, extra, code) -> chat_msg RPC.
+  * Receive: on_chat_msg/on_msgs/on_msg RPC -> message_data.add_msg, pigoen msg check.
+  * Forbidden: forbiden_chat_msg (show reason/unban time), forbiden_voice_msg (logout ccmini sessions, show reason).
+  * History: on_history_msg RPC -> set_history_msg.
+  * World chat lang: req_switch_world_chat_lang.
+  * Moderation: in_moderation_whitelist (check_chat_country), in_speech_control (check_chat_timerange).
+  * FilterMessageBroker: registers on_msg/on_msgs filter callbacks.
+  * SA log: sa_log_forbidden_msg (client_sa_log 'Chat').
+
+- impMail (script_patch/43/12435792225889060654.py)
+  * (Deferred read for comprehensive details)
+
+- impTeam (script_patch/60/1315378529295660879.py)
+  * Team management: _team (Team object), _self_ready, _ready_battle_type, _team_idx, _auto_flag, recommend/pve_recommend_players, hang_up_ts.
+  * Lifecycle: _init_team_from_dict sets ccmini team_cceids, start_hang_up.
+  * Invite countdown: count_down_dict, add_invite_count_down(player_id, count_down), update_count_down (logic timer).
+  * Team state: is_in_team(), get_team_cur_count(), get_teammate(uid), get_team_info(), get_team_size(), is_team_full(max_team_size).
+  * Leader: get_leader_id(), is_leader(include_solo), is_teammate(uid).
+  * Punish checks: has_someone_afk_punish_time(), has_someone_imt_punish_time(), has_someone_can_not_allow_match().
+  * Auto match: get_self_auto_match().
+  * Ready state: is_all_ready() -> checks all members is_ready.
+  * save_team_info(team_info) builds Team from server dict (leader, team_id, battle_type, auto_match, public_info, members), updates message_data player_role_head_info.
+
+- impCustomRoom (script_patch/254/2592088882444382861.py)
+  * Custom/competition room system: room_info (RoomInfo), _room_dissolved_in_battle, _player_kicked_in_battle, room_count_down_dict/timer, _has_req_week_competition, _req_valid_ts, _cached_week_competition_room_list.
+  * RoomInfo class: init from dict with room_id/name/leader_uid/need_pwd/is_week_competition/battle_type/player_list, player_enter_room/on_player_seat_down.
+  * Room list: req_room_list(page), on_room_list RPC -> filters show_in_client, caches week_competition rooms, emits on_received_room_list.
+  * Create/enter: req_create_room(room_info), req_enter_room(room_id, battle_type, pwd), on_enter_room RPC (handles error codes ROOM_ENTER_NOT_EXIST/PWD_WRONG/IN_FIGHT/ROOM_FULL/NO_SEATS/LEVEL_NOENGOUGH/NO_EMULATOR/FORBID/FORBID_COMP/DAN_NOENGOUGH/JOIN_TIME_LIMIT, shows tips, closes RoomUI, emits need_show_room_ui_event).
+  * Seating: req_sit_down/req_leave_seat, on_player_sit_down/on_player_sit_down_with_option/on_player_leave_seat RPC -> room_info.on_player_seat_down, room_ui callbacks.
+
+### Shop & economy
+
+- impShop (script_patch/570/565888122640543998.py)
+  * Shop purchase tracking: buy_num_all_dict, buy_num_permanent_dict, buy_num_per_lottery/per_day/per_week/per_sunday/per_month/per_season_dict, exchange_reminder.
+  * Lottery: lottery_history_dict, lottery_history_prev_request_time, lottery_num_per_day_dict, excluded_lottery.
+  * Special: anniversary_discount_info, newbie_gift_expire_ts, shop_lucky_goods, recommend_shop_items, recommend_accessories, global_buy_info.
+  * Reset RPCs: reset_shop_per_day/week/sunday/month/season (clear purchase counts).
+  * Getters: get_per_week_num, get_per_day_num, get_buy_num_all, get_lottery_per_day_num, get_excluded_lottery, is_over_max_buy_num_per_lottery.
+  * Purchasing: buy_goods(goods_id, goods_num, goods_payment, gift_uid, need_show, discount_item_id, extra_info) -> calls server buy_goods RPC, sets requested_buy_goods flag.
+  * buy_multi_goods(goods_info_list) -> builds buy_goods_list, calls server buy_goods RPC.
+  * buy_goods_failed RPC -> shows error tip per goods_type (SHOP_GOODS_LOTTERY -> close OpenBoxUI).
+  * (More methods deferred: lottery UI, lucky goods, recommend items, etc.)
+
+- impPay (script_patch/265/16054510039407302761.py)
+  * (Deferred read for comprehensive details)
+
+### Gameplay systems
+
+- impLobby (script_patch/987/14103411010637177556.py) [already documented above]
+- impMecha (script_patch/810/4352613271680192042.py) [already documented above]
+- impMechaModule (script_patch/719/961384092474332927.py) [already documented above]
+- impLocalBattle (script_patch/673/8917822208887230157.py) [already documented above]
+
+- impPve (script_patch/697/3793229501317253287.py)
+  * PVE progression: _last_pve_difficulty/chapter/player_size, _unlock_difficulty dict per chapter, _next_free_add_key_ts.
+  * Archive system: _pve_archive_dict (keyed by chapter/difficulty/player_size), _pve_archive_read_data, save_pve_archive.
+  * Suggestions: _pve_suggest_info, _pve_suggest_like_info_dict, _cant_request_like_info, get_pve_suggest_is_open.
+  * Statistics: pve_kill_monster_cnt, pve_choose_bless_cnt, pve_choose_break_cnt, pve_chapter_kill_monster_cnt.
+  * Getters: get_chapter_unlock_difficulty, get_unlock_chapter, get_next_free_add_key_ts, get_last_pve_difficulty/chapter/player_size.
+  * Setters: set_last_pve_chapter_info(difficulty, chapter, player_size).
+  * Battle start: start_pve_battle(chapter, difficulty, use_archive, player_size, auto_match) -> try_start_pve_battle RPC, checks ext_package pve_ext.
+  * Rematch: rematch_pve_battle() uses last settings or team pve_battle_info; respects global_data.rematch_pve_tag (MATCH_AGAIN_TYPE_NONE/ARCHIVE/AUTO_MATCH).
+  * Archive RPCs: update_pve_archive, get_pve_archive, update_pve_archive_read_data, clear_pve_archive.
+  * Difficulty: new_difficulty_unlock, update_difficulty_unlock RPC.
+  * Suggest system: request_suggest_info (micro_webservice_utils 'PveSuggestService'), do_like_pve_suggest, on_do_like_pve_suggest RPC, get_pve_suggest_is_like/like_count.
+  * Stats: update_pve_stat_data RPC (nested_dict_add kill/blesses/breakthrough data).
+
+- impBattle (likely distributed across impBattleSeason/impBattleReplay/impBattleItem/impBattleFlag/impBattlePass):
+  * impBattleSeason (script_patch/981/3474515845958316051.py) - battle season/rank management
+  * impBattleReplay (script_patch/769/8503175178555830002.py) - replay system
+  * impBattleItem (script_patch/709/14431364262493180183.py) - battle consumables
+  * impBattleFlag (script_patch/126/13745933031307953327.py) - battle flags/preferences
+  * impBattlePass (script_patch/1006/7291834861376947546.py) - battle pass progression
+  * (Deferred read for comprehensive details)
+
+- impTask (script_patch/448/7815636152043450277.py)
+  * (Deferred read for comprehensive details - likely covers daily/week/achievement tasks)
+
+- impActivity (script_patch/352/2677661111512116169.py)
+  * (Deferred read for comprehensive details - likely event/activity management)
+
+### REMAINING ~110 imp modules (from MEMBER_NAME_LST, locations TBD):
+impTime, impSoul, impUserSetting, impStat, impPlayer, impConfirm, impProficiency, impCCMini, impRank, impAttendance, impBindMobile, impAdvance, impGameSprite, impVisit, impAchievement, impNgPush, impLive, impShare, impBindReminder, impLocalBattleServer, impSurvey, impRoleHead, impNewbiePass, impHouseSys, impDayTask, impAssessTask, impWeekTask, impYueka, impReport, impNotice, impVitality, impCommentGuide, impWeeklyCard, impSeasonTask, impDan, impSpectate, impFollow, impClan, impClanPoint, impClanRank, impAFK, impReward, impTwitterReward, impEnlist, impFriendHelp, impInteraction, impCharm, impCredit, impReturn, impPlace, impTown, impBond, impAnticheat, impCorpTask, impThirdPartyApp, impCDKey, impTriggerGift, impTitle, impCareer, impNewSysPrompt, impGuide, impInscription, impSysUnlock, impRealName, impAntiAddiction, impFileService, impBindWechat, impFestival, impSecretOrder, impRandomTask, impGoldGift, impCheckUpdate, impVeteran, impChanceGift, impMeow, impIntimacy, impSummer, impQuestion, impSpecEnlist, impPrivilege, impWebapp, impVerifyCode, impBrandLevel, impUdataGift, impOnlineState, impCompetition, impWebToken, impHomeland, impSettings, impIMT, impConcert, impGlobalLottery, impVote, impNile, impRedPacket, impMigrateAccount, impDuelStat, impLuckScore, impNewbieEnlist, impPickableItem, impBet, impProjectionKill, impYuanbaoStrike, impLoginRecord, impGlideEffect, impPet, impPveTalent, impPve, impPVEMechaDevelopment, impPVEStory, impPveClearTime, impPveClearTimeTeam, impMultiRank, impSlotMachine, impMechaSkinShare, impGuangmu.
+
+## Collision System Architecture
+
+### Core collision detection
+
+- Collision module (built-in): `collision.Character`, `collision.col_object`, `collision.BOX/SPHERE`, collision groups/masks
+  * scene_col.hit_by_ray(start, end, flags, mask, group, filter_type) - raycast with GROUP_CAMERA_INCLUDE/GROUP_CHARACTER_INCLUDE/GROUP_STATIC_SHOOTUNIT filters
+  * scene_col.static_test(col_obj) - static collision test
+  * scene_col.sweep_test(col_obj, start, end) - swept volume test
+  * Collision groups: GROUP_CHARACTER_INCLUDE, GROUP_CAMERA_INCLUDE, GROUP_STATIC_SHOOTUNIT, GROUP_DEFAULT_VISIBLE, WATER_GROUP/MASK
+  * Filter types: INCLUDE_FILTER, EXCLUDE_FILTER, EQUAL_FILTER
+
+- script_patch/758/5308374210527439908.py (CameraCollisionChecker)
+  * Camera-specific collision detection: is_enable_collision_check, focus_point, default_pos, _to_visual_focus_length.
+  * Collision recovery: last_collision flag, check_vertical_col, CAMERA_COLL_RECOVER_SPEED.
+  * Sweep collision: _sweep_col (collision.BOX), _sweep_size, _size_factor (4 on DX, 2.2 default).
+  * Static test: _static_cols list, _static_size_factor (3 on DX, 2 default), init_static_test builds col_objects per FOV.
+  * check_collision(cam, cur_target_pos, need_collision_recover, cam_offset, org_mat): raycasts from focus_point to camera_pos, handles collisions with slerp recovery.
+  * get_collision_point(cur_target_pos, camera_pos, camera_rotate_matrix, cam_offset): returns (coll_pos, ratio); uses hit_by_ray or sweep_test.
+  * Collision handling: emit camera_set_collision_slerp_target_pos_event with cost_time, handles offset focus raycast + vertical collision checks.
+  * Offset helpers: OFFSET_FOCUS_RAY_START, OFFSET_FOCUS_SHIFT_DOWN; coll_check_offset_helper for vertical start_pos adjustments.
+
+- script_patch/53/4296003627347534804.py (CameraCollisionObject & JudgeCameraController)
+  * CameraCollisionObject: Physics-based camera collision sphere for spectate/judge cameras.
+  * collision.col_object(collision.SPHERE, radius), mask=GROUP_STATIC_SHOOTUNIT, group=GROUP_DEFAULT_VISIBLE.
+  * Physics props: set_damping(0.4, 0.4), disable_gravity, enable_ccd, mass control (0 for static, 1.0 for dynamic).
+  * movement: move_collision(speed) via set_linear_velocity, stop_move/start_move toggles mass.
+  * scene_col.add_object/remove_object lifecycle.
+  * JudgeCameraController: Singleton spectate camera controller with CameraDirectionKeyboardHelper, PositionChecker (boundary checking), update_timer_id.
+
+### Character collision components
+
+- script_patch/620/17485016098020089777.py (ComCharacterBase) [already documented]
+  * Creates collision.Character(width, height, stepheight) with lobby slope 70deg, GROUP_CHARACTER_INCLUDE.
+
+- script_patch/79/15805353580974509422.py (ComMechaCollison)
+  * Mecha collision component: collision.Character for mecha units.
+  * Setup similar to character with mecha-specific dimensions, GROUP_CHARACTER_INCLUDE | GROUP_MECHA_BALL mask.
+
+### Building/object collision components (30+ types)
+
+All inherit from ComObjCollision/ComCommonShootCollision hierarchy:
+- ComBuildingCollision, ComGrenadeCollision, ComWeaponCollisionBase
+- ComTriggerGrenadeCollision, ComTrainCollision, ComMonsterCollision
+- ComPhantomCollision, ComMechaShieldCollision, ComFieldShieldCollision
+- ComPVEBoxCollision, ComPVEDynamicDoorCollision, ComExerciseTargetCollision
+- Each handles hit_by_ray detection, damage processing, destruction callbacks
+
+## Camera System Architecture (Comprehensive)
+
+### Core camera management
+
+- script_patch/234/15126962143278207258.py (SphericalCameraManager) [already documented]
+  * Active camera, current camera state, slerp helper, collision checker, follow component.
+  * Event bindings: yaw/pitch/fov setters, slerp targets, camera animations, switch_camera_state_event.
+  * switch_cam_state -> normal_switch_cam_state via camera_state_pool (observe-aware).
+
+- script_patch/829/10234891995184135756.py (CameraStatePool) [already documented]
+  * Singleton caching camera states and components. CAMERA_STATE_CLASS registry, dynamic creation from c_camera_setting config.
+  * OBSERVE camera states cloned with ObserveCameraCom added.
+
+- script_patch/242/689216734236957641.py (CameraTargetManager)
+  * Manages camera follow target: player, follow_target_id, follow_target (entity).
+  * Camera state tracking: cur_camera_state_type, init_camera_state, init_camera_kwargs.
+  * Observe mode: is_in_observe, is_in_observe_free, need_recover_observe_status.
+  * Event handlers: on_avatar_setted, on_observe_target_setted, on_player_setted, on_target_dead, enter/leave_free_observe_camera.
+  * Target switching: unbind_cur_player_event, unbind_cur_follow_target, bind_shadowtex_obj, set_model_cam_effect_enable.
+  * Model loading: handle_target_model_load waits for E_MODEL_LOADED, inits target pos, switches cam_state, emits camera_inited_event.
+  * Camera state switches: switch_cam_state, switch_to_aim_camera, switch_to_right_aim, switch_to_airship_camera, switch_to_mecha_camera.
+  * Observe recovery: recover_cur_target_status via ObserveCameraRecover, recover_target_observe_camera.
+  * Parachute handling: on_observer_parachute_stage_changed, on_speed_up_changed.
+  * Sync: on_sync_cam_state, on_refresh_camera_follow_target_position.
+
+### Camera states (polymorphic state machine)
+
+- script_patch/104/16459181834347284587.py (CameraState base & variants)
+  * Base CameraState: TYPE/COMS class attrs, OBSERVE flag.
+  * Component system: _coms dict, _init_coms creates components from COMS list + _FIX_COMS ('ClipCameraCom').
+  * Lifecycle: enter/_enter_coms, on_enter, on_update(dt), destroy/_destroy_coms, on_destroy.
+  * Caching: cache/_cache_coms, reuse/_reuse_coms.
+  * Properties: max/min_pitch_radian, yaw_range, max/min_yaw_radian; refresh_real_yaw_range.
+  * Proxied from cam_ctrl: cur_player_posture, cur_role_id, focus_point, default_pos, _pitch, _yaw, _roll.
+  * Posture support: _posture_setting (DISABLE/ENABLE/INHERIT_POSTURE), _is_enable_posture.
+  * Enter transfer: get_enter_transfer_setting() from config.
+  * State types: THIRD_PERSON_MODEL, FREE_MODEL, AIM_MODE, FIRST_PERSON_MODE, PREVIEW_MODE, THIRD_PERSON_SPEED_UP_MODE, etc.
+
+### Camera components (composable behaviors)
+
+- script_patch/745/15270756925257116929.py (CameraComponents)
+  * CamCom base: cam_state ref, on_init/enter/destroy lifecycle, cache/reuse, on_target_pos_changed hook.
+  * camera_com_data singleton: regist_para for global camera parameters.
+
+  * **RoomOffsetCameraCom**: Detects in/out of indoor areas via check_in_room raycast.
+    - Emits on_enter_room_camera_event/on_leave_room_camera_event.
+    - Applies CAMERA_ROOM_OFFSET via set_up_camera_pos_parameters_event + slerp_into_setupped_camera_event.
+    - CAMERA_IN_ROOM_SPEED for enter, CAMERA_COLL_RECOVER_SPEED for exit.
+    - Active for THIRD_PERSON_MODEL/FREE_MODEL/THIRD_PERSON_SPEED_UP_MODE states.
+
+  * **SkateOffsetCameraCom**: Handles skating camera transitions.
+    - Events: player_enter_skate_move_camera (ENTER_ANI_NAME='start_skate_move'), player_leave_skate_move_camera (LEAVE_ANI_NAME='stop_skate_move').
+    - is_in_skating flag.
+
+  * **ClipCameraCom**: Camera frustum clipping adjustments (in _FIX_COMS, always added).
+
+  * **ObserveCameraCom**: Observe-mode specific behaviors (added to OBSERVE camera states).
+
+- script_patch/266/15913332270655613081.py (ComCameraTarget)
+  * Unit component marking entity as camera target, enables camera follow/focus.
+
+- script_patch/878/17678268022705401098.py (ComCameraEvent)
+  * Unit component for camera event handling, triggers camera state changes based on unit events.
+
+- script_patch/981/4676488133044185174.py (ComKillerCamera)
+  * Killer camera component: tracks kill events, switches to killer POV via hit_by_ray validation.
+
+### Camera utilities & helpers
+
+- script_patch/725/18272002510821021995.py (CameraAnimationClip)
+  * Camera animation playback: keyframe-based position/rotation/fov animations.
+
+- script_patch/655/1322275663226106430.py (ISlerpCamera)
+  * Camera slerp interface for smooth transitions.
+
+- script_patch/516/17486160099089205006.py (ICamAsymptoticFollowCom)
+  * Asymptotic camera follow component interface (smooth follow with lag).
+
+- script_patch/522/9108695099240353083.py (ObserveCameraRecover)
+  * Restores camera state when exiting observe mode: recover_camera_status(target).
+
+- script_patch/12/9222137995946685492.py (ObserveFreeCameraSwitchChecker)
+  * Checks if observe free camera switch is allowed based on battle state.
+
+- script_patch/131/17911281800828561375.py (CameraDirectionKeyboardHelper)
+  * Keyboard-driven camera rotation helper for judge/spectate cameras.
+
+### Camera collision flow
+1. **CameraCollisionChecker.check_collision** called per frame from SphericalCameraManager
+2. Raycasts from **focus_point** to **camera_pos** using **hit_by_ray** (GROUP_CAMERA_INCLUDE)
+3. If collision: calculates **coll_pos** and **ratio**, emits **camera_set_collision_slerp_target_pos_event**
+4. **SphericalCameraManager** receives event, smoothly slerps camera to safe position
+5. Recovery: when collision cleared, slerps back to **default_pos** at CAMERA_COLL_RECOVER_SPEED
+6. Vertical collision: separate **check_vertical_col** for ground/ceiling hits
+
+### Camera state machine flow
+1. **CameraTargetManager.switch_cam_state** requests state change
+2. **SphericalCameraManager.normal_switch_cam_state** handles transition
+3. **CameraStatePool.create_camera_state** gets/creates state (checks OBSERVE flag)
+4. Old state: **leave slerp actions**, component **destroy**
+5. New state: **_enter_coms**, component **enter**, **on_enter** hook
+6. Components modify: **focus_point**, **default_pos**, **offsets**, **fov**
+7. Collision checker: **update_camera_config** with new state parameters
+
+## State System Architecture (Comprehensive)
+
+### Core behavior state machine
+
+- **StateBase** (imported from logic.gcommon.behavior.StateBase)
+  * Base class for all behavior states (character movement, mecha actions, monster AI, etc.)
+  * Core lifecycle: init_from_dict → enter(leave_states) → update(dt) → check_transitions() → exit(enter_states) → destroy
+  * Properties: sid (state ID), sub_state, elapsed_time, delta_time, tick_interval, custom_param
+  * Sub-state system: register_substate_callback(sub_state, elapsed_time, callback) for multi-phase states
+  * Camera integration: enter_camera(state_camera) sends E_TRY_SWITCH_TO_CAMERA_STATE event
+  * Animation binding: bind_action_id for action polling
+  * Sound/effects: sound_drive, refresh_sound_param, refresh_camera_param
+  * Event handling: send_event to unit_obj for state changes
+  * Concrete implementations: 50+ state classes (Move8016, Run8016, ChangeWeaponState, AimIKBase, etc.)
+
+### Character/mecha behavior component (ComBehavior/ComPetBehavior)
+
+- script_patch/399/11337466015019217219.py (ComBehavior - human/mecha)
+- script_patch/976/2319842502435643897.py (ComPetBehavior - pets/monsters)
+  * Manages multiple concurrent states: _cur_state (set of active state IDs), _states (dict of StateBase instances)
+  * State registration: init_state creates StateBase subclasses from behavior config with custom_param
+  * Passive state triggers: _passive_trigger_state (states to enter), _passive_leave_state (states to exit)
+  * State transitions: check_transitions() per frame, handles state priority and conflicts
+  * Update loop (update_state):
+    1. Collect passive triggers/leaves
+    2. check_transitions() for each active state → next_sid
+    3. Cancel leaving states via ev_g_cancel_state
+    4. Activate target states via ev_g_trans_status
+    5. Get cur_state from status component, compute leave_state/new_state
+    6. Call exit(new_state) on leaving states
+    7. Call enter(leave_state) on new states
+    8. Call update(dt) on all active states with tick_interval
+  * State parameter replacement: replace_state_param (buff/skin/weapon variants), reset_state_param
+  * Behavior switching: on_switch_behavior(npc_id) clears all states, reloads behavior config, resets to default_state
+  * Events: E_RESET_STATE, E_TRY_LEAVE_STATE, E_TRY_TRANS_STATE, E_ACTIVE_STATE, E_REMOVE_TRIGGER_STATE
+
+### State data components
+
+- script_patch/70/11525756080486407907.py (ComStateData)
+  * Mecha-specific state tracking: _attack_stage (0-N combo stages), _jump_stage (jump count)
+  * Auto-reset timer: _stage_reset_timer clears _attack_stage after _reset_time (1.5s default)
+  * Events: E_JUMP_STAGE, E_ATTACK_STAGE, E_ADVANCED_JUMP, E_BEGIN_ATTACK_STAGE with stage getter/setter
+
+- script_patch/78/8099456867292895314.py (ComHumanStateData)
+  * Human character state: _jump_stage, _is_fixed_pos_jump, _move_action (STAND/WALK/RUN), _weapon_type, _is_shoot
+  * Movement states: MOVE_STATE_STAND/WALK/RUN from animation_const
+  * Keep shoot time: _keep_shoot_time delays leaving shoot/aim states, updated from weapon fAimActionDuration
+  * Weapon tracking: ref_wp_bar_cur_weapon, ref_hand_weapon_model, ref_left_hand_weapon_model
+  * State transitions: enter_states checks JUMP_STATE → clears is_shoot; leave_states updates keep_shoot_time
+  * Events: E_CHARACTER_ATTR, E_MOVE_STATE, E_KEEP_SHOOT_TIME, E_ACTION_IS_SHOOT, E_WEAPON_TYPE, E_ENTER/LEAVE_STATE
+
+- script_patch/701/6252870424693336199.py (ComParachuteState)
+  * Parachute stages: STAGE_NONE, STAGE_ISLAND, STAGE_PLANE, STAGE_FREE_DROP, STAGE_PRE_PARACHUTE, STAGE_PARACHUTE_DROP, STAGE_LAND, STAGE_FLY_CARRIER, STAGE_MECHA_READY, STAGE_SUPER_JUMP, STAGE_LAUNCH_PREPARE, STAGE_SORTIE_PREPARE/READY
+  * Launch tracking: _launch_start_pos, _launch_end_pos for sortie trajectories
+  * Stage transitions: _stage_to_mecha_bording, _stage_to_plane, _stage_to_free_drop, _stage_to_parachute, _stage_to_land, _stage_to_launch
+  * Parachute state checks: is_parachuting, is_parachute_free_drop, is_in_carrier_or_plane, is_preparing, is_super_jumping
+  * View range optimization: modifies scene view range during parachute stages
+  * Events: E_PARACHUTE_STAGE_CHANGED, E_READY, E_PLANE, E_START_PARACHUTE, E_OPEN_PARACHUTE, E_LAND, E_START_SUPER_JUMP
+
+- script_patch/702/9348606101105220255.py (ComPickableState)
+  * Item state: _item_id, _item_num, _item_cfg (item configuration dict)
+  * Scene box status: SCENEBOX_ST_OPENED, is_scene_box_open, need_open
+  * Item container: all_item dict (child entities), attachment dict (attachments by position)
+  * Dynamic updates: remove_child_item, set_item_count with 'changed' flag
+  * Events: E_REMOVE_CHILD_ITEM, E_PICKABLE_ITEM_COUNT, E_SCENE_BOX_STAT_CHANGE
+
+### State UI components
+
+- script_patch/996/4546917116561484099.py (ComStateSimui)
+  * Status UI overlay: displays buff/debuff icons above mecha/character models
+  * State UI types:
+    - MEHCA_STATE_SIMUI: paralysis (BUFF_ID_KNIGHTTHROWABLE, BUFF_ID_ANDROMEDA_IMMOBILIZED), electric (BUFF_ID_MECHA8015_LIGHTNING, BUFF_ID_PVE_ELETRIC_MARK), shadow mark (BUFF_ID_SHADOW_BLADE_MARK)
+    - MECHA_FLAG_SIMUI: aim markers (BUFF_ID_8017_AIM, BUFF_ID_8025_AIM, BUFF_ID_8030_AIM), grounded (BUFF_ID_8034_GROUNDED), blind (BUFF_ID_8034_BLIND)
+    - PERCENT_STATE_SIMUI: progress bars like BUFF_ID_MECHA_8013_TRACE
+  * Socket positioning: get_xuetiao_socket, set_state_offset with _state_list_ui_offset stacking
+  * Visibility control: MECHA_FLAG_SIMUI_VISIBLE (CREATOR_ONLY/CREATOR_AVATAR/AVATAR_EXCLUDE/ALL)
+  * State offset management: set_state_offset, remove_state_offset, recover_state_offset for vertical stacking
+  * Events: E_IMMOBILIZED, E_AUTO_AIM_BY_OTHERS, E_BODY_ELECTRIC, E_SHOW_STATE_UI, E_HIT_FLAG_LEVEL_CHANGED, E_TRACE_MARK_CHANGED
+
+- script_patch/135/9340356366814169964.py (StateChangeBaseUI / StateChangeUI)
+  * Mecha summon/leave UI: btn_change_to_human (leave mecha), btn_change_to_mech (summon mecha)
+  * CD tracking: cd_type (RECALL_CD_TYPE_GETMECHA/DIE, RECOVER_CD_TYPE_DISABLE), count_down timer
+  * Mecha HP display: mecha_hp bar, updates from E_MECHA_HP_CHANGE event
+  * State animations: change_to_mech, renovate, change_to_man animation states
+  * Combat states: is_changing flag prevents double-clicks, mecha_state tracks current form
+  * Summon logic: CallMecha checks position validity, sends E_CTRL_STAND + E_LEAVE_ATTACHABLE_ENTITY, triggers ST_MECHA_BOARDING, syncs try_recall RPC
+  * Events: E_FIGHT_STATE_CHANGED, E_STATE_CHANGE_CD, E_RECALL_SUCESS, E_ON_JOIN_MECHA, E_ON_LEAVE_MECHA
+
+### Camera state tracking components
+
+- script_patch/931/759366124693042489.py (ComStateTrkCam)
+  * Camera track (TRK) playback triggered by state events: _on_jump, _on_hit_by_firearm, _on_hit_by_throwable, _on_mecha_ground
+  * TRK configuration: mecha_common_conf, mecha_spe_trk_conf from camera_trk_sfx_conf (MechaCommonConfig, MechaWalkConfig, MechaHitConfig, SkillTrkConfig)
+  * Hit detection: get_gun_scr_lv (weapon damage level), get_throwable_scr_lv, _get_other_damage_scr_lv; get_show_dir (attack direction)
+  * State TRK mapping: _get_mecha_trk_tag_from_camera_state, _get_human_trk_tag_from_camera_state
+  * Ground shake: GROUND_SPEED_SMALL/BIG thresholds → C_SML_GROUND, C_MED_GROUND, C_BIG_GROUND TRK states
+  * Skill camera: _do_skill reads SkillTrkConfig per skill_id, plays/cancels skill-specific TRKs
+  * Events: E_JET_CAMERA_SHAKE, E_HITED_SHOW_HURT_FIREARMS/THROW/OTHER_SCREEN_TRK, E_MECHA_ON_GROUND, E_DO_SKILL, E_PLAY_CAMERA_TRK, E_PLAY_CAMERA_STATE_TRK
+
+### Camera follow state
+
+- script_patch/954/13007339593627003842.py (FollowState & LinearVelocityFollower)
+  * Follow state base: _last_time timer, _over_time_action callback, set_last_time registers auto-transition
+  * LinearVelocityFollower: accelerated camera follow with _start_speed, _max_speed, _acceleration; get_move_vec returns velocity-based movement
+  * CamAsymptoticFollowCom: asymptotic camera following with speed transitions
+    - _follow_target_pos, _follow_target_speed (default 1.0), _max_follow_speed_change_timer
+    - Speed changes: on_change_target_follow_speed(new_speed, last_time, recover_time, mode='SPEED')
+    - Follow methods: _cur_follow_method (None or LinearVelocityFollower)
+    - Prediction: uses _last_camera_follow_target_pos_list (10 frames) to predict target movement, computes ave_speed
+    - Frame rate adaptation: _speed_frame_ratio scales to DESIGNED_FRAME_RATE (30 FPS)
+    - Asymptotic follow: follow_pos = target_pos - (predict_pos - cur_pos) * (1 - follow_speed)
+
+### Mecha-specific state classes (examples from script_patch/848)
+
+- ChangeWeaponState: Switches between MC_SHOOT and MC_AIM_SHOOT weapon modes
+  * Sub-states: STATE_NONE, STATE_CHANING, STATE_COMPLETE
+  * Animation: plays 'change_mode' animation, switches bind weapon positions
+  * Events: E_SWITCH_ACTION for action1/2/3, E_SWITCH_BIND_WEAPON_CUR_POS, E_SHOW_MAIN_ACC_IDLE_EFFECT, E_SET_ACTION_ICON
+
+- AimIKBase: Base for aim IK states with PRE/HOLD/POST phases
+  * Sub-states: NONE_STATE (-1), PRE_STATE (0), HOLD_STATE (1), POST_STATE (2)
+  * IK parameters: shoot_aim_ik, aim_ik_lerp_time from custom_param
+  * State callbacks: pre_end, post_start, shoot_end registered via refresh_sub_state_callback
+  * Events: E_SWITCH_TO_AIR_SHOOT
+
+- MonsterStateBase (script_patch/991): Base for monster AI states, emits E_ON_STATE_EXIT
+
+### Status system integration (ComStatus)
+
+- script_patch/113/690741061012183877.py (ComStatusMechaClient)
+  * White/black state lists: on_add_white_state, check_white_state, check_black_state for state filtering
+  * Status transitions: _try_trans_st, _try_trans_st_mecha with sync/force flags
+  * Cover states: _cover_state checks if new_st can override current states
+  * State duration: get_status_max_duration per status
+  * State reset: reset_state(is_vehicle, state_id) clears to default or specified state
+
+### State exporter (editor tools)
+
+- script_patch/725/14152794965056670801.py (StateExporter)
+  * state_exporter decorator: exports state parameters for editor/config; currently no-op in decompiled code
+
+## Manager System Architecture (Global Singletons)
+
+### Core game manager (script_patch/422/14606205992556332510.py)
+
+- **Manager** (ALIAS: game_mgr) - Central game orchestrator
+  * Agent registration: basic_manager, other_manager, DebugManagerAgent, IngameManagerAgent, ExSceneManagerAgent
+  * Scene management: load_scene, unload_scene, reload_scene, get_cur_scene, active_cur_scene
+  * Timer system: register_logic_timer/fix_timer/post_logic_timer/render_timer with interval/times/mode (CLOCK/LOGIC)
+  * Speed control: speed_rate for gameplay slow-motion effects
+  * Event queue: post_exec, next_exec, delay_exec, sync_exec for deferred callbacks
+  * Scene utilities: show_tip(text_id), remove_patch_ui(), gds (GlobalDisplaySeting - graphics settings)
+  * State: scene (world.Scene), _enable_logic flag, agents map
+  * Lifecycle callbacks: init_game_callback wires exit/pause/resume/vkb, permissions, file missing handlers
+
+### UI manager (script_patch/934/11654241025107203896.py)
+
+- **UIManager** (ALIAS: ui_mgr) - UI system orchestration
+  * Dialog/panel management: create_dialog, show_ui(ui_name, module), close_ui, get_ui
+  * Layer system: 28 zorder layers (GUIDE_LAYER, DIALOG_LAYER, TOP_ZORDER, etc.); init_ui_layer, reset_layer_wh, reset_canvas_for_layer
+  * Language support: LANG_CN, LANG_ZHTW, LANG_EN, VOICE_JA, VOICE_CN; change_lang, get_local_language_code, read_lang_conf
+  * Resolution management: design_screen_size, slide_screen_size, update_cocos_design_screen_resolution, enable_slide_screen_size
+  * Template system: uis (UISystem) with load_template_create for UI elements
+  * Font/text: install_simui_font, init_fallback_font, init_word_boundary_chars
+  * Rendering: render_target_holder_list, CCNode hierarchy, SetEnableTouch, SetVisible
+  * UI visibility: ui_show_whitelist, blocking_ui_list, SPECIAL_UIS
+  * Panel caching: init_panel_and_item_cache, _clear_tex_timer for texture cleanup
+  * Scene integration: SpaceNode.init_root()
+
+### Model manager (script_patch/957/17178907951506583458.py)
+
+- **ModelMgr** (ALIAS: model_mgr) - 3D model lifecycle
+  * Model creation: create_model(model_path, mesh_path_list, on_create_func, ex_data) returns model_id
+  * Async loading: world.create_model_async with callback; _model_loading_cfgs tracks pending models
+  * Model pooling: enable_model_pool, ModelPoolMgr, _model_loaded_cfgs caches loaded models
+  * Model removal: remove_model(model), remove_model_by_id(model_id), clean_up_invalid (removes invalid models)
+  * Mesh loading: create_mesh_async (BOX/SPHERE shapes), add_mesh, ENABLE_MESH_LOAD_ASYNC flag
+  * Resource caching: ResRefPoolMgr for mesh assets, enable_res_ref_cache
+  * Scene integration: create_model_in_scene(model_path, pos, mesh_path_list, on_create_func) adds to scene
+  * ID management: _gen_model_id() with MAX_MODEL_ID limit (1 billion)
+  * Memory: _model_ids map, force_disable_model_cache flag
+
+### Sound manager (assumed SoundMgr, referenced as sound_mgr)
+
+- Global singleton for audio playback: play_sound_2d, play_ui_sound, set_recording, Wakeup_bg_app_music
+- Integration with effects: global_data.sound_mgr.play_ui_sound(key) for UI feedback
+
+### Voice manager (script_patch/582/8900901943060584159.py)
+
+- **VoiceMgr** (ALIAS: voice_mgr) - Voice chat and recording
+  * Recording: start_recording(callback), stop_recording(is_enable), _is_recording flag
+  * Playback: play_amr(key), play_voice_msg(key, callback), voice.play_voice(file_path, volume)
+  * Conversion: convert_voice(src, dst, callback) for WAV/AMR formats (iOS vs Android)
+  * Upload: upload_amr(filename) with HTTP POST to VOICE_CHAT_URL from channel_conf
+  * Settings: _voice_volume, get_volume, set_volume; _need_translate_lang
+  * Callbacks: set_voice_cb(callback) for play state changes (INIT/END/STOP)
+  * Platform-specific: iOS uses WAV, Android uses AMR; get_doc_dir for audio files
+  * Chat integration: chat_voice_empty event emitted when voice ends
+
+### Feature manager (referenced as feature_mgr)
+
+- feature_mgr.is_support_cocos_tex_async_load() - async texture loading capability
+- feature_mgr.is_support_fallback_font_list() - font fallback support
+- Controls enable_ui_add_image_async, enable_cocos_csb flags
+
+### Vibrate manager (script_patch/150/5152512013479011562.py)
+
+- **VibrateMgr** (ALIAS: vibrate_mgr) - Device vibration control
+  * start_vibrate(priority) - checks vibrate_conf, respects priority-based cooldown
+  * _vibrate_allow_time_map tracks per-priority CD timers
+  * Configuration: vibrate_conf with fLastTime (duration ms), fCD (cooldown sec)
+
+### Event manager (referenced as emgr)
+
+- **global_data.emgr** - Central event bus (ALIAS: event_mgr)
+  * 100+ events: scene_player_setted_event, scene_observed_player_setted_event, camera_inited_event, switch_camera_state_event, etc.
+  * Lifecycle: app_resume_event, app_background_event, on_player_parachute_stage_changed
+  * Chat/voice: chat_voice_empty, player_enter_skate_move_camera, switch_to_aim_camera_event
+  * Entity: E_MODEL_LOADED, E_DEATH, E_HEALTH_HP_CHANGE, E_ON_CONTROL_TARGET_CHANGE
+  * UI: refresh_activity_redpoint, battle_show_message_event, battle_broadcast_event
+  * Emission: emgr.bind_events(econf_dict), emgr.event_name.emit(*args), emgr.event_name += callback
+
+### Battle-specific managers (script_week/394/17266987574069710882.py)
+
+- **BattleRangeMgr** - Battle boundary/move range management
+  * _range_data: (move_range, move_height, limit_height, range_index) from game_mode.get_born_data()
+  * is_in_battle_boundary(px, py, pz, margin) - validates player position within map bounds
+  * create_all_range_model - creates visual boundary barriers with collision models
+  * _region_col_model (collision objects), _limit_height_trigger (height barriers)
+  * Events: on_open_prez, on_player_parachute_stage_changed
+
+- **BattleSpawnMgr** - Spawn point management
+- **BattleRangeEXMgr** - Extended range logic
+- **BattleSfxMgr** - Battle sound effects
+- **BattleReadyBoxMgr** - Ready indicators
+- **BattleFlagMgr** - Flag/capture points
+- **BattleBronBoxMgr** - Equipment/supply boxes
+- **BattleAccMgr** - Accessories/consumables
+- **BattleDuelRangeMgr** - Duel-specific ranges
+- **ImproviseBattleRangeMgr** - Improvise mode ranges
+- **ADCrystalBattleSpawnMgr** - Crystal mode spawns
+
+### Scene-specific managers
+
+- **PartPickableManager** - Loot/pickable item management in scene
+- **SysMapAirlineMgr** - Map airline/airplane paths
+- **Sys3DMapInfoMgr** - 3D map information system
+
+### NPC/AI managers (script_week/878/13191177480351796253.py)
+
+- **NPCMgr** - Base NPC manager
+- **FightNPCMgrBase** - Combat NPC base
+  * RobotMechaMgr - Robot mecha NPC control
+  * RobotMgr - Regular robot NPC control
+- **ItemNPCMgr** - Loot/item NPC management
+- **LocalBattleNPCMgr** - Local battle NPC management
+
+### Game mode managers
+
+- **global_data.game_mode** - Game mode context
+  * get_born_data() - spawn and zone data
+  * get_mode_type() - current mode (DEATHMATCH, TEAM, IMPROVISE, CONCERT, etc.)
+  * get_cfg_data(key) - mode-specific configuration
+
+### Other specialized managers
+
+- **ModelMgr** - 3D model lifecycle (already documented above)
+- **ScreenSfxMgr** - Screen space effects
+- **MechaAimSpreadMgr** - Mecha weapon spread simulation
+- **TouchManager** - Input handling
+- **MoveKeyboardMgr** - Keyboard control mapping
+- **MouseCursorManager** - Cursor management
+- **AimTransparentManager** - Aim UI transparency
+- **LivePlatformManager** - Live streaming integration
+- **RealNameRegisterMgr** - Real name registration system
+- **VoiceMgrSdk** - Voice SDK integration (wrapper)
+- **GameVoiceMgr** - In-game voice system
+- **PoisonDamageViewMgr** - Poison damage indicators
+- **BondShowChatMgr** - Bond/intimacy chat UI
+- **LobbyNewbieGuideMgr** - Newbie guide in lobby
+- **PartDetailObjMgr** - Detail object management in scene
+- **PartHitHintManager** - Hit effect indicators
+- **ShareManager** - Screenshot/share functionality
+- **ExtInGameManager** - Extended in-game features
+- **LogManager** - Debug logging
+- **UIManager** (already documented above)
+- **CCMiniMgr** - Mini-game system
+- **UDSMgr** - UD (undefined) SDK manager
+- **FeatureMgr** - Feature detection/control
+
+### Manager agent pattern (ManagerAgentBase)
+
+- **EscapeManagerAgent** - Escape/retreat handling
+- **ManagerAgentBase** - Agent base class for extensible manager behaviors
+
+### Global data integration
+
+- global_data stores all managers as singleton ALIAS_NAME attributes
+- Access pattern: global_data.game_mgr, global_data.ui_mgr, global_data.model_mgr, etc.
+- Initialization order: game_mgr first (scene/timers), then ui_mgr (UI layers), then specialized managers
+- Lifecycle: register_logic_timer for deferred initialization, unregister on exit
+
+## Local Battle Server Architecture (Offline PvE Tutorial System)
+
+### Core LocalBattleServer (script_patch/83/2917163274451488530.py)
+
+- **LocalBattleServer(BaseClientEntity)** - Offline server stub that mirrors server RPCs locally
+  - RPC_HANDLER: loaded_battle/quit_battle/sync_battle/sync_battle_time → _lbs_*; SYNC_BATTLE_HANDLER maps move_sync_all/sync_ack_check/acc_cam_yaw/acc_cam_pitch/cam_state; DISCARD_BATTLE_SYNC filters noisy sync ids (acc_yaw/trigger_head_pitch/force_yaw/etc.).
+  - _lbs_loaded_battle: builds player init dict (entity_id/aoi_id), calls join_local_battle, then client add_entity via global_data.player.call_new_local_battle_rpc_method.
+  - _lbs_sync_battle: walks packed sync list, idx_utils decodes method ids, runs only whitelisted handlers; _lbs_sync_battle_time forwards f_send to avatar.on_sync_battle_time.
+  - Entity bridge: _lbs_add_entity/_lbs_destroy_entity create/destroy via EntityFactory then call_new_local_battle_method_direct; get_local_aoi_id increments AOI ids for offline AOI space.
+  - Persistence/utility: GuideSetting.local_battle_data cache; _lbs_is_hit raycasts scene_col.hit_by_ray against GROUP_CHARACTER_INCLUDE for LOS checks.
+
+### LocalBattle entity (script_patch/811/2355169255510507807.py)
+
+- **LocalBattle(Battle)** - Client-side battle scene/environment
+  - load_finish: sets view_range from config, plays BGM (Custom1 human / Custom2 mecha), spawns barrier collision + SFX, then calls Battle.load_finish.
+  - Tick: TICK_INTERVAL=1; mecha_charger_check pings bound charger entity every second.
+  - Events: binds camera_lctarget_open_prez to toggle barrier outline materials; clear_barriers removes collision model/SFX; set_combat_weapons emits E_GUIDE_INIT_WEAPONS with weapon dict to avatar logic.
+
+### Avatar impLocalBattleServer mixin (script_patch/874/17449398221946155833.py) - 1424 lines
+
+Core offline battle runtime on the Avatar:
+
+**Battle init & persistence**
+- try_start_local_battle: if already in battle start directly; newbie human/mecha types call server try_start_local_battle; others local. do_start_local_battle RPC (client stub) calls _start_local_battle → persists _lbs_in_battle/_lbs_battle_type in GuideSetting.local_battle_data → _create_local_battle (battle/map config, player_num=99, view pos/range).
+- Helpers: get_lbs_battle_type/has_finish_guide/get_local_pos/get_lbs_step; save_remote/death battle data; clear_local_battle_data notifies finish_local_battle then wipes keys.
+
+**RPC bridge & sync**
+- rpc_to_handle: loaded_battle/quit_battle/sync_battle/sync_battle_time. sync_battle_handle: pick_obj, item_use_try/do/cancel, on_wpbar_switch, create_mecha, try_join/leave_mecha, try_recall, move_sync_all, reloaded, do_shoot, do_skill.
+- handle_local_battle_rpc (BaseClientAvatar routes when local_battle active) dispatches to _lbs_*; _lbs_sync_battle decodes idx_utils names then executes whitelisted handlers; _lbs_sync_battle_time triggers on_sync_battle_time.
+
+**Entities & gameplay**
+- _create_local_battle spawns LocalBattle; _lbs_add_entity wraps EntityFactory + AOI id then LocalBattle.add_entity; clear_local_barrier removes scene collisions and guide checks; quit_local_battle destroys battle, clears barriers/robots, resets lobby combat_state.
+- Mecha: create/join/leave/recall with E_ON_JOIN/LEAVE_MECHA events, recall CD (MECHA_RECALL_CD=10), passenger wiring, guide position checks; charger spawn and record.
+- Robots/NPCs: create_robot/robot_mecha/monster/npc_mecha/eject variants; timers for AI shooting/move; destroy helpers unregister all logic timers (ai/shoot/move/shield).
+- Items: pick_obj/pick_items replaces weapons or drops old; emits E_PICK_UP_WEAPON/OTHERS and guide events; item_use_try/do/cancel (bandage heals, throw events) and weapon reload (_lbs_reloaded).
+- Combat: do_shoot computes damage via get_newbie_stage_local_damge/get_local_damage, sends E_DO_SYNC_METHOD to targets; robot_damage applies to robot/mecha/monster/NPC with guide death feedback; player_damage chips shield/HP and fires E_GUIDE_PLAYER_DAMAGE.
+- Skills: do_skill(800152) adds temporary outer shield via timers; move_robot_to steps waypoints with logic_timer; _lbs_is_hit raycasts to avoid friendly fire.
+- Damage tuning: get_newbie_stage_local_damge picks head/other/mecha multipliers; _no_mecha_damage_flag gate for guide invuln.
+- Guide hooks: E_GUIDE_POS_CHECK, E_GUIDE_PICK_WEAPON/OTHER_ITEM, E_GUIDE_ROBOT_MECHA_HP_LOWER, E_GUIDE_PLAYER_DAMAGE; _lbs_save_pos persists _lbs_pos.
+
+### impLocalBattle mixin (script_patch/673/8917822208887230157.py) - 160 lines
+
+- Wrapper for “new” local battle (server/client pair via game_mode_const.get_local_battle_svr_cli_by_type).
+- try_start_new_local_battle: QTE runs fully client-side; others call server try_start_local_battle. do_start_new_local_battle RPC calls _start_new_local_battle.
+- _start_new_local_battle: creates LocalBattleServer + LocalBattle, inits from server/client dicts, wires set_local_battle; returns success flag. quit_new_local_battle destroys both, notifies finish_local_battle unless QTE, resets lobby combat_state (from_newbie_stage aware).
+- RPC bridge: handle_new_local_battle_rpc dispatches to LocalBattleServer.RPC_HANDLER; call_new_local_battle_rpc_method/Method_direct invoke LocalBattle methods; call_local_avatar_rpc_method used by LocalBattleServer to reach avatar.
+
+### QTELocalBattleServer (script_patch/7/3601820497488169051.py) - 490 lines
+
+Quick-Time Event battle mode (interactive tutorial/test battle):
+
+- Extends LocalBattleServer with QTE-specific handlers
+- sync_battle_handler extended with: create_mecha, try_join_mecha, try_leave_mecha, create_monster, destroy_monster, create_ai_mecha, destroy_ai_mecha, ai_mecha_fire, freeze_ai_mecha_bullet, resume_ai_mecha_bullet, show_mecha_locate, qte_start_mecha_shoot, qte_stop_mecha_logic
+- battle_type = 10 (QTE identifier)
+- step_2_monster_id dict maps tutorial step to spawned monster entities
+- step_2_ai_mecha dict maps step to (pilot_eid, mecha_eid) tuples
+- summon_mecha_obj player-controlled mecha for QTE
+- ai_mecha_obj enemy mecha for QTE combat
+- qte_robot_mecha_shoot_timer for auto-firing AI mecha
+- get_qte_local_pos_and_yaw() from qte_guide_utils for positioning
+- regist_throw_item_explosion_event() hooks explosion event for tutorial
+- _lbs_create_monster(step_id, robot_dict) spawns enemy at tutorial step
+- _lbs_destroy_monster(step_id) removes monster, clears aim targets
+- _lbs_create_ai_mecha/destroy_ai_mecha() for mecha spawning
+
+### NewbieThirdLocalBattleServer (script_patch/7/5720178699950631088.py) - 595 lines
+
+Third newbie tutorial stage (human vs robot 1v1):
+
+- battle_type = NEWBIE_STAGE_THIRD_BATTLE_TYPE
+- robots_in_battle dict maps robot entity IDs to guide_ids
+- items_on_ground dict tracks dropped item entities
+- skateboard_pos_on_ground, chicken_pos_on_ground for special item positioning
+- robot_shoot_timer for enemy robot auto-fire
+- robot_is_alive flag for battle completion
+- disable_join_vehicle flag for tutorial flow
+- get_client_dict() returns: battle_config, map_config, map_id, view_position, view_range=1000
+- create_robot(guide_id, robot_dict) spawns NPC enemy puppet with equipment/AI
+- create_items(guide_id, item_list) spawns loot items on map
+- create_building(building_type, extra_dict) spawns environmental objects
+- _lbs_try_use_jump_building() for parkour mechanics
+- _lbs_change_vehicle_data() for skateboard/vehicle state
+- destroy_robots_in_battle() cleanup on exit
+- MAX_ROBOT_SHOOT_BREAK=25 for enemy fire rate limiting
+- get_one_robot() utility to fetch active enemy robot
+- Extensive sync handlers for: item use, weapon switching, mecha create/join/leave, skills, jumping, vehicle transforms
+
+### NewbieFourLocalBattleServer (script_patch/208/5270222138937218407.py) - Similar to Third
+
+- battle_type = NEWBIE_STAGE_FOURTH_BATTLE_TYPE (mecha tutorial)
+- Same pattern as NewbieThirdLocalBattleServer
+- pick_obj sync handler for item pickups during mecha battle
+- NPC mecha AI vs player mecha
+
+### Key systems integration
+
+**Battle lifecycle flow:**
+1. Avatar.try_start_new_local_battle(type) or try_start_local_battle(type)
+2. Creates LocalBattleServer entity + LocalBattle scene entity
+3. LocalBattleServer._lbs_loaded_battle() called by client when assets loaded
+4. LocalBattleServer.join_local_battle() hook for custom setup
+5. Client sends sync_battle() packets with player actions (move, shoot, skills)
+6. LocalBattleServer dispatches to appropriate _lbs_* handlers
+7. Handlers modify game state, spawn NPCs, manage AI
+8. quit_new_local_battle() destroys entities, returns to lobby
+
+**Configuration sources:**
+- battle_config (confmgr): defines battle types, maps, difficulty
+- map_config (confmgr): map properties, spawn points, boundaries
+- newbie_stage_config: tutorial-specific spawns, damage multipliers, AI parameters
+- GuideSetting().local_battle_data: persistence across crashes/reloads
+
+**NPC management (LocalBattleNPCMgr):**
+- script_patch/878 or script_week/878: NPCMgr, FightNPCMgrBase, RobotMechaMgr for AI control
+- Robot AI loop: decision-making timer, pathfinding, combat state management
+- Mecha AI: weapon selection, skill usage, positioning
+
+**Event system integration:**
+- camera_lctarget_open_prez for camera target management
+- scene_throw_item_explosion_event for throwable interactions
+- E_SET_LOCAL_BATTLE_AIM_ENTITIES for targeting UI updates
+- Battle-specific events: E_GUIDE_POS_CHECK, E_FORCE_AGENT (AI flag), E_SET_CONTROL_TARGET
+
+**Persistence:**
+- GuideSetting().local_battle_data caches: battle progress, player position, step completion, achievement flags
+- Server notified via finish_local_battle RPC when exiting (for XP/rewards)
+- Allows resuming interrupted battles if crash/disconnect occurs
+
+### Battle mode types enum (game_mode_const.py)
+
+- QTE_LOCAL_BATTLE_TYPE = 10: Interactive QTE battles
+- NEWBIE_STAGE_THIRD_BATTLE_TYPE: Human vs robot tutorial
+- NEWBIE_STAGE_FOURTH_BATTLE_TYPE: Mecha vs robot tutorial
+- get_local_battle_svr_cli_by_type(type) → (ServerClass, ClientClass) mapping
+
+Use this file as a quick memory aid when fixing lobby/camera/scene/character/collision/state/manager/local-battle issues. The imp* mixins provide comprehensive capabilities for the Avatar: inventory, shop, friends, chat, team, custom rooms, roles, clothing, level, and ~120 more systems.

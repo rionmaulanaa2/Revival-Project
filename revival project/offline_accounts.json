@@ -1,0 +1,34 @@
+{
+  "accounts": [
+    {
+      "account": "test",
+      "password": "test",
+      "player_id": "OFFLINE_PLAYER_001",
+      "player_name": "Test Player",
+      "level": 50,
+      "exp": 10000,
+      "gold": 50000,
+      "gems": 5000
+    },
+    {
+      "account": "admin",
+      "password": "admin",
+      "player_id": "OFFLINE_PLAYER_002",
+      "player_name": "Admin Player",
+      "level": 100,
+      "exp": 999999,
+      "gold": 999999,
+      "gems": 99999
+    },
+    {
+      "account": "player",
+      "password": "player",
+      "player_id": "OFFLINE_PLAYER_003",
+      "player_name": "Casual Player",
+      "level": 30,
+      "exp": 5000,
+      "gold": 25000,
+      "gems": 2000
+    }
+  ]
+}

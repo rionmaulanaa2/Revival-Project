@@ -1,0 +1,1696 @@
+[22:00:55.451]   [CLIENT] Start initialize PlayAssetDeliveryManager...
+[22:00:55.465]   [CLIENT] onNativeWindowRedrawNeeded: 0xb400007a83936990 -- 0xb400007b43987ae0
+[22:00:55.472]   [CLIENT] Initialize SDK AssetPackManager succeed
+[22:00:55.472]   [CLIENT] Initialize PlayAssetDeliveryManager succeed
+[22:00:55.474]   [CLIENT] Exe module file: \system\bin\app_process64zÂ!y
+[22:00:55.474]   [CLIENT] Current directory: /storage/emulated/0/Android/data/com.netease.g93na/files/netease/smc
+[22:00:55.474]   [CLIENT] Initializing client....
+[22:00:55.474]   [CLIENT] Init utils.dll (1671665312)
+[22:00:55.476]   [UTILS] WindowFocusChanged: 0xb400007a83936990 -- 1
+[22:00:55.477]   [UTILS] needRemoveShader : 0
+[22:00:55.485] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_week hash folder count: 1023, loader_tag is week
+[22:00:55.485] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_patch hash folder count: 1023, loader_tag is patch
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res2 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res3 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res4 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res5 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res6 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res7 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res8 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res9 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res10 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res11 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res12 hash folder count: 1023, loader_tag is 
+[22:00:55.485] M Succeeded to create FileLoader, opener sys, loader indexed_discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_week, depth 0
+[22:00:55.485] M Succeeded to create FileLoader, opener sys, loader discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_patch, depth 0
+[22:00:55.485] M Succeeded to create FileLoader, opener sys, loader indexed_discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res, depth 0
+[22:00:55.491] M Package aab_res.npk under opener asset is loaded.
+[22:00:55.491] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res, depth 0
+[22:00:55.495] M Package aab_res2.npk under opener asset is loaded.
+[22:00:55.495] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res2, depth 0
+[22:00:55.500] M Package aab_res3.npk under opener asset is loaded.
+[22:00:55.500] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res3, depth 0
+[22:00:55.505] M Package aab_res4.npk under opener asset is loaded.
+[22:00:55.505] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res4, depth 0
+[22:00:55.510] M Package aab_res5.npk under opener asset is loaded.
+[22:00:55.510] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res5, depth 0
+[22:00:55.516] M Package aab_res6.npk under opener asset is loaded.
+[22:00:55.516] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res6, depth 0
+[22:00:55.521] M Package aab_res7.npk under opener asset is loaded.
+[22:00:55.521] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res7, depth 0
+[22:00:55.525] M Package aab_res8.npk under opener asset is loaded.
+[22:00:55.525] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res8, depth 0
+[22:00:55.529] M Package aab_res9.npk under opener asset is loaded.
+[22:00:55.529] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res9, depth 0
+[22:00:55.529] M Package aab_res10.npk under opener asset is loaded.
+[22:00:55.529] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res10, depth 0
+[22:00:55.535] M Package aab_res11.npk under opener asset is loaded.
+[22:00:55.535] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res11, depth 0
+[22:00:55.537] M Package aab_res12.npk under opener asset is loaded.
+[22:00:55.537] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res12, depth 0
+[22:00:55.539] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_week hash folder count: 1023, loader_tag is week
+[22:00:55.539] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_patch hash folder count: 1023, loader_tag is patch
+[22:00:55.539] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script hash folder count: 1023, loader_tag is 
+[22:00:55.539] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_script hash folder count: 1023, loader_tag is 
+[22:00:55.539] M Succeeded to create FileLoader, opener sys, loader indexed_discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_week, depth 0
+[22:00:55.539] M Succeeded to create FileLoader, opener sys, loader discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_patch, depth 0
+[22:00:55.539] M Succeeded to create FileLoader, opener sys, loader npk, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script, depth 0
+[22:00:55.541] M Package aab_script.npk under opener asset is loaded.
+[22:00:55.541] M Succeeded to create FileLoader, opener asset, loader npk, root aab_script, depth 0
+[22:00:55.542] M Start log.dll
+[22:00:55.542] M Init utils.dll (1671665312)
+[22:00:55.542] M [UTILS] Start utils.dll
+[22:00:55.542] M [UTILS] Init render.dll (2487404089)
+[22:00:55.545] M [UTILS] CPU Name timelm, core count of this device is: 8
+[22:00:55.546] M [UTILS] device model is A001LG
+[22:00:55.546] M [RENDER] Init python.dll (1335575602)
+[22:00:55.548] M [RENDER] Init audio.dll (1092544220)
+[22:00:55.553] M [RENDER] Init c_mapper.dll (3143862676)
+[22:00:55.553] M [RENDER] Init world.dll (2648298854)
+WARNING ***************************************************************************
+[22:00:55.555] M [RENDER] [WARNING] Using Gpu Skinning on Android platform is not recommended! Because it might cause system failure(rebooting) on some device such as ZTE V988
+[22:00:55.556] M [RENDER] Init terrain.dll (2572047601)
+[22:00:55.556] M [RENDER] Init landscape.dll (1732276803)
+[22:00:55.556] M [RENDER] Init collision.dll (209534444)
+[22:00:55.563] M [RENDER] Init detour.dll (3413454381)
+[22:00:55.564] M [RENDER] Init ccmini.dll (2370187639)
+[22:00:55.564] M [RENDER] Init voice.dll (2568723357)
+[22:00:55.564] M [RENDER] Init cocosui.dll (1144999243)
+[22:00:55.564] M [RENDER] Init nxcclive.dll (1938523969)
+[22:00:55.564] M [RENDER] Init nxar.dll (1044991277)
+[22:00:55.564] M [RENDER] Init social.dll (688878058)
+[22:00:55.565] M [RENDER] Init nxapp.dll (939686936)
+[22:00:55.565] M [RENDER] Start render.dll
+[22:00:55.565] M [RENDER] Start python.dll
+[22:00:55.565] M [PYTHON] Start audio.dll
+[22:00:55.565] M [AUDIO] Start c_mapper.dll
+[22:00:55.565] M [AUDIO] Start world.dll
+[22:00:55.565] M [WORLD] Start terrain.dll
+[22:00:55.565] M [TERRAIN] Start landscape.dll
+[22:00:55.565] M [TERRAIN] Start collision.dll
+[22:00:55.566] M [COLLISION] Start detour.dll
+[22:00:55.566] M [DETOUR] Start ccmini.dll
+[22:00:55.566] M [DETOUR] Start voice.dll
+[22:00:55.566] M [DETOUR] Start cocosui.dll
+[22:00:55.567] M [COCOSUI] Start nxcclive.dll
+[22:00:55.567] M [COCOSUI] Start nxar.dll
+[22:00:55.567] M [COCOSUI] Start social.dll
+[22:00:55.567] M [COCOSUI] Start nxapp.dll
+[22:00:55.596] M [COCOSUI] Maximum vertex attribs is 32
+[22:00:55.596] M [COCOSUI] Maximum uniform vector is 256
+[22:00:55.596] M [COCOSUI] GL_MAX_TEXTURE_IMAGE_UNITS 16
+[22:00:55.613]   [COCOSUI] SwitchToLoaderContextTask::Execute
+[22:00:55.615] M [COCOSUI] Driver: GLES32
+[22:00:55.615] M [COCOSUI] Description: Adreno (TM) 650
+[22:00:55.615] M [COCOSUI] Version: OpenGL ES 3.2 V@0502.0 (GIT@e5dfe77, I46bb81ccf7, 1597647511) (Date:08/16/20)
+[22:00:55.615] M [COCOSUI] Vendor: Qualcomm
+[22:00:55.615] M [COCOSUI] Width: 2460, Height: 1080, BitDepth: 32
+[22:00:55.615] M [COCOSUI] -----------------------------------------------------------
+[22:00:55.615] M [COCOSUI] Adreno (TM) 650
+[22:00:55.617] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\debug_common.nfx.
+[22:00:55.629] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\debug_road.nfx.
+[22:00:55.647] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\ubo_template.nfx.
+[22:00:55.658] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.666] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\shadow_on_plane.nfx.
+[22:00:55.673] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.680] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\pass_prez.nfx.
+[22:00:55.693] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\shader_complexity_accumulate.nfx.
+WARNING ***************************************************************************
+[22:00:55.710] M [COCOSUI] [WARNING] Try to load texture file common\textures\heatmap.png with non-power-2 size (64 X 3)!
+[22:00:55.711] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\shader_complexity_landscape.nfx.
+[22:00:55.724] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\shader_complexity_road.nfx.
+[22:00:55.733] M [COCOSUI] Set render mode: 2460 1080 32 1 0
+[22:00:55.733] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\only1texture_mirror.nfx.
+[22:00:55.741] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\only1texture_mirror.nfx.
+[22:00:55.746] M [COCOSUI] FT_New_Face /system/fonts/.
+[22:00:55.746] M [COCOSUI] FT_New_Face /system/fonts/..
+[22:00:55.746] M [COCOSUI] FT_New_Face /system/fonts/AndroidClock.ttf
+[22:00:55.746] M [COCOSUI] FT_New_Face /system/fonts/CarroisGothicSC-Regular.ttf
+[22:00:55.746] M [COCOSUI] FT_New_Face /system/fonts/ComingSoon.ttf
+[22:00:55.746] M [COCOSUI] FT_New_Face /system/fonts/CutiveMono.ttf
+[22:00:55.747] M [COCOSUI] FT_New_Face /system/fonts/DancingScript-Bold.ttf
+[22:00:55.747] M [COCOSUI] FT_New_Face /system/fonts/DancingScript-Regular.ttf
+[22:00:55.747] M [COCOSUI] FT_New_Face /system/fonts/DroidSans-Bold.ttf
+[22:00:55.747] M [COCOSUI] FT_New_Face /system/fonts/DroidSans.ttf
+[22:00:55.747] M [COCOSUI] FT_New_Face /system/fonts/DroidSansMono.ttf
+[22:00:55.747] M [COCOSUI] FT_New_Face /system/fonts/NotoColorEmoji.ttf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabic-Bold.ttf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabic-Regular.ttf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabicUI-Bold.ttf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabicUI-Regular.ttf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAdlam-VF.ttf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAhom-Regular.otf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAnatolianHieroglyphs-Regular.otf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansArmenian-Bold.otf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansArmenian-Medium.otf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansArmenian-Regular.otf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAvestan-Regular.ttf
+[22:00:55.748] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBalinese-Regular.ttf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBamum-Regular.ttf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBassaVah-Regular.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBatak-Regular.ttf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengali-Bold.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengali-Medium.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengali-Regular.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengaliUI-Bold.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengaliUI-Medium.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengaliUI-Regular.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBhaiksuki-Regular.otf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBrahmi-Regular.ttf
+[22:00:55.749] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBuginese-Regular.ttf
+[22:00:55.750] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBuhid-Regular.ttf
+[22:00:55.750] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.751] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.752] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.753] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.753] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.759] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.760] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.763] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.766] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.767] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[22:00:55.768] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCanadianAboriginal-Regular.ttf
+[22:00:55.768] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCarian-Regular.ttf
+[22:00:55.768] M [COCOSUI] FT_New_Face /system/fonts/NotoSansChakma-Regular.otf
+[22:00:55.768] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCham-Bold.ttf
+[22:00:55.768] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCham-Regular.ttf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCherokee-Regular.ttf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCoptic-Regular.ttf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCuneiform-Regular.ttf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCypriot-Regular.ttf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDeseret-Regular.ttf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagari-Bold.otf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagari-Medium.otf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagari-Regular.otf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagariUI-Bold.otf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagariUI-Medium.otf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagariUI-Regular.otf
+[22:00:55.769] M [COCOSUI] FT_New_Face /system/fonts/NotoSansEgyptianHieroglyphs-Regular.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansElbasan-Regular.otf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansEthiopic-Bold.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansEthiopic-Regular.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGeorgian-VF.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGlagolitic-Regular.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGothic-Regular.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujarati-Bold.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujarati-Regular.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujaratiUI-Bold.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujaratiUI-Regular.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGunjalaGondi-Regular.otf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhi-Bold.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhi-Regular.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhiUI-Bold.ttf
+[22:00:55.770] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhiUI-Regular.ttf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHanifiRohingya-Regular.otf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHanunoo-Regular.ttf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHatran-Regular.otf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHebrew-Bold.ttf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHebrew-Regular.ttf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansImperialAramaic-Regular.ttf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansInscriptionalPahlavi-Regular.ttf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansInscriptionalParthian-Regular.ttf
+[22:00:55.771] M [COCOSUI] FT_New_Face /system/fonts/NotoSansJavanese-Regular.otf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKaithi-Regular.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannada-Bold.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannada-Regular.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannadaUI-Bold.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannadaUI-Regular.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKayahLi-Regular.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKharoshthi-Regular.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhmer-VF.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhmerUI-Bold.ttf
+[22:00:55.774] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhmerUI-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhojki-Regular.otf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLao-Bold.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLao-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLaoUI-Bold.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLaoUI-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLepcha-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLimbu-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLinearA-Regular.otf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLinearB-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLisu-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLycian-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLydian-Regular.ttf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalam-Bold.otf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalam-Medium.otf
+[22:00:55.775] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalam-Regular.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalamUI-Bold.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalamUI-Medium.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalamUI-Regular.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMandaic-Regular.ttf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansManichaean-Regular.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMarchen-Regular.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMasaramGondi-Regular.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMeeteiMayek-Regular.ttf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMeroitic-Regular.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMiao-Regular.otf
+[22:00:55.776] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMro-Regular.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMongolian-Regular.ttf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMultani-Regular.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmar-Bold.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmar-Medium.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmar-Regular.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmarUI-Bold.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmarUI-Medium.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmarUI-Regular.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNKo-Regular.ttf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNabataean-Regular.otf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNewTaiLue-Regular.ttf
+[22:00:55.777] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNewa-Regular.otf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOgham-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOlChiki-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldItalic-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldNorthArabian-Regular.otf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldPermic-Regular.otf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldPersian-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldSouthArabian-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldTurkic-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriya-Bold.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriya-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriyaUI-Bold.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriyaUI-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOsage-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOsmanya-Regular.ttf
+[22:00:55.778] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPahawhHmong-Regular.otf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPalmyrene-Regular.otf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPauCinHau-Regular.otf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPhagsPa-Regular.ttf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPhoenician-Regular.ttf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansRejang-Regular.ttf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansRunic-Regular.ttf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSamaritan-Regular.ttf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSaurashtra-Regular.ttf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSharada-Regular.otf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansShavian-Regular.ttf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhala-Bold.otf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhala-Medium.otf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhala-Regular.otf
+[22:00:55.779] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhalaUI-Bold.otf
+[22:00:55.780] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhalaUI-Medium.otf
+[22:00:55.781] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhalaUI-Regular.otf
+[22:00:55.781] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSoraSompeng-Regular.otf
+[22:00:55.781] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSundanese-Regular.ttf
+[22:00:55.781] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSylotiNagri-Regular.ttf
+[22:00:55.781] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSymbols-Regular-Subsetted.ttf
+[22:00:55.781] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSymbols-Regular-Subsetted2.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSyriacEastern-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSyriacEstrangela-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSyriacWestern-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTagalog-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTagbanwa-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTaiLe-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTaiTham-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTaiViet-Regular.ttf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamil-Bold.otf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamil-Medium.otf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamil-Regular.otf
+[22:00:55.782] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamilUI-Bold.otf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamilUI-Medium.otf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamilUI-Regular.otf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTelugu-Bold.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTelugu-Regular.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTeluguUI-Bold.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTeluguUI-Regular.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaana-Bold.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaana-Regular.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThai-Bold.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThai-Regular.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaiUI-Bold.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaiUI-Regular.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTibetan-Bold.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTibetan-Regular.ttf
+[22:00:55.783] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTifinagh-Regular.otf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSansUgaritic-Regular.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSansVai-Regular.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSansWancho-Regular.otf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSansWarangCiti-Regular.otf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSansYi-Regular.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-Bold.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-BoldItalic.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-Italic.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-Regular.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifArmenian-Bold.otf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifArmenian-Regular.otf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifBengali-Bold.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifBengali-Regular.ttf
+[22:00:55.784] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[22:00:55.786] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[22:00:55.787] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[22:00:55.788] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifDevanagari-Bold.ttf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifDevanagari-Regular.ttf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifEthiopic-Bold.otf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifEthiopic-Regular.otf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGeorgian-VF.ttf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGujarati-Bold.ttf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGujarati-Regular.ttf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGurmukhi-Bold.otf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGurmukhi-Regular.otf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifHebrew-Bold.ttf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifHebrew-Regular.ttf
+[22:00:55.789] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKannada-Bold.ttf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKannada-Regular.ttf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKhmer-Bold.otf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKhmer-Regular.otf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifLao-Bold.ttf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifLao-Regular.ttf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMalayalam-Bold.ttf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMalayalam-Regular.ttf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMyanmar-Bold.otf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMyanmar-Regular.otf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifSinhala-Bold.otf
+[22:00:55.790] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifSinhala-Regular.otf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTamil-Bold.otf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTamil-Regular.otf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTelugu-Bold.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTelugu-Regular.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifThai-Bold.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifThai-Regular.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Black.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/Roboto-BlackItalic.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Bold.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/Roboto-BoldItalic.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Italic.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Light.ttf
+[22:00:55.791] M [COCOSUI] FT_New_Face /system/fonts/Roboto-LightItalic.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Medium.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/Roboto-MediumItalic.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Regular.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Thin.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/Roboto-ThinItalic.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Bold.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-BoldItalic.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Italic.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Light.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-LightItalic.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Medium.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-MediumItalic.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Regular.ttf
+[22:00:55.792] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-Bold.ttf
+[22:00:55.793] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-BoldItalic.ttf
+[22:00:55.793] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-Italic.ttf
+[22:00:55.794] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-Regular.ttf
+[22:00:55.794] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-SemiBold.ttf
+[22:00:55.794] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-SemiBoldItalic.ttf
+[22:00:55.794] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifThai-Regular.ttf
+[22:00:55.797] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.805] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+
+ERROR *****************************************************************************
+[22:00:55.811] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[22:00:55.813] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: <ModelNormalTech>.
+[22:00:55.817] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\blendadd.nfx.
+[22:00:55.837] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.845] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.852] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.858] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.865] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[22:00:55.872] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\sprite_vegetation.nfx.
+[22:00:55.879] M [COCOSUI] pixel decal enable: false
+[22:00:55.946] M [COCOSUI] NewType world.track: 0xb400007a9399be90
+[22:00:55.946] M [COCOSUI] NewType world.space_object: 0xb400007a93998a10
+[22:00:55.947] M [COCOSUI] NewType world.visibleobject: 0xb400007a9399ef90
+[22:00:55.947] M [COCOSUI] NewType world.sfx: 0xb400007a9399fbd0
+[22:00:55.947] M [COCOSUI] NewType world.model: 0xb400007a9399e510
+[22:00:55.947] M [COCOSUI] NewType world.gravity_track: 0xb400007a939a0490
+[22:00:55.947] M [COCOSUI] NewType world.primitives: 0xb400007a939a2e90
+[22:00:55.947] M [COCOSUI] NewType world.textobject: 0xb400007a9399f150
+[22:00:55.947] M [COCOSUI] NewType world.simuiobject: 0xb400007a9399fd90
+[22:00:55.947] M [COCOSUI] NewType world.camera: 0xb400007a939a25d0
+[22:00:55.947] M [COCOSUI] NewType world.decal: 0xb400007a939a0650
+[22:00:55.947] M [COCOSUI] NewType world.light: 0xb400007a939a2b10
+[22:00:55.947] M [COCOSUI] NewType world.anim_ctrl: 0xb400007a939a17d0
+[22:00:55.947] M [COCOSUI] NewType world.scene: 0xb400007a939a3210
+[22:00:55.948] M [COCOSUI] NewType world.ikbone: 0xb400007a9399dfd0
+[22:00:55.948] M [COCOSUI] NewType scene.trigger: 0xb400007a9399edd0
+[22:00:55.948] M [COCOSUI] NewType world.iksolver: 0xb400007a9399d1d0
+[22:00:55.948] M [COCOSUI] NewType world.gridobject_manager: 0xb400007a939a1d10
+[22:00:55.948] M [COCOSUI] NewType world.simsprite: 0xb400007a939a0b90
+[22:00:55.948] M [COCOSUI] NewType world.model_merge_tex: 0xb400007a9399f310
+[22:00:55.948] M [COCOSUI] NewType terrain.land: 0xb400007a939a02d0
+[22:00:55.955] M   <SCRIPT> use render 1.0
+[22:00:55.960] M [COCOSUI] NewType Landscape.land: 0xb400007a939adbd0
+
+ERROR *****************************************************************************
+[22:00:55.961] M [COCOSUI] [ERROR] ========AkInitSettings==
+[22:00:55.964] M [COCOSUI] Call script init.init().
+WARNING ***************************************************************************
+[22:00:55.964] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2460, height:1080, force:0)!
+[22:00:55.964] M [COCOSUI] Set render mode: 2460 1080 32 1 0
+[22:00:55.964] M [COCOSUI] Initialization completed successfully!
+[22:00:55.964] M [COCOSUI] [22:00:55.964] M [COCOSUI] Call script init.start().
+WARNING ***************************************************************************
+[22:00:55.969] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2460, height:1080, force:0)!
+[22:00:55.969] M [COCOSUI] OnWindowResize - 2460, 1080
+WARNING ***************************************************************************
+[22:00:55.972] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2460, height:1080, force:0)!
+[22:00:55.972] M [COCOSUI] OnWindowResize - 2460, 1080
+[22:00:56.220] M   <SCRIPT> loaded patch json
+[22:00:56.264] M   <SCRIPT> [dctool3\Type.py:194]:Type DCTOOL_ENABLE_ENGINE_DEVICE is True
+
+ERROR *****************************************************************************
+[22:00:56.314] M [COCOSUI] [ERROR] JNIManager Failed to call method getIMSI with signiture ()Ljava/lang/String;!
+[22:00:56.369]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/ext_package/ext_package_utils.py:172]:[EXT] using: {u'kongdao_scene': 2034699, u'skin': 2034699, u'pve': 2034699, u'pve2': 2034699, u'pve3': 2034699, u'audio': 2034699, u'video': 2034699}
+[22:00:56.370] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:539]:[init game] INIT_GAME_GEN_FINISHED is False
+[22:00:56.372]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/ext_package/ext_package_utils.py:78]:[INFO] [ext_mgr] PATCH_LIST in __builtin__ is None, no need ext patch
+[22:00:56.385]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:158]:org: org_flist.lst
+[22:00:56.552]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:158]:org: com_hres_1_1648415_flist.txt
+[22:00:56.552]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:163]:[Except] get com_hres_1_1648415_flist.txt flist except:get res file failed
+[22:00:57.055]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:207]:[init flist] valid:False cost time: 0.710160017014 script:4903 physx:14300
+[22:00:57.073] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:367]:[G_IS_NA_PROJECT] True
+[22:00:57.073] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:373]:[G_IS_NA_USER] True
+[22:00:57.106] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/gdata.py:372]:MJY magic: None
+[22:00:57.137] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:306]:current render system is [GLES32]
+[22:00:57.138] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:326]:configure device compatibility with gpu [Adreno (TM) 650]
+[22:00:57.138] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:148]:[COMPATIBILITY] Start DEVICE_NEED_LIMIT_GPU_SKIN CHECK...
+[22:00:57.139] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:388]:checking adreno gpu
+[22:00:57.139] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:395]:series of adreno is 650
+[22:00:57.152] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:38]:init_device_resolution enable_resolution_switch
+[22:00:57.152] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:82]:Resolution set_window_size, origin:2460*1080, new:2050*900=====
+
+ERROR *****************************************************************************
+[22:00:57.152] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[22:00:57.153] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:198]:Skip enter low mem mode...
+[22:00:57.153] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:217]:world.set_dispatcher_worker_limit:2...
+WARNING ***************************************************************************
+[22:00:57.153] M [COCOSUI] [WARNING] NXDispatcher v1.1 init with 2 worker(s)...
+WARNING ***************************************************************************
+[22:00:57.153] M [COCOSUI] [WARNING] NXDispatcher v1.1 init with 2 worker(s)...
+WARNING ***************************************************************************
+[22:00:57.154] M [COCOSUI] [WARNING] ====== Dynamics_EnableKinematicForceFix:1
+WARNING ***************************************************************************
+[22:00:57.154] M [COCOSUI] [WARNING] GlobalShaderUniformMgr::EnableResolutionMemLeakFix: 1...
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:244]:world.use_vertex_half 2...
+WARNING ***************************************************************************
+[22:00:57.154] M [COCOSUI] [WARNING] World.UseVertexHalf...mode:2
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:266]:world.set_moving_static_vb_threshold work...
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:271]:world.enable_merge_submesh_in_model True...
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:276]:world.enable_inactive_scene_shadowmap False...
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:286]:game3d.enable_fast_event_system True...
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:291]:world.enable_bone_mapping_lazy True...
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:301]:world.enable_sub_frame_commit_obj prepare....
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:305]:world.enable_sub_frame_commit_obj enable high....
+[22:00:57.154] M [COCOSUI] pixel decal enable: true
+[22:00:57.154] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:432]:render.set_small_vbo_size_threshold: 0
+
+ERROR *****************************************************************************
+[22:00:57.157] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[22:00:57.157] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:473]:init game finish
+[22:00:57.175] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/ext_package/ext_package_utils.py:44]:[ERROR] [CythonEventNotifier_V2] crc :607712115, script_v:2077277 engine:1.0.14605 stage:0 flist:True
+[22:00:57.182] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/cython/cython_utils/init_cython.py:94]:Loading cython scripts...
+[22:00:57.182] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/cython/cython_utils/init_cython.py:96]:Loading cython scripts succeeded.
+WARNING ***************************************************************************
+[22:00:57.183] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2050, height:903, force:1)!
+[22:00:57.183] M [COCOSUI] Set render mode: 2050 903 32 1 0
+
+ERROR *****************************************************************************
+[22:00:57.183] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+WARNING ***************************************************************************
+[22:00:57.364] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2050, height:900, force:1)!
+[22:00:57.364] M [COCOSUI] Set render mode: 2050 900 32 1 0
+
+ERROR *****************************************************************************
+[22:00:57.364] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[22:00:57.407] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/device_info.py:243]:is_notch_screen (True, 76, 0, 0, 0)
+
+ERROR *****************************************************************************
+[22:00:57.612] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/item.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.612] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-map.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.612] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/common-panel.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.613] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/icon.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.613] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-panel.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.615] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/common.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.615] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-mech_main.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.615] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.616] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-mode.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.616] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-notice.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.616] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-mech_dec.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.617] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-occupy_mode.plist"!
+
+ERROR *****************************************************************************
+[22:00:57.617] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/panel.plist"!
+[22:00:57.636] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:00.833] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:00] [ERROR] JsonConf cannot open confs/bless_element_data.json 
+[22:01:00.833] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:00] [ERROR] JsonConf cannot open confs/bless_element_data.json 
+[22:01:02.443] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/entities/__init__.py:231]:entity register finished
+[22:01:02.443] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:306]:[manager] pre gen ret True
+[22:01:02.523] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/channel.py:364]:init channel params!!!!!!!!!!!!!!!!
+[22:01:02.525] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/channel.py:1642]:[chanel] enable qsec sdk
+[22:01:02.538] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/channel.py:1714]:start erd: 669478e9f83bbd0e
+[22:01:02.885] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/global_display_setting.py:370]:RESOLUTION config:[0.59999999999999998, 0.69999999999999996, 0.80000000000000004, 1.0, 1.0] =====
+[22:01:02.904] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:148]:resgister agent baisc_mgr_agent
+[22:01:02.904] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ManagerAgentBase.py:14]:init manager agent baisc_mgr_agent
+[22:01:03.013] M [COCOSUI] FT_New_Memory_Face gui/fonts/fzdys.ttf
+[22:01:03.013] M [COCOSUI] Release FONT memory 4c3a6040
+[22:01:03.049] M [COCOSUI] FT_New_Memory_Face gui/fonts/fzy4jw.ttf
+[22:01:03.049] M [COCOSUI] Release FONT memory 4c38e040
+[22:01:03.052] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:160]:[COCOS] is_support_cocos_tex_async_load enable_ui_add_image_async = False
+[22:01:03.058] M [COCOSUI] FT_New_Memory_Face gui/fonts/g93_en.otf
+[22:01:03.058] M [COCOSUI] Release FONT memory 9398df40
+[22:01:03.068] M [COCOSUI] FT_New_Memory_Face gui/fonts/hylingxinj.ttf
+[22:01:03.068] M [COCOSUI] Release FONT memory b3ac0040
+[22:01:05.058] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:05] [ERROR] JsonConf cannot open confs/pve/na_item.json 
+[22:01:06.824] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/ext_package/ext_package_utils.py:78]:[INFO] [ext_ingame_mgr] init:True using:{u'kongdao_scene': 2034699, u'skin': 2034699, u'pve': 2034699, u'pve2': 2034699, u'pve3': 2034699, u'audio': 2034699, u'video': 2034699}
+[22:01:06.824] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:306]:current render system is [GLES32]
+[22:01:06.825] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:326]:configure device compatibility with gpu [Adreno (TM) 650]
+[22:01:06.825] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:148]:[COMPATIBILITY] Start DEVICE_NEED_LIMIT_GPU_SKIN CHECK...
+[22:01:06.825] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/DisplayAgent.py:332]:Not support fx_offscreen!
+[22:01:07.514] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:148]:resgister agent touch_mgr_agent
+[22:01:07.514] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ManagerAgentBase.py:14]:init manager agent touch_mgr_agent
+[22:01:07.527] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:148]:resgister agent escape_mgr_agent
+[22:01:07.527] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ManagerAgentBase.py:14]:init manager agent escape_mgr_agent
+[22:01:07.528] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:407]:[2026 01-25 22:01:07] [ERROR] AAA stop game False 
+[22:01:07.533] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:407]:[2026 01-25 22:01:07] [ERROR] AAA stop game finish False 
+
+ERROR *****************************************************************************
+[22:01:07.585] M [COCOSUI] [ERROR] Unknown space object type "Road", forget adding new type to mapping table?
+[22:01:07.632] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/login_scene.py:28]:load scene id 12970367460015341224 Main
+
+ERROR *****************************************************************************
+[22:01:07.640] M [COCOSUI] [ERROR] US
+[22:01:07.645] M [COCOSUI] start download
+[22:01:07.645] M [COCOSUI] down string is {"downloadid": "1769353267", "notusecdn": "false", "oversea": 2, "downfile": [{"targeturl": "https://g93na.update.easebar.com/serverlist.txt", "filepath": "/storage/emulated/0/Android/data/com.netease.g93na/files/netease/smc/orbit_temp/server_list0", "size": 0, "md5": "NotMD5"}], "methodId": "download", "projectid": "g93na", "wifionly": "false", "logopen": "false", "threadnum": "10", "isrenew": "true"}
+[22:01:07.645] M [COCOSUI] get class download
+[22:01:07.645] M [COCOSUI] call class download
+[22:01:07.645] M [COCOSUI] end class download
+
+ERROR *****************************************************************************
+[22:01:07.647] M [COCOSUI] [ERROR] US
+[22:01:07.662] M [COCOSUI] [MMap]Open file asset://aab_res5.npk::gui/fonts/g93_en.otf failed, error no 2
+[22:01:07.667]   [COCOSUI] Pause: 0xb400007a83936990
+[22:01:07.698] M [COCOSUI] [MMap]Open file asset://aab_res4.npk::gui/fonts/fzdys_tw.ttf failed, error no 2
+[22:01:07.742] M [COCOSUI] [MMap]Open file asset://aab_res3.npk::gui/fonts/fzy4jw.ttf failed, error no 2
+[22:01:07.758] M [COCOSUI] [MMap]Open file asset://aab_res9.npk::gui/fonts/g93_kr_thick.ttf failed, error no 2
+[22:01:07.779] M [COCOSUI] [MMap]Open file asset://aab_res7.npk::gui/fonts/font_tha.ttc failed, error no 2
+[22:01:07.935] M [COCOSUI] [MMap]Open file asset://aab_res2.npk::gui/fonts/g93_num.ttf failed, error no 2
+
+ERROR *****************************************************************************
+[22:01:08.018] M [COCOSUI] [ERROR] US
+[22:01:08.020] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/parts/PartLogin3D.py:185]:[login3d] play cg bg
+[22:01:08.041] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/video/VideoLoadingUI.py:18]:init movie loading
+[22:01:08.045] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/push.py:106]:push init has_request_push_service_flag: False
+WARNING ***************************************************************************
+[22:01:08.063] M [COCOSUI] [WARNING] no preset camera named cm found! return indentity matrix
+
+ERROR *****************************************************************************
+[22:01:08.064] M [COCOSUI] [ERROR] Unable to open file scene\ui.scn
+
+ERROR *****************************************************************************
+[22:01:08.064] M [COCOSUI] [ERROR] Unable to read scene file
+
+ERROR *****************************************************************************
+[22:01:08.064] M [COCOSUI] [ERROR] Scene::Load failed: scene data loading is not finished!
+[22:01:08.064] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/parts/PartLogin3D.py:240]:[login3d] on enter
+[22:01:08.064] M [COCOSUI] "gui/ui_res_plist/common.png" rc=332 2048 x 2048 @ ETC2_RGBA8(sepAlpha: None) => 4096 KB
+"gui/ui_res_2/emote/emote7.png" rc=10 1152 x 128 @ ETC2_RGBA8(sepAlpha: None) => 144 KB
+"/cc_fps_images" rc=4 999 x 54 @ A8B8G8R8(sepAlpha: None) => 210 KB
+"gui/ui_res_2/emote/emote6.png" rc=12 512 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 512 KB
+"/cc_2x2_white_image" rc=42 2 x 2 @ A8B8G8R8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/emote/emote5.png" rc=7 512 x 512 @ ETC2_RGBA8(sepAlpha: None) => 256 KB
+"gui/ui_res_2/emote/emote4.png" rc=9 512 x 512 @ ETC2_RGBA8(sepAlpha: None) => 256 KB
+"gui/ui_res_2/emote/emote3.png" rc=764 1024 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 1024 KB
+"gui/ui_res_2/emote/emote2.png" rc=842 1024 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 1024 KB
+"gui/ui_res_2/emote/emote0.png" rc=931 1024 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 1024 KB
+"gui/ui_res_2/common/panel/pnl_window_small.png" rc=3 718 x 537 @ ETC2_RGBA8(sepAlpha: None) => 379 KB
+"gui/ui_res_2/emote/emote1.png" rc=610 1024 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 1024 KB
+"gui/ui_res_2/emote/emote8.png" rc=8 898 x 130 @ ETC2_RGBA8(sepAlpha: None) => 116 KB
+TextureCache dumpDebugInfo: 13 textures, for 10066 KB (9.83 MB)
+
+[22:01:08.065]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cinematic/VideoPlayer.py:328]:start loading video video/8002_ss.mp4
+[22:01:08.169] M [COCOSUI] activityState=13
+[22:01:08.170]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\meadow_lightmap_generator.nfx.
+[22:01:08.179] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cinematic/VideoPlayer.py:316]:on video load finish: True
+[22:01:08.179] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.video.VideoLoadingUI.VideoLoadingUI object at 0xb400007c2436f910> =====
+[22:01:08.179] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/video/VideoLoadingUI.py:21]:video loading close
+[22:01:08.239]   [COCOSUI] WindowFocusChanged: 0xb400007a83936990 -- 0
+[22:01:08.240] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\default_pipeline\hdr_1_downsample.nfx.
+[22:01:08.247] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\default_pipeline\hdr_6b_kawase0.nfx.
+[22:01:08.249] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\default_pipeline\hdr_6b_kawase1.nfx.
+[22:01:08.251] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\default_pipeline\hdr_8b_kawase0.nfx.
+[22:01:08.253] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\default_pipeline\hdr_8b_kawase1.nfx.
+[22:01:08.257] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\default_pipeline\hdr_7_merge.nfx.
+
+ERROR *****************************************************************************
+[22:01:08.262] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+
+ERROR *****************************************************************************
+[22:01:08.262] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[22:01:08.515] M [COCOSUI] Process CCLive Event 2
+[22:01:08.515] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cinematic/VideoPlayer.py:153]:on video ready (cclive.player,)
+[22:01:08.522] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/video/VideoCtrlUI.py:50]:video data size
+[22:01:08.522] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/video/VideoCtrlUI.py:51]:(1920, 1080)
+[22:01:08.522] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/video/VideoCtrlUI.py:52]:(1920, 1080)
+[22:01:08.535] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/video/VideoCtrlUI.py:26]:init movie dialog
+[22:01:08.536] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/parts/PartLogin3D.py:188]:[login3d] remove patch ui
+
+ERROR *****************************************************************************
+[22:01:08.538]   [COCOSUI] [ERROR] [shader] Unknown data type 0x8d66
+
+ERROR *****************************************************************************
+[22:01:11.451] M [COCOSUI] [ERROR] US
+
+ERROR *****************************************************************************
+[22:01:11.457] M [COCOSUI] [ERROR] US
+[22:01:11.513]   [COCOSUI] Resume: 0xb400007a83936990
+[22:01:11.540] M [COCOSUI] activityState=11
+[22:01:11.561]   [COCOSUI] NativeWindowResized: 0xb400007a83936990 -- 0xb400007b43987ae0
+[22:01:11.562]   [COCOSUI] WindowFocusChanged: 0xb400007a83936990 -- 1
+WARNING ***************************************************************************
+[22:01:11.575] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2460, height:1080, force:1)!
+[22:01:11.575] M [COCOSUI] Set render mode: 2460 1080 32 1 0
+
+ERROR *****************************************************************************
+[22:01:11.576] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[22:01:11.579] M [COCOSUI] OnWindowResize - 2460, 1080
+[22:01:11.579] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/BasicManagerAgent.py:237]:android window resize from 2050 900 to 2460 1080
+[22:01:11.580] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/BasicManagerAgent.py:243]:old sfx size (2460, 1080, 32, 1, 0)
+[22:01:11.580] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/BasicManagerAgent.py:255]:new sfx size (2460, 1080, 32, 1, 0)
+[22:01:11.580] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/BasicManagerAgent.py:256]:new windows size (2460, 1080, 32, 1, 0)
+[22:01:12.466] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.common_ui.NormalConfirmUI.SecondConfirmDlg2 object at 0xb400007c2439f710> =====
+[22:01:13.189] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.common_ui.NormalConfirmUI.NormalConfirmUI2 object at 0xb400007c242ae110> =====
+[22:01:14.718] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.login.MainLoginUI.MainLoginUI object at 0xb400007c2428ffd0> =====
+[22:01:14.722] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.login.LoginFunctionUI.LoginFunctionUI object at 0xb400007c24336850> =====
+[22:01:14.725] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ManagerAgentBase.py:14]:init manager agent ex_scene_mgr_agent
+[22:01:14.728] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:531]:get_custom_default_quality check: device:a001lg, gpu:adreno (tm) 650
+[22:01:14.728] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:14.728] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:531]:get_custom_default_quality check: device:a001lg, gpu:adreno (tm) 650
+[22:01:14.728] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:14.729] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:531]:get_custom_default_quality check: device:a001lg, gpu:adreno (tm) 650
+[22:01:14.729] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:14.729] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:531]:get_custom_default_quality check: device:a001lg, gpu:adreno (tm) 650
+[22:01:14.729] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:14.854] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:531]:get_custom_default_quality check: device:a001lg, gpu:adreno (tm) 650
+[22:01:14.855] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:15.387] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/entities/avatarmembers/impNgPush.py:20]:impNgPush subscribe cxu5oZwIvls:APA91bFCvzxGpi3RjfzTIxjC5TjqsHhNrOLZ40j1CKj7ygu0AkYwmZsTEvfmEqvPT_ChOCzJeAKY_XSi9XgB0ccQBH3oOfZaWW6q54AKq0xRCLG0htd5jrM,fcm,com.netease.g93na com.netease.g93na
+[22:01:15.943] M   <SCRIPT> 2026-01-25 22:01:15,943 - mobilerpc.SimpleHttpClient2 - INFO - __init__: max_clients 1, max_buffer_size 10240 
+[22:01:15.972] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:15] [ERROR] JsonConf cannot open confs/mecha_upgrade_cost_data.json 
+[22:01:15.972] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:15] [ERROR] JsonConf cannot open confs/mecha_upgrade_cost_data.json 
+[22:01:15.974] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:15] [ERROR] JsonConf cannot open confs/mecha_debris_data.json 
+[22:01:15.974] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:15] [ERROR] JsonConf cannot open confs/mecha_debris_data.json 
+[22:01:15.977] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:15] [ERROR] JsonConf cannot open confs/mecha_upgrade_data.json 
+[22:01:15.977] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:15] [ERROR] JsonConf cannot open confs/mecha_upgrade_data.json 
+[22:01:16.533] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/login_scene.py:100]:self.scene type Main new scene type Traning
+[22:01:16.534] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/login_scene.py:100]:self.scene type Main new scene type Traning
+[22:01:19.588] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/login_scene.py:110]:scene data is {'view_position': [16925, 390, -2800], 'view_range': 1000, 'group_data': None, 'is_battle': True, 'is_spectate': False, 'scene_name': 'bw_all06', 'preload_cockpit': None, 'map_id': '7', 'scene_path': 'scene/bw_all06_xc/bw_all06.scn'}
+[22:01:19.588] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/login_scene.py:112]:self scene path scene/ui.scn new scene path scene/bw_all06_xc/bw_all06.scn
+[22:01:19.592] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.common_ui.BlankTouchUI.BlankTouchUI object at 0xb400007c27c609d0> =====
+[22:01:19.592] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.video.VideoCtrlUI.VideoCtrlUI object at 0xb400007c2436fad0> =====
+[22:01:19.592] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/video/VideoCtrlUI.py:87]:videoDialog close
+[22:01:19.642] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ExSceneManagerAgent.py:213]:same_path_scene False
+[22:01:19.643] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ExSceneManagerAgent.py:215]:scene data is {'view_position': [16925, 390, -2800], 'view_range': 1000, 'group_data': None, 'is_battle': True, 'is_spectate': False, 'scene_name': 'bw_all06', 'preload_cockpit': None, 'map_id': '7', 'scene_path': 'scene/bw_all06_xc/bw_all06.scn'}
+
+ERROR *****************************************************************************
+[22:01:19.643] M [COCOSUI] [ERROR] Unknown space object type "Road", forget adding new type to mapping table?
+[22:01:19.652] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:159]:set road_async_priority low...
+[22:01:19.863] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartBattle.PartBattle object at 0xb400007c27d60d90>
+[22:01:19.873] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartCtrl.PartCtrl object at 0xb400007c27de1f90>
+[22:01:19.885] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartCamera.PartCamera object at 0xb400007c2802f1d0>
+[22:01:19.890] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartBreakableManager.PartBreakableManager object at 0xb400007c28068590>
+[22:01:19.903] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartDetailObjMgr.PartDetailObjMgr object at 0xb400007c28068890>
+[22:01:19.905] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartPickableManager.PartPickableManager object at 0xb400007c280739d0>
+[22:01:19.906] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartShootManager.PartShootManager object at 0xb400007c2809d110>
+[22:01:19.909] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartZoneTriggerManager.PartZoneTriggerManager object at 0xb400007c280aa250>
+[22:01:19.916] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartEffectManager.PartEffectManager object at 0xb400007c280b4190>
+[22:01:19.918] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartWanfa.PartWanfa object at 0xb400007c280b4510>
+[22:01:19.921] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartProfile.PartProfile object at 0xb400007c280b4e10>
+[22:01:19.932] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartMap.PartMap object at 0xb400007c280b4e50>
+[22:01:19.935] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartGroup.PartGroup object at 0xb400007c280cd790>
+[22:01:19.943] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartThrowableManager.PartThrowableManager object at 0xb400007c280d83d0>
+[22:01:19.947] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartObserve.PartObserve object at 0xb400007c280d8ed0>
+[22:01:19.953] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartJudge.PartJudge object at 0xb400007c280e4d90>
+[22:01:19.956] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartVehicleManager.PartVehicleManager object at 0xb400007c280ecd90>
+[22:01:19.959] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartDynamicBoxManager.PartDynamicBoxManager object at 0xb400007c280f8890>
+[22:01:19.965] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartConsoleManager.PartConsoleManager object at 0xb400007c280fea10>
+[22:01:19.975] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartUnderWater.PartUnderWater object at 0xb400007c28109190>
+[22:01:19.980] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartHitHintManager.PartHitHintManager object at 0xb400007c28116790>
+[22:01:19.983] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartMarkManager.PartMarkManager object at 0xb400007c28116a50>
+[22:01:19.986] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartAmbSound.PartAmbSound object at 0xb400007c28166050>
+[22:01:19.989] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartTouch.PartTouch object at 0xb400007c28166450>
+[22:01:19.992] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartHDRAdaptManager.PartHDRAdaptManager object at 0xb400007c281666d0>
+[22:01:19.995] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartAdaptiveNearClip.PartAdaptiveNearClip object at 0xb400007c28166b90>
+[22:01:19.999] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartAutoFogAndLight.PartAutoFogAndLight object at 0xb400007c25fb5cd0>
+[22:01:20.002] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartCloud.PartCloud object at 0xb400007c2816f3d0>
+[22:01:20.059] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartCompetitionBattlePrepare.PartCompetitionBattlePrepare object at 0xb400007c281d7e50>
+[22:01:20.062] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartSceneTrigger.PartSceneTrigger object at 0xb400007c281eb910>
+[22:01:20.065] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartLiftManager.PartLiftManager object at 0xb400007c281ebc90>
+[22:01:20.068] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartSunEffect.PartSunEffect object at 0xb400007c281f3210>
+[22:01:20.072] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartSnowEffect.PartSnowEffect object at 0xb400007c281f3f90>
+[22:01:20.075] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartBgSound.PartBgSound object at 0xb400007c281fde10>
+[22:01:20.090] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartTelevisionManager.PartTelevisionManager object at 0xb400007c28202550>
+[22:01:20.093] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartLEDLightEffect.PartLEDLightEffect object at 0xb400007c281168d0>
+[22:01:20.095] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartScriptLowFPS.PartScriptLowFPS object at 0xb400007c25fb9350>
+[22:01:20.099] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartPerfsys.PartPerfsys object at 0xb400007c28221fd0>
+[22:01:20.102] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartItemAdaptiveLod.PartItemAdaptiveLod object at 0xb400007c28232450>
+
+ERROR *****************************************************************************
+[22:01:20.113] M [COCOSUI] [ERROR] Unknown space object type "Road", forget adding new type to mapping table?
+[22:01:20.113] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartDecalCreator.PartDecalCreator object at 0xb400007c28245ed0>
+[22:01:20.118] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartMeadow.PartMeadow object at 0xb400007c2824fa90>
+[22:01:20.124] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1322]:<logic.vscene.parts.PartSceneSound.PartSceneSound object at 0xb400007c282591d0>
+[22:01:20.301] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\lifebar\blood_ui_4.spx.
+[22:01:20.322] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\lifebar\blood_ui_4.spx.
+[22:01:20.337] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\lifebar\blood_ui_4.spx.
+[22:01:20.352] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\lifebar\blood_ui_4.spx.
+[22:01:20.876] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:20] [ERROR] JsonConf cannot open confs/pve/na_item.json 
+[22:01:20.999] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:216]:load scene id 12970367460015341224 Traning
+[22:01:21.000] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:264]:scene.enable_preload_dynamic_by_chunk = False, Use new preload lod.
+[22:01:21.000] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:408]:[DYNAMIC PRELOAD] set_preload_dynamic_args: extend_dist:2600.0, always_y_min:13000000.0
+[22:01:21.000] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ExSceneManagerAgent.py:217]:cur scene {Scene:Traning,12970367460015341224,scene/bw_all06_xc/bw_all06.scn}
+[22:01:21.000] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ExSceneManagerAgent.py:218]:active cur scene
+[22:01:21.023] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:843]:scene game_mode_view_range_fix:[1, 1, 1], range_modes:(850.0, 1800.0, 2600.0)....
+[22:01:21.024] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1593]:[2026 01-25 22:01:21] [ERROR] [IMPORTANT] TRYING SET FXAA TO 1, SCENE TYPE Traning 
+[22:01:21.024] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1593]:[2026 01-25 22:01:21] [ERROR] [IMPORTANT] NOT IN LOBBY, CHANGE FXAA TO 1 
+[22:01:21.024] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/DisplayAgent.py:332]:Not support fx_offscreen!
+
+ERROR *****************************************************************************
+[22:01:21.024] M [COCOSUI] [ERROR] seq is not thread safe, may cause race condition!
+
+ERROR *****************************************************************************
+[22:01:21.030] M [COCOSUI] [ERROR] set name map from model_new\scene\building\bhsc\surface_bhsc_dl_01.gim, model_new\scene\box\empty_kong_01.gim
+[22:01:21.035] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:408]:[DYNAMIC PRELOAD] set_preload_dynamic_args: extend_dist:2600.0, always_y_min:13000000.0
+[22:01:21.035] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:408]:[DYNAMIC PRELOAD] set_preload_dynamic_args: extend_dist:2600.0, always_y_min:13000000.0
+[22:01:21.035] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:21.072] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\terrain_water_nx2_mobile.nfx.
+[22:01:21.090] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\terrain_water_nx2_mobile.nfx.
+[22:01:21.108] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\sky_hdr_nx2_mobile.nfx.
+[22:01:21.111] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\sky_hdr_nx2_mobile.nfx.
+WARNING ***************************************************************************
+[22:01:21.150] M [COCOSUI] [WARNING] AreaMap2D file scene/bw_all06_xc/bw_all06_content\areamapex.bin not exist!
+
+ERROR *****************************************************************************
+[22:01:21.153] M [COCOSUI] [ERROR] ===== scene preload dynamic is enable, no static preload!
+[22:01:21.202]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_emission_nx2_mobile.nfx.
+[22:01:21.208]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_emission_nx2_mobile.nfx.
+[22:01:21.440] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:843]:scene game_mode_view_range_fix:[1, 1, 1], range_modes:(850.0, 1800.0, 2600.0)....
+
+ERROR *****************************************************************************
+[22:01:21.441] M [COCOSUI] [ERROR] seq is not thread safe, may cause race condition!
+[22:01:21.508] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_emission_nx2_mobile.nfx.
+[22:01:21.517] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\shadow_ssm.nfx.
+[22:01:21.537] M [COCOSUI] there are total 1 shadowmap,  1 dynamic
+WARNING ***************************************************************************
+[22:01:21.547] M [COCOSUI] [WARNING] A2B10G10R10 format
+[22:01:21.554]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\solid_road_nx2_mobile.nfx.
+[22:01:21.563]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\solid_road_nx2_mobile.nfx.
+[22:01:21.567]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:21.581]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_nx2_mobile.nfx.
+[22:01:21.590]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:21.597]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_nx2_mobile.nfx.
+[22:01:21.601]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_simple.nfx.
+[22:01:21.606]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_simple.nfx.
+[22:01:21.608]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_nx2_mobile.nfx.
+[22:01:21.615]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_diffuse.nfx.
+[22:01:21.624]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_nx2_mobile.nfx.
+[22:01:21.629]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:21.633]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_nx2_mobile.nfx.
+[22:01:21.639]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_diffuse.nfx.
+[22:01:21.642]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_diffuse.nfx.
+[22:01:21.703]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_tree_nx2_mobile.nfx.
+[22:01:21.719]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_tree_nx2_mobile.nfx.
+[22:01:21.827] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:21.833] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_tree_nx2_mobile.nfx.
+[22:01:21.838]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:21.856]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_tree_nx2_mobile.nfx.
+[22:01:22.037] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:22] [ERROR] JsonConf cannot open confs/text/lang_id.json 
+[22:01:22.037] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:22] [ERROR] JsonConf cannot open confs/text/lang_id.json 
+[22:01:22.038] M [COCOSUI] [MMap]Open file asset://aab_res2.npk::gui/fonts/g93_num.ttf failed, error no 2
+[22:01:22.321]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.327]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.360] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/basepanel.py:1185]:add_sub_page <logic.comsys.battle.FightStateUI.FightModuleTipsUI object at 0xb400007c292eb5d0>
+[22:01:22.361]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.384] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/basepanel.py:1185]:add_sub_page <logic.comsys.battle.FightStateUI.FightModuleTipsUI object at 0xb400007c292ebd50>
+[22:01:22.387] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.392] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.397] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.404] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.409] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.414] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.419] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.424] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.742] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.753]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_emission_nx2_mobile.nfx.
+[22:01:22.762] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_emission_nx2_mobile.nfx.
+[22:01:22.889]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.895]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.932]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.945]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:22.995]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\terrain_water_depth_nx2_mobile.nfx.
+[22:01:23.000]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\terrain_water_depth_nx2_mobile.nfx.
+[22:01:23.005]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\terrain_water_depth_nx2_mobile.nfx.
+[22:01:23.033] M [COCOSUI] [MMap]Open file asset://aab_res8.npk::gui/fonts/g93_jp.ttf failed, error no 2
+[22:01:23.054] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:23.059] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:23.066] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\terrain_water_depth_nx2_mobile.nfx.
+[22:01:23.133]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:23.141]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:23.189] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:23.194] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:23.200] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:23.252] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\lifebar\blood_fade_7.spx.
+[22:01:23.260] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\lifebar\blood_ui_4.spx.
+[22:01:23.261] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\lifebar\blood_ui_4.spx.
+[22:01:23.311] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: gui\effect\noiseeffect\splinescreennoise5.spx.
+[22:01:23.412]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_lightmap.nfx.
+[22:01:23.418]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_lightmap.nfx.
+[22:01:23.451] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/basepanel.py:1185]:add_sub_page <logic.comsys.battle.RogueGiftDetailWidget.RogueGiftDetailWidget object at 0xb400007c299c9d50>
+[22:01:23.452] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_lightmap.nfx.
+[22:01:23.617]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\impostor.nfx.
+[22:01:23.643]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\impostor.nfx.
+[22:01:23.700]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_lightmap.nfx.
+[22:01:23.740] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\impostor.nfx.
+[22:01:23.745]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\impostor.nfx.
+[22:01:23.935] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/basepanel.py:1185]:add_sub_page <logic.comsys.mecha_ui.MechaModuleEffectiveUI.FightModuleTipsUI object at 0xb400007c29cf4110>
+[22:01:24.004] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/control_ui/PostureControlUI.py:74]:[2026 01-25 22:01:24] [ERROR] UnFounded salogs {'btn_roll.OnEnd': '3'} 
+[22:01:24.378] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:967]:Mjy on enter scene Traning 12970367460015341224
+[22:01:24.378] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/DisplayAgent.py:474]:Run check_reset_resolution_ex... False
+[22:01:24.378] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:754]:Current device PPI is:395.467987061 =====
+[22:01:24.378] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/global_display_setting.py:1350]:switch_device_resolution == ret: True
+[22:01:24.379] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/global_display_setting.py:659]:set display quality to  0 current quality 0
+[22:01:24.379] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:408]:[DYNAMIC PRELOAD] set_preload_dynamic_args: extend_dist:2600.0, always_y_min:13000000.0
+[22:01:24.379] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:408]:[DYNAMIC PRELOAD] set_preload_dynamic_args: extend_dist:2600.0, always_y_min:13000000.0
+[22:01:24.380] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\landscape_detail_nx2_mobile.nfx.
+[22:01:24.384] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1593]:[2026 01-25 22:01:24] [ERROR] [IMPORTANT] TRYING SET FXAA TO 1, SCENE TYPE Traning 
+[22:01:24.384] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1593]:[2026 01-25 22:01:24] [ERROR] [IMPORTANT] NOT IN LOBBY, CHANGE FXAA TO 1 
+[22:01:24.385] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/DisplayAgent.py:332]:Not support fx_offscreen!
+
+ERROR *****************************************************************************
+[22:01:24.385] M [COCOSUI] [ERROR] seq is not thread safe, may cause race condition!
+[22:01:24.385] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:24.485] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/map/MapBaseUINew.py:229]:init_normal_map_img {'cMapFolder': 'bw_all06_complete', 'arrMapResolution': [2048, 2048], 'arrMapScaleRange': [1, 2], 'mapShowSize': [2048, 2048]}
+[22:01:24.628] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/interaction/InteractionBaseUI.py:121]:[[-0.39269908169872414, 0.39269908169872414], [0.39269908169872414, 1.1780972450961724], [1.1780972450961724, 1.9634954084936207], [1.9634954084936207, 2.748893571891069], [2.748893571891069, 3.1415926535897931], [-3.1415926535897931, -2.748893571891069], [-2.748893571891069, -1.9634954084936207], [-1.9634954084936207, -1.1780972450961724], [-1.1780972450961724, -0.39269908169872414]]
+[22:01:24.738] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\cloud_middle_dist.nfx.
+[22:01:24.742] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\cloud_middle_dist.nfx.
+[22:01:24.747] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\cloud_middle_dist.nfx.
+[22:01:24.751] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/parts/ScenePart.py:134]:[2026 01-25 22:01:24] [ERROR] NX709S_on_PartDecalCreator_enter 
+[22:01:24.751] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\decal_depth.nfx.
+[22:01:24.754] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\decal_uv_unwarp.nfx.
+[22:01:24.756] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/parts/ScenePart.py:134]:[2026 01-25 22:01:24] [ERROR] NX709S_on_PartDecalCreator_enter_end 
+[22:01:24.756] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\meadow.nfx.
+[22:01:24.761] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\meadow.nfx.
+[22:01:24.765] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\meadow_lod.nfx.
+[22:01:24.772]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\sun.nfx.
+[22:01:24.776] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\meadow_lod.nfx.
+[22:01:24.779]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\sun.nfx.
+[22:01:24.832] M [COCOSUI] "gui/fonts/num_hurt_white_0.png" rc=27 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/item/16513.png" rc=5 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/mech_display/icon_levels.png" rc=3 40 x 40 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/battle_train/icon_miaomiao.png" rc=3 25 x 26 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/message/img_mail_empty.png" rc=3 180 x 114 @ ETC2_RGBA8(sepAlpha: None) => 20 KB
+"gui/ui_res_2/battle_train/icon_mech.png" rc=3 38 x 38 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/battle/mech_module/bar_module_atk_empty.png" rc=5 110 x 110 @ ETC2_RGBA8(sepAlpha: None) => 12 KB
+"gui/ui_res_2/item/1001.png" rc=9 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/battle/attack/1067/bg_battle_atk_1067_prog.png" rc=3 78 x 78 @ ETC2_RGBA8(sepAlpha: None) => 6 KB
+"gui/ui_res_2/battle_before/btn_team_follow_small.png" rc=81 100 x 48 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/battle/attack/1067/prog_battle_atk_1067.png" rc=3 78 x 78 @ ETC2_RGBA8(sepAlpha: None) => 6 KB
+"gui/ui_res_2/setting/custom/icon_drive_close.png" rc=3 20 x 22 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/setting/custom/icon_drive_open.png" rc=3 20 x 22 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/setting/item_tools.png" rc=5 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/setting/custom/pnl_drive_open.png" rc=3 112 x 22 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/mall/icon_dress_shirt.png" rc=3 32 x 32 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/battle/miaomiao/icon_miaomiao_full.png" rc=9 22 x 20 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle/miaomiao/pnl_miaomiao_2.png" rc=12 33 x 13 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/simui/icon_scene_ban.png" rc=13 64 x 64 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/item/9951.png" rc=7 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/message/img_battle_message_mask.png" rc=3 68 x 40 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/battle/rogue/img_logo_1.png" rc=3 58 x 16 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticlearrow2.png" rc=3 86 x 50 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/loading/pnl_network_loading.png" rc=12 90 x 90 @ ETC2_RGBA8(sepAlpha: None) => 8 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0011_triangle.png" rc=7 142 x 12 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0006_up.png" rc=3 74 x 11 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0004_full_psych.png" rc=3 129 x 16 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0003_unicorn-gundam.png" rc=3 103 x 20 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/effect/noiseeffect/alphamask.png" rc=2 512 x 512 @ ETC2_RGBA8(sepAlpha: None) => 256 KB
+"gui/ui_res_2/fight_end/img_light_gift.png" rc=5 474 x 412 @ ETC2_RGBA8(sepAlpha: None) => 191 KB
+"gui/effect/public/4x4_small_lut.png" rc=3 4 x 4 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle/mech_main/progress_shield_extra_tail.png" rc=2 2 x 2 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticlearrow1.png" rc=3 61 x 38 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/battle/rogue/img_sponsor_1.png" rc=3 10 x 104 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/battle/mech_main/progress_shield_tail.png" rc=2 2 x 2 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle/icon/3d_touch.png" rc=15 344 x 344 @ ETC2_RGBA8(sepAlpha: None) => 115 KB
+"gui/ui_res_2/battle_before/bg_block1.png" rc=45 47 x 13 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/anim/anim_gvg_sp_kill_tips_fivekills_lightning.png" rc=10 178 x 364 @ ETC2_RGBA8(sepAlpha: None) => 63 KB
+"/cc_2x2_white_image" rc=122 2 x 2 @ A8B8G8R8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/anim_outside/anim_role_light.png" rc=3 750 x 750 @ ETC2_RGBA8(sepAlpha: None) => 552 KB
+"gui/ui_res_2/battle_before/role_bg.png" rc=12 94 x 19 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/anim/vx_showlight.png" rc=6 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0008_up_small_line.png" rc=3 253 x 47 @ ETC2_RGBA8(sepAlpha: None) => 12 KB
+"gui/ui_res_2/role/life_icon/1600002.png" rc=9 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/anim_outside/vx_img/vx_light_strong.png" rc=23 66 x 78 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_2/battle/attack/1067/img_battle_atk_1067_dot.png" rc=3 10 x 10 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/item/ui_item/bar30100000.png" rc=43 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/life/display_wall/frame_medalwall_select_1.png" rc=17 52 x 52 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/battle/mech_module/bar_module_sp_gold.png" rc=9 110 x 110 @ ETC2_RGBA8(sepAlpha: None) => 12 KB
+"gui/ui_res_2/guide/pnl_chat_assistant_name.png" rc=3 154 x 54 @ ETC2_RGBA8(sepAlpha: None) => 8 KB
+"gui/ui_res_2/guide/pnl_chat_shade.png" rc=12 93 x 61 @ ETC2_RGBA8(sepAlpha: None) => 6 KB
+"gui/ui_res_2/icon/icon_time.png" rc=3 48 x 48 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/item/1612.png" rc=17 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/battle/mech_main/hp_mech_tail.png" rc=2 2 x 2 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle/battle_tips/narrow_and_remaining_number/remaining_number/img_news.png" rc=3 36 x 21 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle/battle_tips/narrow_and_remaining_number/remaining_number/frame_battle_remaining_01.png" rc=3 291 x 154 @ ETC2_RGBA8(sepAlpha: None) => 44 KB
+"gui/ui_res_2/mech_display/img_ex.png" rc=3 44 x 34 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/anim_outside/mech_sp_skill_btn_00.png" rc=3 99 x 97 @ ETC2_RGBA8(sepAlpha: None) => 9 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0007_light_line.png" rc=5 62 x 46 @ ETC2_RGBA8(sepAlpha: None) => 3 KB
+"gui/ui_res_2/battle/attack/1067/frame_battle_atk_1067.png" rc=5 14 x 40 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/item/mecha_skin/201800100.png" rc=9 256 x 512 @ ETC2_RGBA8(sepAlpha: None) => 128 KB
+"gui/ui_res_2/anim_outside/vx_img/vx_mask_strong.png" rc=3 358 x 78 @ ETC2_RGBA8(sepAlpha: None) => 28 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0018_right_line.png" rc=5 252 x 5 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/role/life_icon/img_life_icon_frame_a1.png" rc=3 330 x 330 @ ETC2_RGBA8(sepAlpha: None) => 107 KB
+"gui/ui_res_2/battle/map/bar_parachute_speed.png" rc=12 80 x 50 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/activity/activity_resource/icon_get_tick.png" rc=5 64 x 49 @ ETC2_RGBA8(sepAlpha: None) => 3 KB
+"gui/ui_res_2/anim/anim_enable_heat.png" rc=15 256 x 512 @ ETC2_RGBA8(sepAlpha: None) => 128 KB
+"gui/ui_res_2/anim_outside/vx_life/vx_life_light1.png" rc=5 512 x 512 @ ETC2_RGBA8(sepAlpha: None) => 256 KB
+"gui/ui_res_2/anim/anim_gvg_sp_kill_tips_fivekills_lightning2.png" rc=3 141 x 37 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticleblue_point.png" rc=3 6 x 8 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/lottery/pnl_gashapon_tag.png" rc=3 26 x 26 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0013_line.png" rc=5 55 x 282 @ ETC2_RGBA8(sepAlpha: None) => 15 KB
+"gui/ui_res_2/life/display_wall/frame_medalwall_select_square.png" rc=3 178 x 178 @ ETC2_RGBA8(sepAlpha: None) => 31 KB
+"gui/ui_res_2/life/display_wall/frame_medalwall_select.png" rc=3 178 x 178 @ ETC2_RGBA8(sepAlpha: None) => 31 KB
+"gui/ui_res_2/mall/miaomiao/m_safebox.png" rc=5 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/activity/activity_resource/icon_up.png" rc=3 18 x 21 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/loading/img_network_loading_dot.png" rc=17 10 x 10 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/item/medal/1620001.png" rc=3 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/mall/img_mall_define_free.png" rc=12 62 x 30 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/mall/icon_mall_overdue.png" rc=3 40 x 52 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/item/driver_bond/driver_tag/11_tag.png" rc=4 76 x 62 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/battle_before/img_head.png" rc=3 76 x 72 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_2/anim_outside/vx_img/vx_white.png" rc=13 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/guide/guide_arrow_1.png" rc=3 54 x 38 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/mall/img_discount_bar.png" rc=3 121 x 93 @ ETC2_RGBA8(sepAlpha: None) => 11 KB
+"gui/ui_res_2/battle_pass/icon_tick_s2_get.png" rc=3 54 x 44 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/effect/noiseeffect/noise_pixel2.png" rc=2 512 x 512 @ ETC2_RGBA8(sepAlpha: None) => 256 KB
+"gui/ui_res_2/battle/progress/hp_teammate_100.png" rc=13 154 x 12 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/item/others/50500002.png" rc=3 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/anim_outside/anim_lingjiang_opt_1_00057.png" rc=3 567 x 227 @ ETC2_RGBA8(sepAlpha: None) => 126 KB
+"gui/ui_res_plist/battle-mech_main.png" rc=1127 2048 x 2048 @ ETC2_RGBA8(sepAlpha: None) => 4096 KB
+"gui/ui_res_2/battle_before/role_bg_voice.png" rc=3 102 x 38 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/battle_before/img_block_3.png" rc=45 50 x 52 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/anim/anim_achievement_liz1.png" rc=6 64 x 64 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_plist/common-panel.png" rc=409 2048 x 2048 @ ETC2_RGBA8(sepAlpha: None) => 4096 KB
+"gui/ui_res_2/battle/mech_module/module_1010.png" rc=7 90 x 90 @ ETC2_RGBA8(sepAlpha: None) => 8 KB
+"gui/ui_res_2/main/icon_house.png" rc=15 28 x 28 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/battle/rogue/pnl_sponsor_tips.png" rc=3 282 x 118 @ ETC2_RGBA8(sepAlpha: None) => 33 KB
+"gui/ui_res_2/guide/guide_pick_anim_1.png" rc=12 197 x 100 @ ETC2_RGBA8(sepAlpha: None) => 19 KB
+"gui/ui_res_2/guide/guide_arrow_2.png" rc=3 54 x 38 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticle0009_x_line.png" rc=9 198 x 214 @ ETC2_RGBA8(sepAlpha: None) => 42 KB
+"gui/ui_res_2/battle_once/reticle/anim_black_background.png" rc=5 64 x 64 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/activity/activity_202207/backflow_mecha/icon_backflow_mecha_mecha.png" rc=3 78 x 82 @ ETC2_RGBA8(sepAlpha: None) => 6 KB
+"gui/ui_res_2/emote/emote8.png" rc=8 898 x 130 @ ETC2_RGBA8(sepAlpha: None) => 116 KB
+"gui/ui_res_2/emote/emote7.png" rc=10 1152 x 128 @ ETC2_RGBA8(sepAlpha: None) => 144 KB
+"gui/ui_res_2/item/9908.png" rc=9 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/emote/emote3.png" rc=764 1024 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 1024 KB
+"gui/ui_res_2/role/life_icon/img_life_icon_frame_3.png" rc=7 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/default/default_sprite.png" rc=13 45 x 43 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/emote/emote6.png" rc=12 512 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 512 KB
+"gui/ui_res_2/item/1666.png" rc=5 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/battle/battle_tips/narrow_and_remaining_number/narrow/img_alert.png" rc=5 42 x 20 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/anim_outside/vx_img/vx_jianbian.png" rc=5 30 x 32 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/mall/pnl_mall_item_choose.png" rc=12 262 x 262 @ ETC2_RGBA8(sepAlpha: None) => 68 KB
+"gui/ui_res_2/battle/mech_main/progress_shield.png" rc=6 322 x 8 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/battle/mech_main/hp_mech_increase.png" rc=5 324 x 14 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_2/bag/icon_role_skin_try.png" rc=3 72 x 72 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_2/item/16511.png" rc=17 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/anim_outside/vx_img/vx_dian_01.png" rc=3 128 x 32 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/main/pnl_speaker_tips.png" rc=3 530 x 88 @ ETC2_RGBA8(sepAlpha: None) => 45 KB
+"gui/ui_res_2/guide/pnl_chat.png" rc=12 458 x 102 @ ETC2_RGBA8(sepAlpha: None) => 46 KB
+"gui/ui_res_2/battle_pass/img_frame_choose_item.png" rc=23 92 x 92 @ ETC2_RGBA8(sepAlpha: None) => 8 KB
+"gui/ui_res_plist/battle-notice.png" rc=1478 2048 x 2048 @ ETC2_RGBA8(sepAlpha: None) => 4096 KB
+"gui/ui_res_2/mall/pnl_mall_overdue.png" rc=3 40 x 52 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/item/battle_item_skin/208100100.png" rc=17 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/common/bg/bg_hall.png" rc=3 1624 x 750 @ ETC2_RGBA8(sepAlpha: None) => 1192 KB
+"gui/ui_res_2/battle/mech_main/vx_hp_alpha.png" rc=10 324 x 14 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_2/guide/choose_role/img_lizi_choose_role.png" rc=3 216 x 200 @ ETC2_RGBA8(sepAlpha: None) => 42 KB
+"gui/ui_res_2/anim_outside/vx_img/vx_wenli_04.png" rc=15 128 x 32 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/item/gun/1001.png" rc=21 300 x 100 @ ETC2_RGBA8(sepAlpha: None) => 29 KB
+"gui/ui_res_2/activity/ad_mech_pic/img_light.png" rc=3 994 x 452 @ ETC2_RGBA8(sepAlpha: None) => 439 KB
+"gui/ui_res_2/anim/anim_renew.png" rc=27 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/guide/guide_pick_anim_2.png" rc=23 203 x 106 @ ETC2_RGBA8(sepAlpha: None) => 21 KB
+"gui/ui_res_2/battle/progress/hp_teammate_shield.png" rc=13 154 x 10 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/friend/intimacy/pnl_level.png" rc=9 30 x 18 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/anim_outside/anim_lingjiang_opt_2_00057.png" rc=3 567 x 220 @ ETC2_RGBA8(sepAlpha: None) => 122 KB
+"gui/ui_res_2/friend/intimacy/icon_lover.png" rc=9 52 x 42 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/common/bg/bar_loading_info.png" rc=9 56 x 108 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_2/battle_before/btn_team_follow_small2.png" rc=17 100 x 48 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/lottery/img_rate_up_small_arrow.png" rc=3 22 x 22 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/anim_outside/light/img_3v3_www_00.png" rc=21 256 x 64 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_2/battle/mech_main/hp_shield_full.png" rc=2 324 x 14 @ ETC2_RGBA8(sepAlpha: None) => 5 KB
+"gui/ui_res_plist/battle-map.png" rc=620 1024 x 1024 @ ETC2_RGBA8(sepAlpha: None) => 1024 KB
+"gui/ui_res_2/anim_outside/light/vx_get_spot_1.png" rc=5 128 x 128 @ ETC2_RGBA8(sepAlpha: None) => 16 KB
+"gui/ui_res_plist/common.png" rc=697 2048 x 2048 @ ETC2_RGBA8(sepAlpha: None) => 4096 KB
+"gui/ui_res_2/battle_before/icon_follow.png" rc=9 20 x 20 @ ETC2_RGBA8(sepAlpha: None) => 0 KB
+"gui/ui_res_2/item/role_head/30200011.png" rc=15 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/anim_outside/anim_common_touch_halo_00023.png" rc=3 64 x 62 @ ETC2_RGBA8(sepAlpha: None) => 4 KB
+"gui/ui_res_2/anim/anim_skill_colddown.png" rc=26 256 x 512 @ ETC2_RGBA8(sepAlpha: None) => 128 KB
+"gui/ui_res_2/battle_before/bg_block2.png" rc=17 162 x 52 @ ETC2_RGBA8(sepAlpha: None) => 8 KB
+"gui/ui_res_2/emote/emote5.png" rc=7 512 x 512 @ ETC2_RGBA8(sepAlpha: None) => 256 KB
+"gui/ui_res_2/battle_train/icon_man.png" rc=3 38 x 38 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/guide/pnl_chat_assistant_name_shade.png" rc=3 154 x 54 @ ETC2_RGBA8(sepAlpha: None) => 8 KB
+"gui/ui_res_2/anim/anim_window_xlz.png" rc=23 512 x 512 @ ETC2_RGBA8(sepAlpha: None) => 256 KB
+"gui/ui_res_2/battle_once/reticle/anim_reticlebox.png" rc=5 54 x 202 @ ETC2_RGBA8(sepAlpha: None) => 11 KB
+"gui/ui_res_2/main/pnl_new_tips.png" rc=27 32 x 32 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/lottery/img_quality_s.png" rc=3 120 x 120 @ ETC2_RGBA8(sepAlpha: None) => 14 KB
+"gui/ui_res_2_pc/battle/panel/pnl_equipment_sel.png" rc=82 98 x 96 @ ETC2_RGBA8(sepAlpha: None) => 9 KB
+"gui/ui_res_2/main/bar_chat_pigeon_2.png" rc=3 762 x 110 @ ETC2_RGBA8(sepAlpha: None) => 83 KB
+"gui/ui_res_2/battle/progress/hp_teammate_alpha.png" rc=13 148 x 8 @ ETC2_RGBA8(sepAlpha: None) => 1 KB
+"gui/ui_res_2/item/ui_item/30100000.png" rc=15 256 x 256 @ ETC2_RGBA8(sepAlpha: None) => 64 KB
+"gui/ui_res_2/battle/mech_main/progress_shield_extra.png" rc=3 322 x 8 @ ETC2_RGBA8(sepAlpha: None) => 2 KB
+"gui/ui_res_2/guide/img_guide_namr_bar.png" rc=3 312 x 26 @ ETC2_RGBA8(sepAlpha: None) => 8 KB
+"gui/ui_res_2/anim_outsi
+[22:01:24.833] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1593]:[2026 01-25 22:01:24] [ERROR] [IMPORTANT] TRYING SET FXAA TO 1, SCENE TYPE Traning 
+[22:01:24.833] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1593]:[2026 01-25 22:01:24] [ERROR] [IMPORTANT] NOT IN LOBBY, CHANGE FXAA TO 1 
+[22:01:24.833] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/DisplayAgent.py:332]:Not support fx_offscreen!
+
+ERROR *****************************************************************************
+[22:01:24.834] M [COCOSUI] [ERROR] seq is not thread safe, may cause race condition!
+[22:01:24.838] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:1018]:Mjy finished enter scene Traning 12970367460015341224
+[22:01:24.839] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:843]:scene game_mode_view_range_fix:[1, 1, 1], range_modes:(425.0, 900.0, 1300.0)....
+[22:01:24.886]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\sun_flare.nfx.
+[22:01:24.891]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\sun_flare.nfx.
+[22:01:24.897]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\energy_monster_simple.nfx.
+[22:01:24.901]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\energy_monster_simple.nfx.
+
+ERROR *****************************************************************************
+[22:01:24.903]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\alpha_wenli_004_02_xb.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:24.904]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\wenli26_bu.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:24.906]   [COCOSUI] [ERROR] Meadow density map not exist: scene/bw_all06_xc/bw_all06_content/meadow_res/density_maps/global_density_layer_1.tga
+[22:01:28.647] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:28] [ERROR] JsonConf cannot open confs/game_mode/normal/play_data.json 
+[22:01:28.648] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:28] [ERROR] JsonConf cannot open confs/game_mode/normal/play_data.json 
+[22:01:28.724] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/gcommon/component/client/ComCharacter.py:215]:test--init_collision_parameter--CLOSE_BUILDING_KEY_WORD = ['building', '_jizhuangxiang']
+[22:01:28.885] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/parts/camera/CameraTargetManager.py:375]:no target ???????
+[22:01:28.914] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/parts/camera/CameraTargetManager.py:375]:no target ???????
+[22:01:28.919] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.battle.StateChangeUI.StateChangeUI object at 0xb400007c2a9b5c50> =====
+[22:01:28.921] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:28.943] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:408]:[DYNAMIC PRELOAD] set_preload_dynamic_args: extend_dist:2600.0, always_y_min:13000000.0
+WARNING ***************************************************************************
+[22:01:28.943] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:1321, height:580, force:0)!
+[22:01:28.943] M [COCOSUI] Set render mode: 1321 580 32 1 0
+
+ERROR *****************************************************************************
+[22:01:28.944] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[22:01:28.962] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\hero_outline.nfx.
+[22:01:28.964] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\downsample_bloomsetup.nfx.
+[22:01:28.966] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\downsample.nfx.
+[22:01:28.967] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\dualblur_downsample.nfx.
+[22:01:28.969] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\dualblur_add1.nfx.
+[22:01:28.971] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\dualblur_add2.nfx.
+[22:01:28.974] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\tonemap_nx2_mobile.nfx.
+[22:01:28.982]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vertex_color.nfx.
+[22:01:28.984] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\downsample_bloomsetup_fast.nfx.
+[22:01:28.987]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vertex_color.nfx.
+[22:01:28.988] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\downsample_add_fast.nfx.
+[22:01:28.995] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\glitch.nfx.
+[22:01:28.997] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\fxaa.nfx.
+[22:01:28.999] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\smaa_edge_detection.nfx.
+
+ERROR *****************************************************************************
+[22:01:29.000] M [COCOSUI] [ERROR] [shader] invalid operator ., 0x1804010c, 268
+[22:01:29.002] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\smaa_blending_weight_calculation.nfx.
+WARNING ***************************************************************************
+[22:01:29.004] M [COCOSUI] [WARNING] [shader] Failed to derivate the value of definition SMAATexturePass2D
+WARNING ***************************************************************************
+[22:01:29.005] M [COCOSUI] [WARNING] Try to load texture file shader\texture_raw\area_tex_dx10.dds with non-power-2 size (160 X 560)!
+[22:01:29.006] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\smaa_neighborhood_blending.nfx.
+[22:01:29.009] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\blur_horz.nfx.
+[22:01:29.010] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\blur_vert.nfx.
+[22:01:29.012] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\gray.nfx.
+[22:01:29.014] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\fish_eye.nfx.
+[22:01:29.016] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\hdr_calc_bright.nfx.
+[22:01:29.017] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\copy.nfx.
+[22:01:29.019] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\radial_blur.nfx.
+[22:01:29.021] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\dark_corner.nfx.
+[22:01:29.024] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\screen_filter.nfx.
+[22:01:29.025] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\distortion.nfx.
+[22:01:29.027] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\screen_shake.nfx.
+[22:01:29.029] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\smooth_outline_vertical.nfx.
+[22:01:29.031] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\smooth_outline_horiz.nfx.
+[22:01:29.032] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\smooth_outline_blend.nfx.
+[22:01:29.034] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\shader_complexity_apply.nfx.
+
+ERROR *****************************************************************************
+[22:01:29.036] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+
+ERROR *****************************************************************************
+[22:01:29.038] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+WARNING ***************************************************************************
+[22:01:29.038] M [COCOSUI] [WARNING] A2B10G10R10 format
+[22:01:29.148] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:1566]:final frame rate is 45 fps
+[22:01:29.148] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:754]:Current device PPI is:395.467987061 =====
+[22:01:29.148] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/global_display_setting.py:1350]:switch_device_resolution == ret: True
+WARNING ***************************************************************************
+[22:01:29.149] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:1321, height:580, force:0)!
+WARNING ***************************************************************************
+[22:01:29.151] M [COCOSUI] [WARNING] Performance warnning!! please add string hash parameter mtl_sv
+WARNING ***************************************************************************
+[22:01:29.151] M [COCOSUI] [WARNING] Performance warnning!! please add string hash parameter mtl_sv
+[22:01:29.152]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\energy_monster_simple.nfx.
+[22:01:29.589] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:754]:Current device PPI is:395.467987061 =====
+[22:01:29.589] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/global_display_setting.py:1350]:switch_device_resolution == ret: True
+WARNING ***************************************************************************
+[22:01:29.590] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:1321, height:580, force:0)!
+
+ERROR *****************************************************************************
+[22:01:30.005]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_move_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.007]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_move_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.007]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_move_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.007]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_leave.gis
+
+ERROR *****************************************************************************
+[22:01:30.008]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_jump_03.gis
+
+ERROR *****************************************************************************
+[22:01:30.008]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_jump_01.gis
+
+ERROR *****************************************************************************
+[22:01:30.008]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_vaulting.gis
+
+ERROR *****************************************************************************
+[22:01:30.009]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_move_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.009]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_move_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.009]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_move_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.009]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_jump_04.gis
+
+ERROR *****************************************************************************
+[22:01:30.010]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_jump_02.gis
+
+ERROR *****************************************************************************
+[22:01:30.010]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_jump.gis
+
+ERROR *****************************************************************************
+[22:01:30.010]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_f_start.gis
+
+ERROR *****************************************************************************
+[22:01:30.010]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_f_brake.gis
+
+ERROR *****************************************************************************
+[22:01:30.011]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_change_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.011]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_change_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.011]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_change_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.011]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_change_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.012]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_change_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.013]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_change_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.013]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_change.gis
+
+ERROR *****************************************************************************
+[22:01:30.013]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_board_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.013]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_board_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.013]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_board_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.014]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_board_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.014]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_board_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.014]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_board_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.014]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_board.gis
+
+ERROR *****************************************************************************
+[22:01:30.014]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_aim_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.014]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_aim_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.015]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_aim_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.015]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_aim_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.015]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_aim_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.015]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_aim_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.015]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_aim.gis
+
+ERROR *****************************************************************************
+[22:01:30.015]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_pulse_stand_idle.gis
+
+ERROR *****************************************************************************
+[22:01:30.016]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_move_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.016]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_shoot_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.016]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_shoot_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.016]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_jump_02.gis
+
+ERROR *****************************************************************************
+[22:01:30.016]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_f_brake.gis
+
+ERROR *****************************************************************************
+[22:01:30.016]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_change_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.017]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_board_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.017]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_board_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.017]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_aim_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.017]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_aim_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.017]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_shoot_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.017]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_shoot_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.018]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_move_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.018]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_jump_04.gis
+
+ERROR *****************************************************************************
+[22:01:30.018]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_vaulting.gis
+
+ERROR *****************************************************************************
+[22:01:30.018]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_shoot_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.018]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_shoot.gis
+
+ERROR *****************************************************************************
+[22:01:30.018]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_move_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.019]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_move_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.019]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_jump_03.gis
+
+ERROR *****************************************************************************
+[22:01:30.019]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_f_start.gis
+
+ERROR *****************************************************************************
+[22:01:30.019]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_change_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.019]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_change.gis
+
+ERROR *****************************************************************************
+[22:01:30.019]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_board_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.020]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_move_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.020]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_leave.gis
+
+ERROR *****************************************************************************
+[22:01:30.020]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_aim_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.020]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_jump_01.gis
+
+ERROR *****************************************************************************
+[22:01:30.020]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_change_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.020]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_change_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.021]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_board_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.021]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_board_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.021]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_aim_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.021]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_aim.gis
+
+ERROR *****************************************************************************
+[22:01:30.021]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_jump.gis
+
+ERROR *****************************************************************************
+[22:01:30.021]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_change_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.022]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_change_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.022]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_board_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.022]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_board.gis
+
+ERROR *****************************************************************************
+[22:01:30.022]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_aim_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.022]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_run_start.gis
+
+ERROR *****************************************************************************
+[22:01:30.022]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_run_stop.gis
+
+ERROR *****************************************************************************
+[22:01:30.023]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_move_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.023]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_change_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.023]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_change_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.023]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_move_l.gis
+
+ERROR *****************************************************************************
+[22:01:30.023]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_change_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.023]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_move_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.024]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_change_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.024]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_change_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.024]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_run.gis
+
+ERROR *****************************************************************************
+[22:01:30.024]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_move_fr.gis
+
+ERROR *****************************************************************************
+[22:01:30.025]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_move_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.025]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_move_fl.gis
+
+ERROR *****************************************************************************
+[22:01:30.025]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_move_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.025]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_change_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.025]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_change_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.025]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/s_lmg_change.gis
+
+ERROR *****************************************************************************
+[22:01:30.026]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_stop_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.026]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_run.gis
+
+ERROR *****************************************************************************
+[22:01:30.026]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_stop.gis
+
+ERROR *****************************************************************************
+[22:01:30.026]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_move_r.gis
+
+ERROR *****************************************************************************
+[22:01:30.026]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_move_b.gis
+
+ERROR *****************************************************************************
+[22:01:30.026]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_move_f.gis
+
+ERROR *****************************************************************************
+[22:01:30.027]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/c_lmg_change.gis
+
+ERROR *****************************************************************************
+[22:01:30.027]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_aim_bl.gis
+
+ERROR *****************************************************************************
+[22:01:30.027]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_stand_idle.gis
+
+ERROR *****************************************************************************
+[22:01:30.027]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_shoot_br.gis
+
+ERROR *****************************************************************************
+[22:01:30.028]   [COCOSUI] [ERROR] unable to read character\12\skeleton\12_gis/skate_lmg_move_fl.gis
+[22:01:30.116] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:754]:Current device PPI is:395.467987061 =====
+[22:01:30.116] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/global_display_setting.py:1350]:switch_device_resolution == ret: True
+WARNING ***************************************************************************
+[22:01:30.117] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:1321, height:580, force:0)!
+[22:01:30.204] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[22:01:30.256]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_nx2_mobile.nfx.
+[22:01:30.260] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:30] [ERROR] JsonConf cannot open confs/soft_bone_param_12_2000.json 
+[22:01:30.260] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:30] [ERROR] JsonConf cannot open confs/soft_bone_param_12_2000.json 
+
+ERROR *****************************************************************************
+[22:01:30.267]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "character\25\2001\textures\flowmap_v.png" is not found!
+[22:01:30.268]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_nx2_mobile.nfx.
+[22:01:30.320] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_nx2_mobile.nfx.
+[22:01:30.331] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_nx2_mobile.nfx.
+[22:01:30.341] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_nx2_outline.nfx.
+[22:01:30.807] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\meadow.nfx.
+[22:01:30.813] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\meadow_lod.nfx.
+[22:01:31.310] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:31.325]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:31.763] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.loading.battle_loading.BattleLoadingWidget object at 0xb400007c2827f490> =====
+[22:01:31.763] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.common_ui.CommonBgUnAdjustUI.CommonBgUnAdjustUI object at 0xb400007c2839b0d0> =====
+[22:01:32.007]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.054]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.082] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.633]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+[22:01:32.643]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+
+ERROR *****************************************************************************
+[22:01:32.662]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\trail\trail_003_qd.tga" is not found!
+[22:01:32.664]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\fresnel_fade.nfx.
+[22:01:32.668]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\fresnel_fade.nfx.
+
+ERROR *****************************************************************************
+[22:01:32.670]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\boliang_wenli_002_01.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:32.670]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\glow\glow25.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:32.671]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\glow\glow40_xb.png" is not found!
+[22:01:32.671]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+[22:01:32.681]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\blendadd.nfx.
+[22:01:32.683]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\blendadd.nfx.
+[22:01:32.692]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.702]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.729] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:408]:[DYNAMIC PRELOAD] set_preload_dynamic_args: extend_dist:2600.0, always_y_min:13000000.0
+WARNING ***************************************************************************
+[22:01:32.738]   [COCOSUI] [WARNING] GetColliderMeshData with warnings: model_new\scene\items\common\items_common_loudingguandao_03.gim
+WARNING ***************************************************************************
+[22:01:32.880]   [COCOSUI] [WARNING] GetColliderMeshData with warnings: model_new\scene\items\outside\items_outside_taiyangsan_02.gim
+[22:01:32.930] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.937] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.941] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.949] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:32.954] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:33.030] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+[22:01:33.358] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:488]:[DEBUG FOR UI] close_ui:<logic.comsys.guide_ui.GuideIntroStepsUI.GuideIntroStepsUI object at 0xb400007c2b6e8090> =====
+[22:01:33.677] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:33.681] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:33.686] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\lightmap_nx2_mobile.nfx.
+[22:01:34.244]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_lightmap.nfx.
+[22:01:34.263] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\common_lightmap.nfx.
+[22:01:36.770] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/gcommon/component/client/com_parachute/ComParachuteDriver.py:220]:zero spd check ground
+[22:01:36.772] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/scene.py:843]:scene game_mode_view_range_fix:[1, 1, 1], range_modes:(425.0, 900.0, 1300.0)....
+[22:01:37.252]   [COCOSUI] create track type is 256
+
+ERROR *****************************************************************************
+[22:01:37.547]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.548]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.548]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.549]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.550]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.550]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.551]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.551]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.552]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.552]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.553]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.554]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.554]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.555]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.555]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+
+ERROR *****************************************************************************
+[22:01:37.556]   [COCOSUI] [ERROR] GetImageSizeFromFile Texture file effect\textures\smoke\smoke_07.png is not found!
+[22:01:38.508]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+
+ERROR *****************************************************************************
+[22:01:38.517]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "character\weapons\1011_uzi\1011\texture\1011_uzi_d.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:38.517]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "character\weapons\1011_uzi\1011\texture\1011_uzi_m.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:38.518]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "character\weapons\1011_uzi\1011\texture\1011_uzi_n.tga" is not found!
+[22:01:38.538] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+[22:01:38.548] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+[22:01:38.561] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\vbr_toon_mecha_nx2_mobile.nfx.
+
+ERROR *****************************************************************************
+[22:01:43.410]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\glow\glow15.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.411]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\alpha040_xb.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.411]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\alpha039_xb.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.412]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\alpha015_sk.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.413]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\special\arrow_01_xb.png" is not found!
+[22:01:43.414]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\blendadd.nfx.
+[22:01:43.439] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:43] [ERROR] JsonConf cannot open confs/game_mode/normal/born_spawn_data.json 
+[22:01:43.439] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 01-25 22:01:43] [ERROR] JsonConf cannot open confs/game_mode/normal/born_spawn_data.json 
+[22:01:43.461]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\items_signal_new.nfx.
+[22:01:43.465]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\items_signal_new.nfx.
+
+ERROR *****************************************************************************
+[22:01:43.468]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "character\weapons\1054_bazooka\1054\texture\1054_bazooka_d.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.471]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "model_new\items\items\textures\9912_d.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.473]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "model_new\items\items\textures\9914_d.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.477]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "model_new\items\items\textures\9916_d.tga" is not found!
+[22:01:43.530]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\items_signal_dummy.nfx.
+[22:01:43.536]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\items_signal_dummy.nfx.
+
+ERROR *****************************************************************************
+[22:01:43.539]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\alpha037_xb.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.539]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\trail\light_018_uv.png" is not found!
+[22:01:43.540]   [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\g93shader\items_signal_dummy.nfx.
+
+ERROR *****************************************************************************
+[22:01:43.544]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\gq_wenli_02_128.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.545]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\lightning\lightning01_bu.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.545]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\glow\light_005_xb.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.548]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\special\dianlu_dr.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.549]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\honey_cone_xb_002.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.549]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\honey_cone_xb_2_yjg.png" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.549]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\wave.tga" is not found!
+
+ERROR *****************************************************************************
+[22:01:43.550]   [COCOSUI] [ERROR] ; OpenBuffer Texture file "effect\textures\alpha\quan07.tga" is not found!
+[22:01:46.468]   [COCOSUI] WindowFocusChanged: 0xb400007a83936990 -- 0
+[22:01:47.130]   [COCOSUI] Pause: 0xb400007a83936990
+[22:01:47.149] M [COCOSUI] activityState=13
+[22:01:47.154]   [COCOSUI] NativeWindowDestroyed: 0xb400007a83936990 -- 0xb400007b43987ae0
+[22:01:47.270] M [COCOSUI] APP_CMD_TERM_WINDOW
+[22:01:47.277] M [COCOSUI] APP_CMD_TERM_WINDOW
+[22:01:47.278]   [COCOSUI] Stop: 0xb400007a83936990
+[22:01:47.278] M [COCOSUI] activityState=14
+[22:01:47.279]   [COCOSUI] SaveInstanceState: 0xb400007a83936990
+[22:01:47.298] M [COCOSUI] APP_CMD_SAVE_STATE

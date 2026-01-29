@@ -209,6 +209,14 @@ def init_urllib3_https():
 
 
 def start_game():
+    # OFFLINE MODE: Load offline authentication module
+    try:
+        print('[OFFLINE] Initializing offline mode...')
+        from script_patch.offline_partlogin_patch import patch_partlogin_for_offline
+        patch_partlogin_for_offline()
+    except Exception as e:
+        print('[OFFLINE] Could not load offline patch: %s' % str(e))
+    
     import init_game
     init_game.init()
     render.logic = empty_logic
