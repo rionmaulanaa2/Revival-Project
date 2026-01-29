@@ -1,0 +1,66 @@
+# uncompyle6 version 2.13.2
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.18 (default, Sep 12 2025, 12:48:39) 
+# [GCC Android (13624864, +pgo, +bolt, +lto, +mlgo, based on r530567e) Clang 19.0
+# Embedded file name: /Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/gcommon/cdata/90352.py
+_reload_all = True
+version = '199327546'
+from .pve_monster_status_config import *
+cover = {'90352': {MC_JUMP_3: set([MC_JUMP_2, MC_JUMP_1, MC_BEAT_BACK, MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_JUMP_2: set([MC_JUMP_1, MC_BEAT_BACK, MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_JUMP_1: set([MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_MONSTER_HIT: set([MC_MECHA_BOARDING, MC_BEAT_BACK, MC_TURN, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_MONSTER_BRAMBLE, MC_RUN, MC_MOVE, MC_IMMOBILIZE, MC_STAND]),
+             MC_MONSTER_MORTAR: set([MC_JUMP_3, MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_MECHA_BOARDING: set([]),
+             MC_DEAD: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_BEAT_BACK, MC_TURN, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_SUMMON, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_RUN, MC_MOVE, MC_MONSTER_HIT, MC_IMMOBILIZE, MC_STAND]),
+             MC_BEAT_BACK: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_MONSTER_BRAMBLE, MC_IMMOBILIZE]),
+             MC_MONSTER_AIMTURN: set([MC_JUMP_3, MC_TURN, MC_MONSTER_SUMMON, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_MONSTER_POWER_MELEE: set([MC_JUMP_3, MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_TURN: set([MC_STAND]),
+             MC_MONSTER_ROAR: set([MC_JUMP_3, MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_MONSTER_MELEE: set([MC_JUMP_3, MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_FROZEN: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_BEAT_BACK, MC_TURN, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_SUMMON, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_MONSTER_BRAMBLE, MC_RUN, MC_MOVE, MC_MONSTER_HIT, MC_IMMOBILIZE, MC_STAND]),
+             MC_MONSTER_SUMMON: set([MC_JUMP_2, MC_JUMP_1, MC_MECHA_BOARDING, MC_BEAT_BACK, MC_TURN, MC_MONSTER_AIMTURN, MC_RUN, MC_MOVE, MC_IMMOBILIZE, MC_STAND]),
+             MC_STAND: set([MC_JUMP_3, MC_MECHA_BOARDING, MC_TURN, MC_RUN, MC_MOVE]),
+             MC_RUN: set([MC_JUMP_3, MC_TURN, MC_MOVE, MC_STAND]),
+             MC_IMMOBILIZE: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_MONSTER_BRAMBLE]),
+             MC_MOVE: set([MC_JUMP_3, MC_TURN, MC_RUN, MC_STAND]),
+             MC_MONSTER_DASH: set([MC_JUMP_3, MC_TURN, MC_RUN, MC_MOVE, MC_STAND]),
+             MC_MONSTER_BRAMBLE: set([MC_JUMP_3, MC_TURN, MC_RUN, MC_MOVE, MC_STAND])
+             }
+   }
+forbid = {'90352': {MC_JUMP_3: set([MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_SUMMON, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_JUMP_2: set([MC_JUMP_3, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_SUMMON, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_JUMP_1: set([MC_JUMP_3, MC_JUMP_2, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_SUMMON, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_MONSTER_HIT: set([MC_MONSTER_MORTAR, MC_DEAD, MC_FROZEN]),
+             MC_MONSTER_MORTAR: set([MC_JUMP_2, MC_JUMP_1, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_MECHA_BOARDING: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_DEAD, MC_BEAT_BACK, MC_TURN, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_RUN, MC_MOVE, MC_MONSTER_HIT, MC_IMMOBILIZE, MC_STAND]),
+             MC_DEAD: set([]),
+             MC_BEAT_BACK: set([MC_MECHA_BOARDING, MC_DEAD, MC_FROZEN]),
+             MC_MONSTER_AIMTURN: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_MONSTER_POWER_MELEE: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_TURN: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_RUN, MC_MOVE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_MONSTER_ROAR: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_SUMMON, MC_MONSTER_DASH, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_MONSTER_MELEE: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_FROZEN: set([MC_DEAD]),
+             MC_MONSTER_SUMMON: set([MC_JUMP_3, MC_DEAD, MC_MONSTER_ROAR, MC_FROZEN]),
+             MC_STAND: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_RUN: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_IMMOBILIZE: set([MC_MECHA_BOARDING, MC_DEAD, MC_FROZEN]),
+             MC_MOVE: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_MONSTER_DASH: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_BRAMBLE, MC_MONSTER_HIT, MC_IMMOBILIZE]),
+             MC_MONSTER_BRAMBLE: set([MC_JUMP_2, MC_JUMP_1, MC_MONSTER_MORTAR, MC_MECHA_BOARDING, MC_DEAD, MC_BEAT_BACK, MC_MONSTER_AIMTURN, MC_MONSTER_POWER_MELEE, MC_MONSTER_DASH, MC_MONSTER_ROAR, MC_MONSTER_MELEE, MC_FROZEN, MC_MONSTER_HIT, MC_IMMOBILIZE])
+             }
+   }
+behavior = {'90352': {MC_JUMP_3: {'action_param': (0, ['idle_1', 'lower', 1]),'custom_param': {'anim_duration': 0.5,'recover_trigger_speed': 36},'action_state': 'OnGround'},MC_JUMP_2: {'action_param': (0, ['idle_1', 'lower', 1, {'loop': True}]),'custom_param': {'gravity': 100},'action_state': 'Fall'},MC_JUMP_1: {'action_param': (0, ['idle_1', 'lower', 1]),'custom_param': {'anim_duration': 1,'gravity': 57,'jump_speed': 36},'action_state': 'JumpUp'},MC_MONSTER_MORTAR: {'custom_param': {'fire_array': [-100.0, 100.0],'focus_time': 1.5,'atk_anim_rate': 1.5,'warn_sfx_res': 'effect/fx/monster/pve/pve_fanweijingshi_01.sfx','pre_anim_dur': 2.0,'warn_sfx_scale': 2.0,'sub_warn_sfx_rate': 1.8,'fire_seq': [[0, 0], [0.5, 180.0], [1.0, -180.0]],'pre_anim': 'act_transfer','focus_dis': 5,'aim_left_anim_rate': 1.0,'pre_anim_rate': 1.5,'link_sfx_scale': 1.0,'aim_left_anim': 'turnlift_1_1','link_sfx_res': 'effect/fx/monster/pve_three/pve_three_wline_30.sfx','sub_warn_sfx_scale': 2.0,'sub_warn_sfx_offset': -3.0,'bac_anim_dur': 2.3,'wp_type': 9016106,'skill_id': 9035251,'bac_anim': 'skill_6','max_aim_dur': 1.3,'atk_anim_dur': 2.0,'link_sfx_rate': 1.0,'ammo_offset': 25.0,'bac_anim_rate': 1.0,'sub_warn_sfx_res': 'effect/fx/monster/pve/pve_fanweijingshi_01.sfx','aim_right_anim_rate': 1.0,'aim_right_anim': 'turnright_1_1','warn_sfx_rate': 1.0,'warn_sfx_offset': -3.0,'atk_anim': 'skill_7','ammo_height': 50,'aim_speed': 3.14,'link_sfx_socket': 'fx_root'},'action_state': 'MonsterMortar'},MC_MECHA_BOARDING: {'custom_param': {'born_anim_dur': 1.7,'born_anim_rate': 1.0,'sfx_path': 'effect/fx/monster/pve_three/pve_three_birth_shader.sfx','born_anim': 'act_jumpdown'},'action_state': 'MonsterBorn'},MC_DEAD: {'custom_param': {'die_anim_rate': 1.0,'sfx_delay': 2.2,'sfx_path': 'effect/fx/monster/pve/monster_dying.sfx','die_anim': 'death_1'},'action_state': 'MonsterDie'},MC_BEAT_BACK: {'action_param': (0, ['shake', 'lower', 1, {'loop': True}]),'custom_param': {'max_affect_dist': 15,'min_v_speed': 10,'gravity': 50,'min_h_speed': 10,'max_v_speed': 30,'max_h_speed': 50},'action_state': 'BeatBack'},MC_TURN: {'custom_param': {'enable_twist_pitch': True,'enable_twist_yaw': False},'action_state': 'Turn'},MC_MONSTER_AIMTURN: {'custom_param': {'max_aim_dur': 1.3,'aim_right_anim': 'turnright_1_1','aim_speed': 3.14,'aim_left_anim_rate': 1.0,'aim_left_anim': 'turnlift_1_1','aim_right_anim_rate': 1.0},'action_state': 'MonsterAimTurn'},MC_MONSTER_POWER_MELEE: {'custom_param': {'hit_range': [12.0, 20.0, 45.0],'atk_anim_rate': 1.0,'pre_anim_dur': 0.2,'pre_anim': 'skill_2','move_start_ts': 0.5,'pre_anim_rate': 0.6,'move_end_ts': 0.9,'bac_anim_dur': 0.3,'skill_id': 9035253,'bac_anim': '','atk_anim_dur': 0.25,'bac_anim_rate': 1.0,'move_speed': 820.0,'is_draw_col': True,'atk_anim': ''},'action_state': 'MonsterMelee'},MC_MONSTER_SUMMON: {'custom_param': {'sum_anim_name_list': ['build_shield'],'skill_id': 9035257,'fire_count': 1,'max_aim_dur': 1.5,'aim_right_anim': 'turnright_90','bac_anim_dur_list': [0],'bac_anim_rate_list': [1.0],'pre_anim_dur_list': [0.0],'pre_anim_rate_list': [1.0],'pre_anim_name_list': [''],'bac_anim_name_list': ['idle'],'fire_socket_list': ['fx_root'],'aim_right_anim_rate': 1.3,'aim_left_anim_rate': 1.3,'sum_anim_dur_list': [0],'sum_anim_rate_list': [1.0],'aim_left_anim': 'turnleft_90','aim_speed': 3},'action_state': 'MonsterSummon'},MC_MONSTER_DASH: {'custom_param': {'dash_speed_list': [850.0],'skill_id': 9035255,'dash_type': 1,'end_aoe_skill_ids': [],'bac_anim_list': [''],'bac_anim_dur_list': [0.0],'dash_anim_list': ['skill_4'],'bac_anim_rate_list': [1.0],'pre_anim_dur_list': [0.0],'dash_count': 1,'pre_anim_rate_list': [1.0],'begin_aoe_skill_ids': [],'pre_anim_list': [''],'aim_turn': True,'col_info': [60.0, 150.0],'dash_anim_rate_list': [1.0],'dash_form': 2,'is_draw_col': True,'dash_dur_list': [1.0]},'action_state': 'MonsterDash'},MC_MONSTER_ROAR: {'custom_param': {'skill_id': 9035256,'anim_dur': 1.0,'anim_rate': 1.0,'anim_name': 'skill_5'},'action_state': 'MonsterRoar'},MC_MONSTER_MELEE: {'custom_param': {'hit_range': [12.0, 20.0, 40.0],'atk_anim_rate': 1.0,'pre_anim_dur': 0.3,'pre_anim': 'skill_1','move_start_ts': 0.5,'pre_anim_rate': 0.6,'move_end_ts': 0.7,'bac_anim_dur': 0.4,'skill_id': 9035252,'bac_anim': '','atk_anim_dur': 0.2,'bac_anim_rate': 1.0,'move_speed': 620.0,'is_draw_col': False,'atk_anim': ''},'action_state': 'MonsterMelee'},MC_FROZEN: {'action_state': 'OnFrozen'},MC_MONSTER_BRAMBLE: {'custom_param': {'hit_range': [18.0, 17.0, 85.0],'height_offset': -2.0,'bac_anim': '','atk_anim_rate': 1.2,'atk_anim_dur': 0.6,'skill_id': 9035254,'pre_anim_dur': 0.9,'bac_anim_rate': 1.0,'hit_seq': [55.0],'pre_anim': 'skill_3','aim_turn': True,'hit_interval': 0.09,'pre_anim_rate': 0.5,'max_hit_dis': 120,'is_draw_col': True,'atk_anim': '','bac_anim_dur': 0.4},'action_state': 'MonsterBramble'},MC_RUN: {'action_param': (0, ['run', 'lower', 1, {'loop': True}]),'custom_param': {'dynamic_speed_rate': 0.3,'move_acc': 30,'run_speed': 20,'walk_speed': 16,'brake_acc': -30},'action_state': 'MonsterRun'},MC_MOVE: {'action_param': (0, ['walk_f', 'lower', 1, {'loop': True}]),'custom_param': {'dynamic_speed_rate': 0.7,'move_acc': 30,'walk_speed': 16,'brake_acc': -30},'action_state': 'MonsterWalk'},MC_MONSTER_HIT: {'custom_param': {'hit_anim_rate': 1.0,'hit_anim': 'hit_3','hit_anim_dur': 0.5},'action_state': 'MonsterHit'},MC_IMMOBILIZE: {'action_param': (0, ['shake', 'lower', 1, {'loop': True}]),'action_state': 'Immobilize'},MC_STAND: {'action_param': (0, ['idle_1', 'lower', 1, {'loop': True}]),'action_state': 'Stand'}}}
+
+def get_cover(npc_id):
+    return cover[npc_id]
+
+
+def get_forbid(npc_id):
+    return forbid[npc_id]
+
+
+def get_behavior(npc_id):
+    return behavior[npc_id]

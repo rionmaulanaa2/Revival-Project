@@ -1,0 +1,56 @@
+# uncompyle6 version 2.13.2
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.18 (default, Sep 12 2025, 12:48:39) 
+# [GCC Android (13624864, +pgo, +bolt, +lto, +mlgo, based on r530567e) Clang 19.0
+# Embedded file name: /Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/message/IntimacyReward.py
+from __future__ import absolute_import
+from logic.comsys.common_ui.WindowMediumBase import WindowMediumBase
+from common.const.uiconst import DIALOG_LAYER_BAN_ZORDER, DIALOG_LAYER_ZORDER_1, UI_TYPE_CONFIRM, TOP_ZORDER, NORMAL_LAYER_ZORDER, DISCONNECT_ZORDER, SECOND_CONFIRM_LAYER, UI_VKB_CLOSE_BY_DEFAULT_FUNC_NAME
+from cc import Vec2
+
+class IntimacyReward(WindowMediumBase):
+    PANEL_CONFIG_NAME = 'friend/intimacy_reward'
+    TEMPLATE_NODE_NAME = 'temp_bg'
+    DLG_ZORDER = NORMAL_LAYER_ZORDER
+    UI_VKB_TYPE = UI_VKB_CLOSE_BY_DEFAULT_FUNC_NAME
+    UI_TYPE = UI_TYPE_CONFIRM
+    MOUSE_CURSOR_TRIGGER_SHOW = True
+
+    def on_init_panel(self, *args, **kwargs):
+        super(IntimacyReward, self).on_init_panel(*args, **kwargs)
+        self.scroll_list = self.panel.list_reward
+        scroll_list_width = self.scroll_list.GetContentSize()[0]
+        container_width = self.scroll_list.getInnerContainer().getContentSize().width
+        self.container_max_move = container_width - scroll_list_width
+        self.item_width = self.scroll_list.GetTemplateConf()['size']['width']
+        self.item_count = self.scroll_list.GetItemCount()
+        self.scroll_list.addEventListener(lambda *args: self.scroll_list.SetTimeOut(0.001, self.check_sview))
+        self.panel.img_progress.setAnchorPoint(Vec2(0, 0.5))
+        item_per_page = self.scroll_list.GetContentSize()[0] / self.item_width
+        ratio = 1.0 * item_per_page / self.item_count
+        ratio = min(1.0, max(0.1, ratio))
+        bar_width = self.panel.progress_bar.GetContentSize()[0]
+        img_width = bar_width * ratio
+        img_height = self.panel.img_progress.GetContentSize()[1]
+        self.panel.img_progress.SetContentSize(img_width, img_height)
+        self._slider_min_pos = 0
+        self._slider_max_pos = bar_width - img_width
+        self.panel.img_progress.SetPosition('0', '50%0')
+        self.panel.btn_right.BindMethod('OnClick', lambda *args: self.panel.list_reward.ScrollToRight(0.5))
+        self.panel.btn_left.BindMethod('OnClick', lambda *args: self.panel.list_reward.ScrollToLeft(0.5))
+
+    def on_scroll_btn_clicked(self, to_right):
+        pass
+
+    def check_sview(self):
+        container_pos_x = -self.scroll_list.getInnerContainer().getPositionX()
+        ratio = container_pos_x / self.container_max_move
+        ratio = min(1.0, max(0.0, ratio))
+        slider_pos = self._slider_max_pos * ratio
+        self.panel.img_progress.SetPosition(str(slider_pos), '50%0')
+
+    def show_panel(self):
+        self.panel.setVisible(True)
+
+    def hide_panel(self):
+        self.panel.setVisible(False)

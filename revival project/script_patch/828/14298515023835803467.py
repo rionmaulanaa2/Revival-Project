@@ -1,0 +1,21 @@
+# uncompyle6 version 2.13.2
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.18 (default, Sep 12 2025, 12:48:39) 
+# [GCC Android (13624864, +pgo, +bolt, +lto, +mlgo, based on r530567e) Clang 19.0
+# Embedded file name: /Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/comsys/share/SpringActivityJournalShare.py
+from __future__ import absolute_import
+from logic.comsys.share.ShareTemplateBase import ShareTemplateBase, async_disable_wrapper
+from common.cfg import confmgr
+import logic.gcommon.time_utility as tutil
+
+class SpringActivityJournalShareCreator(ShareTemplateBase):
+    KIND = 'I_ACTIVITY_JOURNAL_SHARE'
+
+    @async_disable_wrapper
+    def create(self, parent=None, tmpl=None):
+        super(SpringActivityJournalShareCreator, self).create(parent)
+
+    def set_wish_info(self, wish_msg, img_postcard, img_postmark):
+        self.panel.lab_wish.SetString(wish_msg)
+        self.panel.img_postcard.SetDisplayFrameByPath('', img_postcard)
+        self.panel.img_postmark.SetDisplayFrameByPath('', img_postmark)

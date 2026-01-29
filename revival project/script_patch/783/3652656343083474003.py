@@ -1,0 +1,94 @@
+# uncompyle6 version 2.13.2
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.18 (default, Sep 12 2025, 12:48:39) 
+# [GCC Android (13624864, +pgo, +bolt, +lto, +mlgo, based on r530567e) Clang 19.0
+# Embedded file name: /Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/gcommon/common_utils/parachute_utils.py
+from __future__ import absolute_import
+import math3d
+STAGE_NONE = 1
+STAGE_PLANE = 2
+STAGE_FREE_DROP = 4
+STAGE_PARACHUTE_DROP = 8
+STAGE_LAND = 16
+STAGE_FLY_CARRIER = 32
+STAGE_SUPER_JUMP = 64
+STAGE_LAUNCH_PREPARE = 128
+STAGE_SORTIE_PREPARE = 256
+STAGE_SORTIE_READY = 512
+STAGE_SORTIE = 1024
+STAGE_MECHA_READY = 2048
+STAGE_ISLAND = 4096
+STAGE_PRE_PARACHUTE = 8192
+CONTROL_STATE_NONE = 0
+CONTROL_STATE_LEFT = 1
+CONTROL_STATE_RIGHT = 2
+CONTROL_STATE_FORWARD = 3
+CONTROL_STATE_BACK = 4
+CTRL_DIR_DICT = {CONTROL_STATE_NONE: math3d.vector(0, 0, 0),
+   CONTROL_STATE_BACK: math3d.vector(0, 0, -1),
+   CONTROL_STATE_FORWARD: math3d.vector(0, 0, 1),
+   CONTROL_STATE_LEFT: math3d.vector(-1, 0, 0),
+   CONTROL_STATE_RIGHT: math3d.vector(1, 0, 0)
+   }
+STATE_FLY = 0
+STATE_FLY_TO_LAND = 1
+STATE_LAND_LOOP = 2
+STATE_COME = 3
+STATE_LEAVE = 4
+MODE_NOT_FOLLOW = 0
+MODE_REAL_FOLLOW = 1
+MODE_SIMULATE_FOLLOW = 2
+PARACHUTE_ANIM_TIME = 8.6
+PARACHUTING_STAGE = STAGE_FREE_DROP | STAGE_PARACHUTE_DROP
+
+def is_parachuting(stage):
+    return stage and stage & PARACHUTING_STAGE
+
+
+FLYING_STAGE = STAGE_LAUNCH_PREPARE | STAGE_PLANE | STAGE_NONE | STAGE_MECHA_READY
+
+def is_flying(stage):
+    return stage and stage & FLYING_STAGE
+
+
+PREPARING_STAGE = STAGE_NONE | STAGE_MECHA_READY | STAGE_PLANE | STAGE_LAUNCH_PREPARE
+
+def is_preparing(stage):
+    return stage and stage & PREPARING_STAGE
+
+
+NEED_PRELOAD_STAGE = STAGE_NONE | STAGE_ISLAND | STAGE_MECHA_READY | STAGE_PLANE | STAGE_LAUNCH_PREPARE
+
+def is_need_prepload_cockpit(stage):
+    return stage and stage & NEED_PRELOAD_STAGE
+
+
+SORTIE_STAGE = STAGE_SORTIE_PREPARE | STAGE_SORTIE_READY | STAGE_SORTIE
+
+def is_sortie_stage(stage):
+    return stage and stage & SORTIE_STAGE
+
+
+BATTLE_STAGE = STAGE_FREE_DROP | STAGE_LAND
+
+def is_in_battle(stage):
+    return stage and stage & BATTLE_STAGE
+
+
+BAN_ROTATE_CAMERA_STAGE = STAGE_NONE | STAGE_PLANE | STAGE_LAUNCH_PREPARE
+BAN_RECOIL_STAGE = STAGE_PARACHUTE_DROP | STAGE_FREE_DROP | STAGE_PLANE | STAGE_LAUNCH_PREPARE
+BAN_LAUNCH_STAGE = STAGE_LAUNCH_PREPARE | STAGE_PRE_PARACHUTE
+HIDE_WEAPON_BAR_LAND = STAGE_NONE | STAGE_LAND | STAGE_SORTIE_PREPARE | STAGE_PARACHUTE_DROP
+HIDE_WEAPON_BAR = STAGE_NONE | STAGE_LAND | STAGE_SORTIE_PREPARE
+
+def is_hide_weapon_bar(stage, first_land):
+    mask = HIDE_WEAPON_BAR_LAND if first_land else HIDE_WEAPON_BAR
+    return stage and stage & mask
+
+
+EJECT_STATE_WAIT = 1
+EJECT_STATE_ACC = 2
+EJECT_STATE_BREAK = 3
+EJECT_STATE_FINISH = 4
+EJECT_STATE_HIT = 5
+EJECT_FINISH_STATE = {EJECT_STATE_FINISH, EJECT_STATE_HIT}

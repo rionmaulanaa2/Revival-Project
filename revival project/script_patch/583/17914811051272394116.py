@@ -1,0 +1,66 @@
+# uncompyle6 version 2.13.2
+# Python bytecode 2.7 (62211)
+# Decompiled from: Python 2.7.18 (default, Sep 12 2025, 12:48:39) 
+# [GCC Android (13624864, +pgo, +bolt, +lto, +mlgo, based on r530567e) Clang 19.0
+# Embedded file name: /Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/gcommon/cdata/8027.py
+_reload_all = True
+version = '192565343'
+from .mecha_status_config import *
+cover = {'8027': {MC_JUMP_3: set([MC_JUMP_2, MC_JUMP_1, MC_BEAT_BACK, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_STAND, MC_RUN, MC_MOVE]),
+            MC_JUMP_2: set([MC_JUMP_1, MC_BEAT_BACK, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_STAND, MC_RUN, MC_MOVE]),
+            MC_JUMP_1: set([MC_CELEBRATE, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_MOVE]),
+            MC_SHOOT: set([MC_CELEBRATE, MC_HELP, MC_USE_ITEM]),
+            MC_DEAD: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_SHOOT, MC_CELEBRATE, MC_BEAT_BACK, MC_RELOAD, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_USE_ITEM, MC_FROZEN, MC_STAND, MC_RUN, MC_IMMOBILIZE, MC_MOVE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_CELEBRATE: set([MC_STAND]),
+            MC_BEAT_BACK: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_CELEBRATE, MC_RELOAD, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_MOVE]),
+            MC_RELOAD: set([MC_SHOOT, MC_CELEBRATE, MC_HELP, MC_USE_ITEM]),
+            MC_SECOND_WEAPON_ATTACK: set([MC_SHOOT, MC_CELEBRATE, MC_RELOAD, MC_TURN, MC_HELP, MC_USE_ITEM]),
+            MC_TURN: set([MC_CELEBRATE, MC_STAND]),
+            MC_IMMOBILIZE: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_SHOOT, MC_CELEBRATE, MC_BEAT_BACK, MC_RELOAD, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_MOVE, MC_MECHA_BOARDING]),
+            MC_USE_ITEM: set([MC_SHOOT, MC_CELEBRATE, MC_RELOAD, MC_HELP]),
+            MC_FROZEN: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_SHOOT, MC_CELEBRATE, MC_BEAT_BACK, MC_RELOAD, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_IMMOBILIZE, MC_MOVE]),
+            MC_STAND: set([MC_JUMP_3, MC_CELEBRATE, MC_TURN, MC_RUN, MC_MOVE]),
+            MC_RUN: set([MC_CELEBRATE, MC_TURN, MC_HELP, MC_STAND, MC_MOVE]),
+            MC_SUPER_JUMP: set([MC_JUMP_3, MC_CELEBRATE, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_MOVE]),
+            MC_MOVE: set([MC_JUMP_3, MC_CELEBRATE, MC_TURN, MC_HELP, MC_STAND, MC_RUN]),
+            MC_DASH: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_SHOOT, MC_CELEBRATE, MC_RELOAD, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_MOVE]),
+            MC_HELP: set([MC_SHOOT, MC_CELEBRATE, MC_RELOAD, MC_USE_ITEM]),
+            MC_DRIVER_LEAVING: set([MC_SHOOT, MC_CELEBRATE, MC_RELOAD, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_MOVE]),
+            MC_MECHA_BOARDING: set([MC_SHOOT, MC_CELEBRATE, MC_RELOAD, MC_TURN, MC_HELP, MC_USE_ITEM, MC_STAND, MC_RUN, MC_MOVE])
+            }
+   }
+forbid = {'8027': {MC_JUMP_3: set([MC_DEAD, MC_CELEBRATE, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_JUMP_2: set([MC_JUMP_3, MC_DEAD, MC_CELEBRATE, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_JUMP_1: set([MC_JUMP_3, MC_JUMP_2, MC_DEAD, MC_BEAT_BACK, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_SHOOT: set([MC_DEAD, MC_RELOAD, MC_SECOND_WEAPON_ATTACK, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_DEAD: set([]),
+            MC_CELEBRATE: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_SHOOT, MC_DEAD, MC_BEAT_BACK, MC_RELOAD, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_TURN, MC_HELP, MC_USE_ITEM, MC_FROZEN, MC_RUN, MC_IMMOBILIZE, MC_MOVE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_BEAT_BACK: set([MC_DEAD, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_RELOAD: set([MC_DEAD, MC_BEAT_BACK, MC_SECOND_WEAPON_ATTACK, MC_FROZEN, MC_IMMOBILIZE, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_SECOND_WEAPON_ATTACK: set([MC_DEAD, MC_BEAT_BACK, MC_FROZEN, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_TURN: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_FROZEN, MC_RUN, MC_IMMOBILIZE, MC_MOVE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_IMMOBILIZE: set([MC_DEAD, MC_FROZEN, MC_DASH, MC_DRIVER_LEAVING]),
+            MC_USE_ITEM: set([MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_FROZEN: set([MC_DEAD, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_STAND: set([MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_RUN: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_SHOOT, MC_DEAD, MC_BEAT_BACK, MC_RELOAD, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_SUPER_JUMP: set([MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_MOVE: set([MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_DASH: set([MC_DEAD, MC_BEAT_BACK, MC_FROZEN, MC_IMMOBILIZE, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_HELP: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING, MC_MECHA_BOARDING]),
+            MC_DRIVER_LEAVING: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_MECHA_BOARDING]),
+            MC_MECHA_BOARDING: set([MC_JUMP_3, MC_JUMP_2, MC_JUMP_1, MC_DEAD, MC_BEAT_BACK, MC_SECOND_WEAPON_ATTACK, MC_SUPER_JUMP, MC_FROZEN, MC_IMMOBILIZE, MC_DASH, MC_DRIVER_LEAVING])
+            }
+   }
+behavior = {'8027': {MC_JUMP_3: {'action_param': (0, ['jump_03', 'lower', 1, {'blend_time': 0.0}]),'sound_param': {'run_state': [{'sound_visible': 1,'sound_name': ('m_8027_jump_end', 'nf'),'time': 0.0}]},'custom_param': {'horizontal_speed_to_on_ground_duration_rate': 20,'min_on_ground_duration': 0.3,'anim_duration': 1.0,'on_ground_duration_to_sfx_type_threshold': [0.45, 1.0],'show_on_ground_sfx_time': 0.01,'max_on_ground_duration': 0.8,'horizontal_brake_speed': 15,'min_trigger_on_ground_fall_duration': 0.13,'fall_duration_to_on_ground_duration_rate': 0.4,'max_horizontal_brake_duration': 0.8,'min_trigger_on_ground_horizontal_speed': 30},'action_state': 'OnGroundPure'},MC_JUMP_2: {'action_param': (0, ['jump_02', 'lower', 1, {'loop': True}]),'sound_param': {'run_state': [{'sound_visible': 1,'sound_name': ('Play_mecha', ('mecha_action', 'm_falling_normal_loop')),'is_loop': 1,'time': 0.0}, {'sound_visible': 1,'sound_name': ('Play_mecha', ('mecha_action', 'm_falling_normal_end')),'time': -1}, {'command_type': 0,'sound_name': ('Play_mecha', ('mecha_action', 'm_falling_normal_loop')),'time': -1}]},'custom_param': {'h_offset_speed': 7.9,'h_offset_acc': 20.0,'h_speed_ratio': 1,'coyote_duration': 0.35,'h_offset_dec': 0,'max_h_offset_dec_duration': -1,'fall_gravity': 80.0},'action_state': 'Fall8027'},MC_JUMP_1: {'sound_param': {'jump': [{'sound_name': ('m_8027_jump', 'nf'),'sound_visible': 1,'time': 0.0}]},'custom_param': {'h_offset_acc': 20.0,'max_continual_jump_count': 1,'jump_speed': 29,'min_continual_jump_interval': 0.3,'max_h_offset_dec_duration': -1,'anim_name': 'jump_01','anim_duration': 0.667,'h_offset_speed': 10.0,'skill_id': 802753,'h_speed_ratio': 0.5,'jump_gravity': 47,'h_offset_dec': 0},'action_state': 'JumpUpPure'},MC_SHOOT: {'action_param': (0, ['shoot', 'upper', 7, {'phase': 1.0,'need_trigger_anim_effect': False,'blend_time': 0.1}]),'custom_param': {'shoot_anim': ('shoot', 'upper', 7),'weapon_pos': 1},'action_state': 'WeaponFire'},MC_DEAD: {'action_param': (0, ['die', 'lower', 1, {}]),'sound_param': {'run_state': [{'sound_name': ('m_8027_die', 'nf'),'time': 0.0}]},'action_state': 'Die'},MC_CELEBRATE: {'action_state': 'MechaCelebrate'},MC_BEAT_BACK: {'action_param': (0, ['shake', 'lower', 1, {'loop': True}]),'custom_param': {'max_affect_dist': 15,'min_v_speed': 15.0,'gravity': 50.0,'min_h_speed': 25.0,'max_v_speed': 30.0,'max_h_speed': 50.0},'action_state': 'BeatBack'},MC_RELOAD: {'sound_param': {'run_state': [{'sound_name': ('m_8027_kunai_reload', 'nf'),'time': 0.0}]},'custom_param': {'blend_time': 0,'stand_shoot_reload_anim': 'reload_02','extern_enter_blend_time': 0.1,'reload_anim': 'reload','extern_bone_tree': (('biped root', 0), ('biped r hand', 1), ('biped26', 1), ('biped27', 1), ('biped44', 1)),'reload_time': 0.66,'extern_exit_blend_time': 0.1,'reload_anim_move_dir': 7,'anim_duration': 0.66,'stand_reload_anim': 'reload_01'},'action_state': 'Reload8027'},MC_SECOND_WEAPON_ATTACK: {'custom_param': {'skill_id': 802751,'break_states': ('MC_SHOOT', 'MC_MOVE', 'MC_RUN', 'MC_DASH'),'anim_rate': 1.5,'attack_param': {1: {'anim_move': ('vice_fire1_move', 'upper', 1),'anim_end': ('vice_end1', 'upper', 1),'anim': ('vice_fire1', 'upper', 1),'end': 2.034,'anim_pre': ('vice_start', 'upper', 1),'combo': 0.5,'fire': 0.387,'fire_ani_s': 0.167,'combo_move': 0.6,'fire_ani_e': 1.134},2: {'anim_move': ('vice_fire2', 'upper', 1),'anim_end': ('vice_end2', 'upper', 1),'anim': ('vice_fire2', 'upper', 1),'end': 2.034,'anim_pre': ('vice_start', 'upper', 1),'combo': 0.5,'fire': 0.387,'fire_ani_s': 0.167,'combo_move': 0.6,'fire_ani_e': 1.134}}},'action_state': 'ContinuousShoot8027'},MC_SUPER_JUMP: {'action_param': (0, ['jump_01', 'lower', 1, {}]),'sound_param': {'run_state': [{'sound_visible': 1,'sound_name': ('Play_props', ('props_option', 'mecha_launcher')),'time': 0.0}]},'custom_param': {'h_offset_speed': 10.0,'h_offset_acc': 10.0,'h_speed_ratio': 1.0,'jump_gravity': 45.0,'h_offset_dec': 0.0,'max_h_offset_dec_duration': -1,'anim_duration': 0.333},'action_state': 'SuperJumpUpPure'},MC_TURN: {'sound_param': {'run_state': [{'sound_name': ('m_8025_turn', 'nf'),'time': 0.0}]},'custom_param': {'enable_twist_pitch': True,'turn_left': 'turnleft_90','max_yaw_angle': 45.0,'limit_twist_yaw': True,'enable_twist_yaw': True,'twist_pitch_offset': 0,'anim_duration': 1,'turn_right': 'turnright_90','twist_yaw_offset': 0,'mirror_yaw': False},'action_state': 'Turn'},MC_HELP: {'action_param': (0, ['idle', 'lower', 1, {'loop': True}]),'action_state': 'Help'},MC_USE_ITEM: {'action_state': 'UseItem'},MC_FROZEN: {'action_state': 'OnFrozen'},MC_STAND: {'custom_param': {'default_anim': 'idle','guard_anim': 'guard','guard_anim_duration': 3.5,'switch_guard_interval': 5},'action_state': 'StandWithGuard8027'},MC_RUN: {'action_param': (0, ['move', 'lower', 7, {'keep_phase': True,'loop': True}]),'custom_param': {'dynamic_speed_rate': 0.35,'move_acc': 30,'run_speed': 11.5,'walk_speed': 9,'brake_acc': -40},'action_state': 'Run','max_speed': 14},MC_IMMOBILIZE: {'action_param': (0, ['shake', 'lower', 1, {'loop': True}]),'action_state': 'Immobilize'},MC_MOVE: {'action_param': (0, ['move', 'lower', 7, {'keep_phase': True,'loop': True}]),'custom_param': {'dynamic_speed_rate': 0.25,'move_acc': 30,'walk_speed': 9,'brake_acc': -40,'enable_center_anim_dir': True},'action_state': 'Walk','max_speed': 14},MC_DASH: {'state_camera': {'cam': '178'},'action_state': 'OxRushNew8027','sound_param': {'run_state': [{'sound_visible': 1,'sound_name': ('m_8027_dash_start', 'nf'),'visible_type': 6,'time': 0.0}, {'sound_name': ('m_8027_dash_end', 'nf'),'time': -1}]},'custom_param': {'max_rush_duration': 0.36,'start_acc_camera': '178','speed_offset_proportion': (-0.2, -0.2),'pre_anim': 'dash_01','cam_pitch_sensitivity': 15.0,'miss_anim_rate': 1.0,'skill_id': 802752,'miss_anim': 'dash_03','tick_interval': 0.03,'miss_brake_camera': '176','pre_anim_duration': 0.075,'cam_yaw_sensitivity': 35.0,'is_draw_col': False,'max_rush_speed': 130,'rush_anim': 'dash_02','pre_anim_rate': 1,'air_dash_end_speed': 30,'miss_anim_duration': 1,'col_info': (30, 100),'start_acc_time': 0.01,'dash_stepheight': 3,'end_brake_time': 0.1},'max_speed': 300},MC_DRIVER_LEAVING: {'sound_param': {'run_state': [{'sound_name': ('m_8027_off', 'nf'),'time': 0.0}]},'custom_param': {'action_param': {'default': (0, ['unmount', 'lower', 1]),'share_celebrate': (1.5, ['idle', 'lower', 1]),'share': (0, ['unmount', 'lower', 1])},'eject_time': 0.4},'action_state': 'UnMount'},MC_MECHA_BOARDING: {'sound_param': {'run_state': [{'sound_name': ('m_8027_on', 'nf'),'time': 0.0}]},'custom_param': {'mount_duration': 3.0,'slerp_start_time': 0.1,'action_param': {'default': (0, ['mount', 'lower', 1, {}]),'share': (0, ['mount', 'lower', 1])},'break_time': 2.5,'anim_duration': 4.0,'hide_time': 2,'pre_mount_trk_info': {'trk_time': 0.15,'dis': [0, 0, -50]}},'action_state': 'Mount'}}}
+
+def get_cover(npc_id):
+    return cover[npc_id]
+
+
+def get_forbid(npc_id):
+    return forbid[npc_id]
+
+
+def get_behavior(npc_id):
+    return behavior[npc_id]
