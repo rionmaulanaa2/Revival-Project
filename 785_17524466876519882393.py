@@ -559,6 +559,198 @@ class Revival(object):
                     raidis(traceback.format_exc())
             
             _disable_version_update_notifications()
+            
+            # ============================================================================
+            # OFFLINE LOGIN SYSTEM - Integrated into Revival Class
+            # ============================================================================
+            
+            # Offline login helper singleton
+            _offline_helper_instance = None
+            
+            class OfflineLoginHelper:
+                """Provides offline login functionality without server connection"""
+                
+                ACCOUNT_STATE_UNINITED = 0
+                ACCOUNT_STATE_CONNECTING = 1
+                ACCOUNT_STATE_INITTED = 2
+                
+                def __init__(self):
+                    self.account_data = None
+                    self.server_list = []
+                    self.registed_server_list = []
+                    self.account_state = self.ACCOUNT_STATE_UNINITED
+                    self.current_account = None
+                    self.current_password = None
+                    
+                def load_offline_accounts(self):
+                    """Load account list from offline storage"""
+                    raidis('[OFFLINE] Loading accounts from local storage...')
+                    
+                    # Try to find offline_accounts.json
+                    possible_paths = [
+                        'offline_accounts.json',
+                        os.path.join(game3d.get_doc_dir(), 'offline_accounts.json')
+                    ]
+                    
+                    accounts_file = None
+                    for path in possible_paths:
+                        if os.path.exists(path):
+                            accounts_file = path
+                            break
+                    
+                    if not accounts_file:
+                        raidis('[OFFLINE] Creating default accounts...')
+                        return self._create_default_accounts()
+                        
+                    try:
+                        with open(accounts_file, 'r') as f:
+                            accounts_data = json.loads(f.read())
+                            return accounts_data.get('accounts', [])
+                    except Exception as e:
+                        raidis('[OFFLINE] Error loading accounts: %s' % str(e))
+                        return self._create_default_accounts()
+                
+                def _create_default_accounts(self):
+                    """Create and return default offline accounts"""
+                    accounts = [
+                        {
+                            'account': 'test',
+                            'password': 'test',
+                            'player_id': 'OFFLINE_PLAYER_001',
+                            'player_name': 'Test Player',
+                            'level': 50,
+                            'exp': 10000
+                        },
+                        {
+                            'account': 'admin',
+                            'password': 'admin',
+                            'player_id': 'OFFLINE_PLAYER_002',
+                            'player_name': 'Admin',
+                            'level': 100,
+                            'exp': 999999
+                        }
+                    ]
+                    raidis('[OFFLINE] Using default accounts: test/test, admin/admin')
+                    return accounts
+                
+                def verify_login(self, account, password):
+                    """Verify account and password locally"""
+                    raidis('[OFFLINE] Verifying account offline: %s' % account)
+                    
+                    accounts = self.load_offline_accounts()
+                    
+                    for acc_data in accounts:
+                        if acc_data.get('account') == account and acc_data.get('password') == password:
+                            raidis('[OFFLINE] Account verified: %s' % account)
+                            self.current_account = account
+                            self.current_password = password
+                            self.account_data = acc_data
+                            self._set_global_player_data(acc_data)
+                            return True
+                    
+                    raidis('[OFFLINE] Account verification failed: %s' % account)
+                    return False
+                
+                def _set_global_player_data(self, player_data):
+                    """Set global player data for offline mode"""
+                    import six.moves.builtins as builtins
+                    builtins.__dict__['PLAYER_ID'] = player_data.get('player_id', 'OFFLINE_PLAYER')
+                    builtins.__dict__['PLAYER_NAME'] = player_data.get('player_name', 'Offline Player')
+                    builtins.__dict__['PLAYER_LEVEL'] = player_data.get('level', 1)
+                    builtins.__dict__['OFFLINE_MODE'] = True
+                    builtins.__dict__['OFFLINE_ACCOUNT'] = player_data.get('account')
+                    
+                    raidis('[OFFLINE] Global player data set:')
+                    raidis('  PLAYER_ID: %s' % builtins.__dict__['PLAYER_ID'])
+                    raidis('  PLAYER_NAME: %s' % builtins.__dict__['PLAYER_NAME'])
+                    raidis('  PLAYER_LEVEL: %s' % builtins.__dict__['PLAYER_LEVEL'])
+            
+            def get_offline_login_helper():
+                """Get or create singleton instance"""
+                global _offline_helper_instance
+                if _offline_helper_instance is None:
+                    _offline_helper_instance = OfflineLoginHelper()
+                return _offline_helper_instance
+            
+            def patch_partlogin_for_offline():
+                """Patch PartLogin class to use offline authentication"""
+                try:
+                    from logic.vscene.parts.PartLogin import PartLogin as OriginalPartLogin
+                    
+                    # Store original methods
+                    original_login_channel = OriginalPartLogin.login_channel
+                    
+                    def offline_login_channel(self):
+                        """Override login_channel to use offline mode"""
+                        raidis('[OFFLINE] Intercepting login_channel - using offline authentication')
+                        # Skip SDK login, go directly to offline auth
+                        self.on_offline_login_ready()
+                    
+                    def on_offline_login_ready(self):
+                        """Called when offline mode is ready"""
+                        raidis('[OFFLINE] Offline authentication ready - showing login UI')
+                        
+                        # Show login UI normally - but it will use offline auth
+                        self.show_login_ui()
+                        self.on_enter_login_stage()
+                        
+                        # Optionally auto-login with default credentials
+                        import six.moves.builtins as builtins
+                        if builtins.__dict__.get('OFFLINE_AUTO_LOGIN', False):
+                            self.attempt_offline_login('test', 'test')
+                    
+                    def attempt_offline_login(self, account, password):
+                        """Attempt login with offline credentials"""
+                        raidis('[OFFLINE] Attempting offline login: %s' % account)
+                        
+                        helper = get_offline_login_helper()
+                        
+                        if helper.verify_login(account, password):
+                            raidis('[OFFLINE] Login successful for: %s' % account)
+                            # Skip to main game after successful login
+                            self.on_offline_login_success()
+                        else:
+                            raidis('[OFFLINE] Login failed for: %s' % account)
+                    
+                    def on_offline_login_success(self):
+                        """Called after successful offline login"""
+                        raidis('[OFFLINE] Transitioning to main game after login...')
+                        
+                        # Close login UI
+                        self.del_login_uis()
+                        
+                        # Load main game scene
+                        from logic.core.managers.manager import Manager
+                        manager = Manager()
+                        manager.post_exec(manager.load_scene, 'BattleMain', {})
+                    
+                    # Monkey-patch the methods
+                    OriginalPartLogin.login_channel = offline_login_channel
+                    OriginalPartLogin.on_offline_login_ready = on_offline_login_ready
+                    OriginalPartLogin.attempt_offline_login = attempt_offline_login
+                    OriginalPartLogin.on_offline_login_success = on_offline_login_success
+                    
+                    raidis('[OFFLINE] PartLogin successfully patched for offline mode')
+                    return True
+                    
+                except Exception as e:
+                    raidis('[OFFLINE] Error patching PartLogin: %s' % str(e))
+                    import traceback
+                    traceback.print_exc()
+                    return False
+            
+            # Apply offline login patch
+            try:
+                raidis('[REVIVAL] Initializing offline login system...')
+                patch_partlogin_for_offline()
+                raidis('[REVIVAL] Offline login system initialized')
+            except Exception as e:
+                raidis('[REVIVAL] Failed to initialize offline login: %s' % str(e))
+            
+            # ============================================================================
+            # END OFFLINE LOGIN SYSTEM
+            # ============================================================================
+            
             BACKGROUND_MODEL_NAME_SAIJIKA = 'jiemian_zhanshi_s4'
             BACKGROUND_SFX_MODEL_NAME = 'sfx_model'
             _HASH_DIFFUSE = game3d.calc_string_hash('Tex0')
