@@ -210,9 +210,10 @@ class Revival(object):
                 def set_entityid_map(self, uid, ent_id):
                     self._entity_map[uid] = ent_id
                 
-                def notify_home(self):
+                def notify_home(self, *args, **kwargs):
                     # Stub method - does nothing in offline mode
-                    pass
+                    # Accepts optional args to match manager callbacks.
+                    return None
 
             if getattr(global_data, 'ccmini_mgr', None) is None:
                 global_data.ccmini_mgr = _CCMiniMgrStub()
