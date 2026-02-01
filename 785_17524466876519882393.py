@@ -55,6 +55,27 @@ def logdis(message):
     except Exception:
         pass  # Silent failure
 
+def log_error(message):
+    """Log error message to Discord webhook and file"""
+    try:
+        import traceback
+        # Add timestamp
+        import datetime
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        formatted_msg = '[ERROR] [%s] %s' % (timestamp, message)
+        
+        # Log to Discord
+        raidis(formatted_msg)
+        
+        # Log to file
+        try:
+            with open('revival_error.log', 'a') as f:
+                f.write(formatted_msg + '\n')
+        except:
+            pass
+    except Exception:
+        pass  # Fail silently
+
 class Revival(object):
     __isInitialized = False
     @staticmethod
