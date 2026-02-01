@@ -1,0 +1,579 @@
+[21:00:50.733]   [CLIENT] Start initialize PlayAssetDeliveryManager...
+[21:00:50.747]   [CLIENT] Initialize SDK AssetPackManager succeed
+[21:00:50.748]   [CLIENT] Initialize PlayAssetDeliveryManager succeed
+[21:00:50.748]   [CLIENT] onNativeWindowRedrawNeeded: 0xb400007a2dcf6310 -- 0xb400007aedd147d0
+[21:00:50.751]   [CLIENT] Exe module file: \system\bin\app_process64jþ½x
+[21:00:50.751]   [CLIENT] Current directory: /storage/emulated/0/Android/data/com.netease.g93na/files/netease/smc
+[21:00:50.751]   [CLIENT] Initializing client....
+[21:00:50.751]   [CLIENT] Init utils.dll (1671665312)
+[21:00:50.754]   [UTILS] needRemoveShader : 0
+[21:00:50.765] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_week hash folder count: 1023, loader_tag is week
+[21:00:50.765] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_patch hash folder count: 1023, loader_tag is patch
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res2 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res3 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res4 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res5 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res6 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res7 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res8 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res9 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res10 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res11 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_res12 hash folder count: 1023, loader_tag is 
+[21:00:50.765] M Succeeded to create FileLoader, opener sys, loader indexed_discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_week, depth 0
+[21:00:50.765] M Succeeded to create FileLoader, opener sys, loader discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res_patch, depth 0
+[21:00:50.765] M Succeeded to create FileLoader, opener sys, loader indexed_discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\res, depth 0
+[21:00:50.767]   WindowFocusChanged: 0xb400007a2dcf6310 -- 1
+[21:00:50.771] M Package aab_res.npk under opener asset is loaded.
+[21:00:50.772] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res, depth 0
+[21:00:50.776] M Package aab_res2.npk under opener asset is loaded.
+[21:00:50.776] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res2, depth 0
+[21:00:50.780] M Package aab_res3.npk under opener asset is loaded.
+[21:00:50.780] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res3, depth 0
+[21:00:50.786] M Package aab_res4.npk under opener asset is loaded.
+[21:00:50.786] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res4, depth 0
+[21:00:50.791] M Package aab_res5.npk under opener asset is loaded.
+[21:00:50.791] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res5, depth 0
+[21:00:50.796] M Package aab_res6.npk under opener asset is loaded.
+[21:00:50.796] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res6, depth 0
+[21:00:50.802] M Package aab_res7.npk under opener asset is loaded.
+[21:00:50.802] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res7, depth 0
+[21:00:50.807] M Package aab_res8.npk under opener asset is loaded.
+[21:00:50.807] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res8, depth 0
+[21:00:50.812] M Package aab_res9.npk under opener asset is loaded.
+[21:00:50.812] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res9, depth 0
+[21:00:50.812] M Package aab_res10.npk under opener asset is loaded.
+[21:00:50.812] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res10, depth 0
+[21:00:50.819] M Package aab_res11.npk under opener asset is loaded.
+[21:00:50.819] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res11, depth 0
+[21:00:50.821] M Package aab_res12.npk under opener asset is loaded.
+[21:00:50.821] M Succeeded to create FileLoader, opener asset, loader npk, root aab_res12, depth 0
+[21:00:50.825] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_week hash folder count: 1023, loader_tag is week
+[21:00:50.825] M init file system config, enable_string_id: 1, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_patch hash folder count: 1023, loader_tag is patch
+[21:00:50.825] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script hash folder count: 1023, loader_tag is 
+[21:00:50.825] M init file system config, enable_string_id: 0, string_id_debug: 0, config root: aab_script hash folder count: 1023, loader_tag is 
+[21:00:50.825] M Succeeded to create FileLoader, opener sys, loader indexed_discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_week, depth 0
+[21:00:50.825] M Succeeded to create FileLoader, opener sys, loader discrete, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script_patch, depth 0
+[21:00:50.826] M Succeeded to create FileLoader, opener sys, loader npk, root \storage\emulated\0\Android\data\com.netease.g93na\files\netease\smc\script, depth 0
+[21:00:50.828] M Package aab_script.npk under opener asset is loaded.
+[21:00:50.828] M Succeeded to create FileLoader, opener asset, loader npk, root aab_script, depth 0
+[21:00:50.848] M Start log.dll
+[21:00:50.848] M Init utils.dll (1671665312)
+[21:00:50.848] M [UTILS] Start utils.dll
+[21:00:50.848] M [UTILS] Init render.dll (2487404089)
+[21:00:50.857] M [UTILS] CPU Name timelm, core count of this device is: 8
+[21:00:50.857] M [UTILS] device model is A001LG
+[21:00:50.858] M [RENDER] Init python.dll (1335575602)
+[21:00:50.860] M [RENDER] Init audio.dll (1092544220)
+[21:00:50.874] M [RENDER] Init c_mapper.dll (3143862676)
+[21:00:50.874] M [RENDER] Init world.dll (2648298854)
+WARNING ***************************************************************************
+[21:00:50.875] M [RENDER] [WARNING] Using Gpu Skinning on Android platform is not recommended! Because it might cause system failure(rebooting) on some device such as ZTE V988
+[21:00:50.876] M [RENDER] Init terrain.dll (2572047601)
+[21:00:50.876] M [RENDER] Init landscape.dll (1732276803)
+[21:00:50.877] M [RENDER] Init collision.dll (209534444)
+[21:00:50.886] M [RENDER] Init detour.dll (3413454381)
+[21:00:50.886] M [RENDER] Init ccmini.dll (2370187639)
+[21:00:50.886] M [RENDER] Init voice.dll (2568723357)
+[21:00:50.886] M [RENDER] Init cocosui.dll (1144999243)
+[21:00:50.886] M [RENDER] Init nxcclive.dll (1938523969)
+[21:00:50.886] M [RENDER] Init nxar.dll (1044991277)
+[21:00:50.886] M [RENDER] Init social.dll (688878058)
+[21:00:50.887] M [RENDER] Init nxapp.dll (939686936)
+[21:00:50.887] M [RENDER] Start render.dll
+[21:00:50.887] M [RENDER] Start python.dll
+[21:00:50.887] M [PYTHON] Start audio.dll
+[21:00:50.887] M [AUDIO] Start c_mapper.dll
+[21:00:50.887] M [AUDIO] Start world.dll
+[21:00:50.887] M [WORLD] Start terrain.dll
+[21:00:50.887] M [TERRAIN] Start landscape.dll
+[21:00:50.887] M [TERRAIN] Start collision.dll
+[21:00:50.889] M [COLLISION] Start detour.dll
+[21:00:50.889] M [DETOUR] Start ccmini.dll
+[21:00:50.889] M [DETOUR] Start voice.dll
+[21:00:50.889] M [DETOUR] Start cocosui.dll
+[21:00:50.889] M [COCOSUI] Start nxcclive.dll
+[21:00:50.889] M [COCOSUI] Start nxar.dll
+[21:00:50.889] M [COCOSUI] Start social.dll
+[21:00:50.889] M [COCOSUI] Start nxapp.dll
+[21:00:50.920] M [COCOSUI] Maximum vertex attribs is 32
+[21:00:50.920] M [COCOSUI] Maximum uniform vector is 256
+[21:00:50.920] M [COCOSUI] GL_MAX_TEXTURE_IMAGE_UNITS 16
+[21:00:50.937]   [COCOSUI] SwitchToLoaderContextTask::Execute
+[21:00:50.939] M [COCOSUI] Driver: GLES32
+[21:00:50.939] M [COCOSUI] Description: Adreno (TM) 650
+[21:00:50.939] M [COCOSUI] Version: OpenGL ES 3.2 V@0502.0 (GIT@e5dfe77, I46bb81ccf7, 1597647511) (Date:08/16/20)
+[21:00:50.939] M [COCOSUI] Vendor: Qualcomm
+[21:00:50.939] M [COCOSUI] Width: 2460, Height: 1080, BitDepth: 32
+[21:00:50.939] M [COCOSUI] -----------------------------------------------------------
+[21:00:50.939] M [COCOSUI] Adreno (TM) 650
+[21:00:50.943] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\debug_common.nfx.
+[21:00:50.952] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\debug_road.nfx.
+[21:00:50.975] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\ubo_template.nfx.
+[21:00:50.984] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:50.993] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\shadow_on_plane.nfx.
+[21:00:51.001] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:51.009] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\pass_prez.nfx.
+[21:00:51.018] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\pipeline\shader_complexity_accumulate.nfx.
+WARNING ***************************************************************************
+[21:00:51.027] M [COCOSUI] [WARNING] Try to load texture file common\textures\heatmap.png with non-power-2 size (64 X 3)!
+[21:00:51.028] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\shader_complexity_landscape.nfx.
+[21:00:51.034] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\shader_complexity_road.nfx.
+[21:00:51.040] M [COCOSUI] Set render mode: 2460 1080 32 1 0
+[21:00:51.040] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\only1texture_mirror.nfx.
+[21:00:51.046] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: shader\only1texture_mirror.nfx.
+[21:00:51.050] M [COCOSUI] FT_New_Face /system/fonts/.
+[21:00:51.050] M [COCOSUI] FT_New_Face /system/fonts/..
+[21:00:51.050] M [COCOSUI] FT_New_Face /system/fonts/AndroidClock.ttf
+[21:00:51.050] M [COCOSUI] FT_New_Face /system/fonts/CarroisGothicSC-Regular.ttf
+[21:00:51.051] M [COCOSUI] FT_New_Face /system/fonts/ComingSoon.ttf
+[21:00:51.051] M [COCOSUI] FT_New_Face /system/fonts/CutiveMono.ttf
+[21:00:51.052] M [COCOSUI] FT_New_Face /system/fonts/DancingScript-Bold.ttf
+[21:00:51.053] M [COCOSUI] FT_New_Face /system/fonts/DancingScript-Regular.ttf
+[21:00:51.054] M [COCOSUI] FT_New_Face /system/fonts/DroidSans-Bold.ttf
+[21:00:51.054] M [COCOSUI] FT_New_Face /system/fonts/DroidSans.ttf
+[21:00:51.054] M [COCOSUI] FT_New_Face /system/fonts/DroidSansMono.ttf
+[21:00:51.054] M [COCOSUI] FT_New_Face /system/fonts/NotoColorEmoji.ttf
+[21:00:51.055] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabic-Bold.ttf
+[21:00:51.056] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabic-Regular.ttf
+[21:00:51.056] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabicUI-Bold.ttf
+[21:00:51.057] M [COCOSUI] FT_New_Face /system/fonts/NotoNaskhArabicUI-Regular.ttf
+[21:00:51.060] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAdlam-VF.ttf
+[21:00:51.062] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAhom-Regular.otf
+[21:00:51.063] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAnatolianHieroglyphs-Regular.otf
+[21:00:51.066] M [COCOSUI] FT_New_Face /system/fonts/NotoSansArmenian-Bold.otf
+[21:00:51.067] M [COCOSUI] FT_New_Face /system/fonts/NotoSansArmenian-Medium.otf
+[21:00:51.067] M [COCOSUI] FT_New_Face /system/fonts/NotoSansArmenian-Regular.otf
+[21:00:51.068] M [COCOSUI] FT_New_Face /system/fonts/NotoSansAvestan-Regular.ttf
+[21:00:51.068] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBalinese-Regular.ttf
+[21:00:51.068] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBamum-Regular.ttf
+[21:00:51.069] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBassaVah-Regular.otf
+[21:00:51.069] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBatak-Regular.ttf
+[21:00:51.069] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengali-Bold.otf
+[21:00:51.071] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengali-Medium.otf
+[21:00:51.072] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengali-Regular.otf
+[21:00:51.073] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengaliUI-Bold.otf
+[21:00:51.077] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengaliUI-Medium.otf
+[21:00:51.078] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBengaliUI-Regular.otf
+[21:00:51.079] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBhaiksuki-Regular.otf
+[21:00:51.080] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBrahmi-Regular.ttf
+[21:00:51.081] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBuginese-Regular.ttf
+[21:00:51.081] M [COCOSUI] FT_New_Face /system/fonts/NotoSansBuhid-Regular.ttf
+[21:00:51.081] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.093] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.096] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.098] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.100] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.101] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.104] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.105] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.107] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.107] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCJK-Regular.ttc
+[21:00:51.109] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCanadianAboriginal-Regular.ttf
+[21:00:51.111] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCarian-Regular.ttf
+[21:00:51.111] M [COCOSUI] FT_New_Face /system/fonts/NotoSansChakma-Regular.otf
+[21:00:51.111] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCham-Bold.ttf
+[21:00:51.112] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCham-Regular.ttf
+[21:00:51.112] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCherokee-Regular.ttf
+[21:00:51.113] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCoptic-Regular.ttf
+[21:00:51.114] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCuneiform-Regular.ttf
+[21:00:51.114] M [COCOSUI] FT_New_Face /system/fonts/NotoSansCypriot-Regular.ttf
+[21:00:51.114] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDeseret-Regular.ttf
+[21:00:51.115] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagari-Bold.otf
+[21:00:51.116] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagari-Medium.otf
+[21:00:51.117] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagari-Regular.otf
+[21:00:51.118] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagariUI-Bold.otf
+[21:00:51.119] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagariUI-Medium.otf
+[21:00:51.120] M [COCOSUI] FT_New_Face /system/fonts/NotoSansDevanagariUI-Regular.otf
+[21:00:51.121] M [COCOSUI] FT_New_Face /system/fonts/NotoSansEgyptianHieroglyphs-Regular.ttf
+[21:00:51.122] M [COCOSUI] FT_New_Face /system/fonts/NotoSansElbasan-Regular.otf
+[21:00:51.122] M [COCOSUI] FT_New_Face /system/fonts/NotoSansEthiopic-Bold.ttf
+[21:00:51.123] M [COCOSUI] FT_New_Face /system/fonts/NotoSansEthiopic-Regular.ttf
+[21:00:51.123] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGeorgian-VF.ttf
+[21:00:51.124] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGlagolitic-Regular.ttf
+[21:00:51.124] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGothic-Regular.ttf
+[21:00:51.124] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujarati-Bold.ttf
+[21:00:51.125] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujarati-Regular.ttf
+[21:00:51.126] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujaratiUI-Bold.ttf
+[21:00:51.127] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGujaratiUI-Regular.ttf
+[21:00:51.127] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGunjalaGondi-Regular.otf
+[21:00:51.128] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhi-Bold.ttf
+[21:00:51.128] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhi-Regular.ttf
+[21:00:51.129] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhiUI-Bold.ttf
+[21:00:51.129] M [COCOSUI] FT_New_Face /system/fonts/NotoSansGurmukhiUI-Regular.ttf
+[21:00:51.130] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHanifiRohingya-Regular.otf
+[21:00:51.130] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHanunoo-Regular.ttf
+[21:00:51.130] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHatran-Regular.otf
+[21:00:51.131] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHebrew-Bold.ttf
+[21:00:51.131] M [COCOSUI] FT_New_Face /system/fonts/NotoSansHebrew-Regular.ttf
+[21:00:51.131] M [COCOSUI] FT_New_Face /system/fonts/NotoSansImperialAramaic-Regular.ttf
+[21:00:51.131] M [COCOSUI] FT_New_Face /system/fonts/NotoSansInscriptionalPahlavi-Regular.ttf
+[21:00:51.131] M [COCOSUI] FT_New_Face /system/fonts/NotoSansInscriptionalParthian-Regular.ttf
+[21:00:51.131] M [COCOSUI] FT_New_Face /system/fonts/NotoSansJavanese-Regular.otf
+[21:00:51.132] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKaithi-Regular.ttf
+[21:00:51.133] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannada-Bold.ttf
+[21:00:51.133] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannada-Regular.ttf
+[21:00:51.134] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannadaUI-Bold.ttf
+[21:00:51.134] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKannadaUI-Regular.ttf
+[21:00:51.135] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKayahLi-Regular.ttf
+[21:00:51.135] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKharoshthi-Regular.ttf
+[21:00:51.136] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhmer-VF.ttf
+[21:00:51.137] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhmerUI-Bold.ttf
+[21:00:51.137] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhmerUI-Regular.ttf
+[21:00:51.138] M [COCOSUI] FT_New_Face /system/fonts/NotoSansKhojki-Regular.otf
+[21:00:51.138] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLao-Bold.ttf
+[21:00:51.138] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLao-Regular.ttf
+[21:00:51.139] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLaoUI-Bold.ttf
+[21:00:51.139] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLaoUI-Regular.ttf
+[21:00:51.139] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLepcha-Regular.ttf
+[21:00:51.140] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLimbu-Regular.ttf
+[21:00:51.140] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLinearA-Regular.otf
+[21:00:51.141] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLinearB-Regular.ttf
+[21:00:51.142] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLisu-Regular.ttf
+[21:00:51.142] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLycian-Regular.ttf
+[21:00:51.142] M [COCOSUI] FT_New_Face /system/fonts/NotoSansLydian-Regular.ttf
+[21:00:51.142] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalam-Bold.otf
+[21:00:51.143] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalam-Medium.otf
+[21:00:51.144] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalam-Regular.otf
+[21:00:51.144] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalamUI-Bold.otf
+[21:00:51.145] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalamUI-Medium.otf
+[21:00:51.146] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMalayalamUI-Regular.otf
+[21:00:51.147] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMandaic-Regular.ttf
+[21:00:51.147] M [COCOSUI] FT_New_Face /system/fonts/NotoSansManichaean-Regular.otf
+[21:00:51.148] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMarchen-Regular.otf
+[21:00:51.149] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMasaramGondi-Regular.otf
+[21:00:51.149] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMeeteiMayek-Regular.ttf
+[21:00:51.149] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMeroitic-Regular.otf
+[21:00:51.150] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMiao-Regular.otf
+[21:00:51.150] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMro-Regular.otf
+[21:00:51.150] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMongolian-Regular.ttf
+[21:00:51.151] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMultani-Regular.otf
+[21:00:51.151] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmar-Bold.otf
+[21:00:51.152] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmar-Medium.otf
+[21:00:51.153] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmar-Regular.otf
+[21:00:51.154] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmarUI-Bold.otf
+[21:00:51.155] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmarUI-Medium.otf
+[21:00:51.156] M [COCOSUI] FT_New_Face /system/fonts/NotoSansMyanmarUI-Regular.otf
+[21:00:51.156] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNKo-Regular.ttf
+[21:00:51.157] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNabataean-Regular.otf
+[21:00:51.157] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNewTaiLue-Regular.ttf
+[21:00:51.157] M [COCOSUI] FT_New_Face /system/fonts/NotoSansNewa-Regular.otf
+[21:00:51.158] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOgham-Regular.ttf
+[21:00:51.159] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOlChiki-Regular.ttf
+[21:00:51.159] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldItalic-Regular.ttf
+[21:00:51.159] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldNorthArabian-Regular.otf
+[21:00:51.159] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldPermic-Regular.otf
+[21:00:51.159] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldPersian-Regular.ttf
+[21:00:51.160] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldSouthArabian-Regular.ttf
+[21:00:51.160] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOldTurkic-Regular.ttf
+[21:00:51.160] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriya-Bold.ttf
+[21:00:51.160] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriya-Regular.ttf
+[21:00:51.161] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriyaUI-Bold.ttf
+[21:00:51.162] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOriyaUI-Regular.ttf
+[21:00:51.162] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOsage-Regular.ttf
+[21:00:51.162] M [COCOSUI] FT_New_Face /system/fonts/NotoSansOsmanya-Regular.ttf
+[21:00:51.162] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPahawhHmong-Regular.otf
+[21:00:51.163] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPalmyrene-Regular.otf
+[21:00:51.163] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPauCinHau-Regular.otf
+[21:00:51.163] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPhagsPa-Regular.ttf
+[21:00:51.164] M [COCOSUI] FT_New_Face /system/fonts/NotoSansPhoenician-Regular.ttf
+[21:00:51.164] M [COCOSUI] FT_New_Face /system/fonts/NotoSansRejang-Regular.ttf
+[21:00:51.164] M [COCOSUI] FT_New_Face /system/fonts/NotoSansRunic-Regular.ttf
+[21:00:51.164] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSamaritan-Regular.ttf
+[21:00:51.164] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSaurashtra-Regular.ttf
+[21:00:51.164] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSharada-Regular.otf
+[21:00:51.165] M [COCOSUI] FT_New_Face /system/fonts/NotoSansShavian-Regular.ttf
+[21:00:51.165] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhala-Bold.otf
+[21:00:51.166] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhala-Medium.otf
+[21:00:51.167] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhala-Regular.otf
+[21:00:51.167] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhalaUI-Bold.otf
+[21:00:51.168] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhalaUI-Medium.otf
+[21:00:51.169] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSinhalaUI-Regular.otf
+[21:00:51.170] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSoraSompeng-Regular.otf
+[21:00:51.170] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSundanese-Regular.ttf
+[21:00:51.170] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSylotiNagri-Regular.ttf
+[21:00:51.170] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSymbols-Regular-Subsetted.ttf
+[21:00:51.173] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSymbols-Regular-Subsetted2.ttf
+[21:00:51.173] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSyriacEastern-Regular.ttf
+[21:00:51.174] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSyriacEstrangela-Regular.ttf
+[21:00:51.174] M [COCOSUI] FT_New_Face /system/fonts/NotoSansSyriacWestern-Regular.ttf
+[21:00:51.175] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTagalog-Regular.ttf
+[21:00:51.175] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTagbanwa-Regular.ttf
+[21:00:51.175] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTaiLe-Regular.ttf
+[21:00:51.175] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTaiTham-Regular.ttf
+[21:00:51.176] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTaiViet-Regular.ttf
+[21:00:51.177] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamil-Bold.otf
+[21:00:51.177] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamil-Medium.otf
+[21:00:51.178] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamil-Regular.otf
+[21:00:51.179] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamilUI-Bold.otf
+[21:00:51.180] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamilUI-Medium.otf
+[21:00:51.181] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTamilUI-Regular.otf
+[21:00:51.181] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTelugu-Bold.ttf
+[21:00:51.182] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTelugu-Regular.ttf
+[21:00:51.183] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTeluguUI-Bold.ttf
+[21:00:51.183] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTeluguUI-Regular.ttf
+[21:00:51.184] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaana-Bold.ttf
+[21:00:51.184] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaana-Regular.ttf
+[21:00:51.184] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThai-Bold.ttf
+[21:00:51.185] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThai-Regular.ttf
+[21:00:51.185] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaiUI-Bold.ttf
+[21:00:51.185] M [COCOSUI] FT_New_Face /system/fonts/NotoSansThaiUI-Regular.ttf
+[21:00:51.186] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTibetan-Bold.ttf
+[21:00:51.186] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTibetan-Regular.ttf
+[21:00:51.187] M [COCOSUI] FT_New_Face /system/fonts/NotoSansTifinagh-Regular.otf
+[21:00:51.187] M [COCOSUI] FT_New_Face /system/fonts/NotoSansUgaritic-Regular.ttf
+[21:00:51.188] M [COCOSUI] FT_New_Face /system/fonts/NotoSansVai-Regular.ttf
+[21:00:51.188] M [COCOSUI] FT_New_Face /system/fonts/NotoSansWancho-Regular.otf
+[21:00:51.188] M [COCOSUI] FT_New_Face /system/fonts/NotoSansWarangCiti-Regular.otf
+[21:00:51.189] M [COCOSUI] FT_New_Face /system/fonts/NotoSansYi-Regular.ttf
+[21:00:51.189] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-Bold.ttf
+[21:00:51.190] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-BoldItalic.ttf
+[21:00:51.192] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-Italic.ttf
+[21:00:51.195] M [COCOSUI] FT_New_Face /system/fonts/NotoSerif-Regular.ttf
+[21:00:51.196] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifArmenian-Bold.otf
+[21:00:51.196] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifArmenian-Regular.otf
+[21:00:51.196] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifBengali-Bold.ttf
+[21:00:51.197] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifBengali-Regular.ttf
+[21:00:51.197] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[21:00:51.215] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[21:00:51.218] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[21:00:51.219] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifCJK-Regular.ttc
+[21:00:51.222] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifDevanagari-Bold.ttf
+[21:00:51.223] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifDevanagari-Regular.ttf
+[21:00:51.224] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifEthiopic-Bold.otf
+[21:00:51.225] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifEthiopic-Regular.otf
+[21:00:51.226] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGeorgian-VF.ttf
+[21:00:51.227] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGujarati-Bold.ttf
+[21:00:51.228] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGujarati-Regular.ttf
+[21:00:51.228] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGurmukhi-Bold.otf
+[21:00:51.229] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifGurmukhi-Regular.otf
+[21:00:51.230] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifHebrew-Bold.ttf
+[21:00:51.230] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifHebrew-Regular.ttf
+[21:00:51.230] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKannada-Bold.ttf
+[21:00:51.231] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKannada-Regular.ttf
+[21:00:51.231] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKhmer-Bold.otf
+[21:00:51.232] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifKhmer-Regular.otf
+[21:00:51.233] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifLao-Bold.ttf
+[21:00:51.233] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifLao-Regular.ttf
+[21:00:51.233] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMalayalam-Bold.ttf
+[21:00:51.234] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMalayalam-Regular.ttf
+[21:00:51.235] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMyanmar-Bold.otf
+[21:00:51.235] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifMyanmar-Regular.otf
+[21:00:51.236] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifSinhala-Bold.otf
+[21:00:51.238] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifSinhala-Regular.otf
+[21:00:51.238] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTamil-Bold.otf
+[21:00:51.239] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTamil-Regular.otf
+[21:00:51.240] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTelugu-Bold.ttf
+[21:00:51.240] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifTelugu-Regular.ttf
+[21:00:51.241] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifThai-Bold.ttf
+[21:00:51.241] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifThai-Regular.ttf
+[21:00:51.242] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Black.ttf
+[21:00:51.242] M [COCOSUI] FT_New_Face /system/fonts/Roboto-BlackItalic.ttf
+[21:00:51.242] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Bold.ttf
+[21:00:51.242] M [COCOSUI] FT_New_Face /system/fonts/Roboto-BoldItalic.ttf
+[21:00:51.244] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Italic.ttf
+[21:00:51.246] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Light.ttf
+[21:00:51.246] M [COCOSUI] FT_New_Face /system/fonts/Roboto-LightItalic.ttf
+[21:00:51.248] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Medium.ttf
+[21:00:51.248] M [COCOSUI] FT_New_Face /system/fonts/Roboto-MediumItalic.ttf
+[21:00:51.251] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Regular.ttf
+[21:00:51.251] M [COCOSUI] FT_New_Face /system/fonts/Roboto-Thin.ttf
+[21:00:51.251] M [COCOSUI] FT_New_Face /system/fonts/Roboto-ThinItalic.ttf
+[21:00:51.253] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Bold.ttf
+[21:00:51.255] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-BoldItalic.ttf
+[21:00:51.257] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Italic.ttf
+[21:00:51.260] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Light.ttf
+[21:00:51.260] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-LightItalic.ttf
+[21:00:51.262] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Medium.ttf
+[21:00:51.262] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-MediumItalic.ttf
+[21:00:51.264] M [COCOSUI] FT_New_Face /system/fonts/RobotoCondensed-Regular.ttf
+[21:00:51.264] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-Bold.ttf
+[21:00:51.266] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-BoldItalic.ttf
+[21:00:51.267] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-Italic.ttf
+[21:00:51.268] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-Regular.ttf
+[21:00:51.268] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-SemiBold.ttf
+[21:00:51.268] M [COCOSUI] FT_New_Face /system/fonts/SourceSansPro-SemiBoldItalic.ttf
+[21:00:51.270] M [COCOSUI] FT_New_Face /system/fonts/NotoSerifThai-Regular.ttf
+[21:00:51.271] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:51.274] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+
+ERROR *****************************************************************************
+[21:00:51.277] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[21:00:51.279] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: <ModelNormalTech>.
+[21:00:51.285] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\blendadd.nfx.
+[21:00:51.294] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:51.297] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:51.300] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:51.302] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:51.305] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\simpletech.nfx.
+[21:00:51.308] M [COCOSUI] [INFO] [shader] *** EffectMgr::CreateObj, filename: common\shader\sprite_vegetation.nfx.
+[21:00:51.313] M [COCOSUI] pixel decal enable: false
+[21:00:51.430] M [COCOSUI] NewType world.track: 0xb400007a3dd4d790
+[21:00:51.430] M [COCOSUI] NewType world.space_object: 0xb400007a3dd4f710
+[21:00:51.430] M [COCOSUI] NewType world.visibleobject: 0xb400007a3dd4ead0
+[21:00:51.430] M [COCOSUI] NewType world.sfx: 0xb400007a3dd4b9d0
+[21:00:51.430] M [COCOSUI] NewType world.model: 0xb400007a3dd4bb90
+[21:00:51.430] M [COCOSUI] NewType world.gravity_track: 0xb400007a3dd4b2d0
+[21:00:51.430] M [COCOSUI] NewType world.primitives: 0xb400007a3dd4b490
+[21:00:51.430] M [COCOSUI] NewType world.textobject: 0xb400007a3dd4ad90
+[21:00:51.430] M [COCOSUI] NewType world.simuiobject: 0xb400007a3dd4d410
+[21:00:51.431] M [COCOSUI] NewType world.camera: 0xb400007a3dd4dcd0
+[21:00:51.431] M [COCOSUI] NewType world.decal: 0xb400007a3dd4e3d0
+[21:00:51.431] M [COCOSUI] NewType world.light: 0xb400007a3dd4f010
+[21:00:51.431] M [COCOSUI] NewType world.anim_ctrl: 0xb400007a3dd530d0
+[21:00:51.431] M [COCOSUI] NewType world.scene: 0xb400007a3dd54090
+[21:00:51.432] M [COCOSUI] NewType world.ikbone: 0xb400007a3dd55c90
+[21:00:51.432] M [COCOSUI] NewType scene.trigger: 0xb400007a3dd55210
+[21:00:51.432] M [COCOSUI] NewType world.iksolver: 0xb400007a3dd568d0
+[21:00:51.432] M [COCOSUI] NewType world.gridobject_manager: 0xb400007a3dd54410
+[21:00:51.432] M [COCOSUI] NewType world.simsprite: 0xb400007a3dd53990
+[21:00:51.432] M [COCOSUI] NewType world.model_merge_tex: 0xb400007a3dd50f90
+[21:00:51.432] M [COCOSUI] NewType terrain.land: 0xb400007a3dd53d10
+[21:00:51.441] M   <SCRIPT> use render 1.0
+[21:00:51.450] M [COCOSUI] NewType Landscape.land: 0xb400007a3dd61610
+
+ERROR *****************************************************************************
+[21:00:51.451] M [COCOSUI] [ERROR] ========AkInitSettings==
+[21:00:51.455] M [COCOSUI] Call script init.init().
+WARNING ***************************************************************************
+[21:00:51.455] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2460, height:1080, force:0)!
+[21:00:51.455] M [COCOSUI] Set render mode: 2460 1080 32 1 0
+[21:00:51.455] M [COCOSUI] Initialization completed successfully!
+[21:00:51.455] M [COCOSUI] [21:00:51.455] M [COCOSUI] Call script init.start().
+WARNING ***************************************************************************
+[21:00:51.466] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2460, height:1080, force:0)!
+[21:00:51.466] M [COCOSUI] OnWindowResize - 2460, 1080
+WARNING ***************************************************************************
+[21:00:51.470] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2460, height:1080, force:0)!
+[21:00:51.470] M [COCOSUI] OnWindowResize - 2460, 1080
+[21:00:51.815] M   <SCRIPT> loaded patch json
+[21:00:51.872] M   <SCRIPT> [dctool3\Type.py:194]:Type DCTOOL_ENABLE_ENGINE_DEVICE is True
+
+ERROR *****************************************************************************
+[21:00:51.942] M [COCOSUI] [ERROR] JNIManager Failed to call method getIMSI with signiture ()Ljava/lang/String;!
+[21:00:51.980] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:539]:[init game] INIT_GAME_GEN_FINISHED is False
+[21:00:52.005]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/ext_package/ext_package_utils.py:172]:[EXT] using: {u'kongdao_scene': 2034699, u'skin': 2034699, u'pve': 2034699, u'pve2': 2034699, u'pve3': 2034699, u'audio': 2034699, u'video': 2034699}
+[21:00:52.007]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/ext_package/ext_package_utils.py:78]:[INFO] [ext_mgr] PATCH_LIST in __builtin__ is None, no need ext patch
+[21:00:52.020]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:158]:org: org_flist.lst
+[21:00:52.231]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:158]:org: com_hres_1_1648415_flist.txt
+[21:00:52.231]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:163]:[Except] get com_hres_1_1648415_flist.txt flist except:get res file failed
+[21:00:52.859]     <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/nx_file_logic/logic_after_patch.py:207]:[init flist] valid:False cost time: 0.878381967545 script:4903 physx:14300
+[21:00:52.892] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:367]:[G_IS_NA_PROJECT] True
+[21:00:52.892] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:373]:[G_IS_NA_USER] True
+[21:00:52.946] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/gdata.py:372]:MJY magic: None
+[21:00:52.984] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:306]:current render system is [GLES32]
+[21:00:52.987] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:326]:configure device compatibility with gpu [Adreno (TM) 650]
+[21:00:52.987] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:148]:[COMPATIBILITY] Start DEVICE_NEED_LIMIT_GPU_SKIN CHECK...
+[21:00:52.987] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:388]:checking adreno gpu
+[21:00:52.987] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:395]:series of adreno is 650
+[21:00:53.003] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:38]:init_device_resolution enable_resolution_switch
+[21:00:53.003] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:82]:Resolution set_window_size, origin:2460*1080, new:2050*900=====
+
+ERROR *****************************************************************************
+[21:00:53.003] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[21:00:53.004] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:198]:Skip enter low mem mode...
+[21:00:53.004] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:217]:world.set_dispatcher_worker_limit:2...
+WARNING ***************************************************************************
+[21:00:53.004] M [COCOSUI] [WARNING] NXDispatcher v1.1 init with 2 worker(s)...
+WARNING ***************************************************************************
+[21:00:53.004] M [COCOSUI] [WARNING] NXDispatcher v1.1 init with 2 worker(s)...
+WARNING ***************************************************************************
+[21:00:53.005] M [COCOSUI] [WARNING] ====== Dynamics_EnableKinematicForceFix:1
+WARNING ***************************************************************************
+[21:00:53.005] M [COCOSUI] [WARNING] GlobalShaderUniformMgr::EnableResolutionMemLeakFix: 1...
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:244]:world.use_vertex_half 2...
+WARNING ***************************************************************************
+[21:00:53.005] M [COCOSUI] [WARNING] World.UseVertexHalf...mode:2
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:266]:world.set_moving_static_vb_threshold work...
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:271]:world.enable_merge_submesh_in_model True...
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:276]:world.enable_inactive_scene_shadowmap False...
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:286]:game3d.enable_fast_event_system True...
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:291]:world.enable_bone_mapping_lazy True...
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:301]:world.enable_sub_frame_commit_obj prepare....
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:305]:world.enable_sub_frame_commit_obj enable high....
+[21:00:53.005] M [COCOSUI] pixel decal enable: true
+[21:00:53.005] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:432]:render.set_small_vbo_size_threshold: 0
+
+ERROR *****************************************************************************
+[21:00:53.008] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[21:00:53.009] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/init_game.py:473]:init game finish
+[21:00:53.029] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/ext_package/ext_package_utils.py:44]:[ERROR] [CythonEventNotifier_V2] crc :607712115, script_v:2077277 engine:1.0.14605 stage:0 flist:True
+[21:00:53.038] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/cython/cython_utils/init_cython.py:94]:Loading cython scripts...
+[21:00:53.039] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/cython/cython_utils/init_cython.py:96]:Loading cython scripts succeeded.
+WARNING ***************************************************************************
+[21:00:53.040] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2050, height:903, force:1)!
+[21:00:53.040] M [COCOSUI] Set render mode: 2050 903 32 1 0
+
+ERROR *****************************************************************************
+[21:00:53.040] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+WARNING ***************************************************************************
+[21:00:53.146] M [COCOSUI] [WARNING] CppGame::SetRenderMode (width:2050, height:900, force:1)!
+[21:00:53.146] M [COCOSUI] Set render mode: 2050 900 32 1 0
+
+ERROR *****************************************************************************
+[21:00:53.146] M [COCOSUI] [ERROR] [shader] can't find pipeline target [DyCullingTarget] in targetmap
+[21:00:53.213] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/device_info.py:243]:is_notch_screen (True, 76, 0, 0, 0)
+
+ERROR *****************************************************************************
+[21:00:53.439] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/item.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.440] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-map.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.440] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/common-panel.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.441] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/icon.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.441] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-panel.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.442] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/common.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.443] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-mech_main.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.443] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.443] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-mode.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.443] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-notice.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.446] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-mech_dec.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.446] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/battle-occupy_mode.plist"!
+
+ERROR *****************************************************************************
+[21:00:53.447] M [COCOSUI] [ERROR] File not found: "/Users/netease/Documents/work/battlegrounds/gameplay//trunk/src/res/gui/ui_res_plist/panel.plist"!
+[21:00:53.471] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/device_compatibility.py:444]:series of adreno is 650
+[21:00:57.138] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 02-01 21:00:57] [ERROR] JsonConf cannot open confs/bless_element_data.json 
+[21:00:57.138] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 02-01 21:00:57] [ERROR] JsonConf cannot open confs/bless_element_data.json 
+[21:00:58.900] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/entities/__init__.py:231]:entity register finished
+[21:00:58.901] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:306]:[manager] pre gen ret True
+[21:00:58.980] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/channel.py:364]:init channel params!!!!!!!!!!!!!!!!
+[21:00:58.982] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/channel.py:1642]:[chanel] enable qsec sdk
+[21:00:58.997] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/platform/channel.py:1714]:start erd: 669478e9f83bbd0e
+[21:00:59.407] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/vscene/global_display_setting.py:370]:RESOLUTION config:[0.59999999999999998, 0.69999999999999996, 0.80000000000000004, 1.0, 1.0] =====
+[21:00:59.428] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager.py:148]:resgister agent baisc_mgr_agent
+[21:00:59.428] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/logic/manager_agents/ManagerAgentBase.py:14]:init manager agent baisc_mgr_agent
+[21:00:59.540] M [COCOSUI] FT_New_Memory_Face gui/fonts/fzdys.ttf
+[21:00:59.540] M [COCOSUI] Release FONT memory d3e8a040
+[21:00:59.580] M [COCOSUI] FT_New_Memory_Face gui/fonts/fzy4jw.ttf
+[21:00:59.580] M [COCOSUI] Release FONT memory d3e72040
+[21:00:59.584] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/uisys/UIManager.py:160]:[COCOS] is_support_cocos_tex_async_load enable_ui_add_image_async = False
+[21:00:59.593] M [COCOSUI] FT_New_Memory_Face gui/fonts/g93_en.otf
+[21:00:59.593] M [COCOSUI] Release FONT memory 3dd0caa0
+[21:00:59.604] M [COCOSUI] FT_New_Memory_Face gui/fonts/hylingxinj.ttf
+[21:00:59.604] M [COCOSUI] Release FONT memory f1b7e040
+[21:01:01.949] M   <SCRIPT> [/Users/netease/Documents/work/battlegrounds/gameplay/releases/rel_current/tools/patch/temp/script/common/cfg/jsonconf.py:205]:[2026 02-01 21:01:01] [ERROR] JsonConf cannot open confs/pve/na_item.json 
+[21:01:19.599]   [COCOSUI] WindowFocusChanged: 0xb400007a2dcf6310 -- 0
+[21:01:20.228]   [COCOSUI] Pause: 0xb400007a2dcf6310
