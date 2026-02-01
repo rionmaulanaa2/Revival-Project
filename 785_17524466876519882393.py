@@ -1932,8 +1932,10 @@ class Revival(object):
                                                     cur_y = getattr(pos, 'y', 0)
                                                     cur_z = getattr(pos, 'z', 0)
                                                     
-                                                    # CRITICAL: If character is way underground (-1000+), emergency teleport to safe height
-                                                    if cur_y < -1000:
+                                                    # CRITICAL: If character is way underground, emergency teleport to safe height
+                                                    # Threshold: anything below -50 is too deep underground
+                                                    UNDERGROUND_THRESHOLD = -50
+                                                    if cur_y < UNDERGROUND_THRESHOLD:
                                                         global_log('[Ground] EMERGENCY: Character FAR below ground (y=%.2f), teleporting to safe height' % cur_y)
                                                         safe_y = 25.0 + CHARACTER_STAND_HEIGHT
                                                         safe_pos = math3d.vector(cur_x, safe_y, cur_z)
@@ -1944,19 +1946,34 @@ class Revival(object):
                                                         return
                                                     
                                                     # RAYCAST DOWNWARD to find actual ground height
-                                                    # Cast from high above (1000 units up) down to far below (-1000 units)
-                                                    raycast_start = math3d.vector(cur_x, cur_y + 1000, cur_z)
-                                                    raycast_end = math3d.vector(cur_x, cur_y - 1000, cur_z)
+                                                    # Use intelligent raycast range based on current position
+                                                    # Start from well above character, go well below
+                                                    raycast_start_y = max(cur_y + 500, 200)  # Start high enough but not too high
+                                                    raycast_end_y = min(cur_y - 500, -2000)  # Go deep enough to catch all terrain
+                                                    raycast_start = math3d.vector(cur_x, raycast_start_y, cur_z)
+                                                    raycast_end = math3d.vector(cur_x, raycast_end_y, cur_z)
                                                     
                                                     # Use LAND_GROUP collision (ground/terrain)
-                                                    hit_result = scn.scene_col.hit_by_ray(
-                                                        raycast_start,
-                                                        raycast_end,
-                                                        0,  # exclude_id
-                                                        collision_const.LAND_GROUP if hasattr(collision_const, 'LAND_GROUP') else 65535,
-                                                        collision_const.LAND_GROUP if hasattr(collision_const, 'LAND_GROUP') else 65535,
-                                                        collision.INCLUDE_FILTER
-                                                    )
+                                                    # Try multiple raycast attempts if first misses
+                                                    hit_result = None
+                                                    raycast_attempts = [
+                                                        (math3d.vector(cur_x, raycast_start_y, cur_z), math3d.vector(cur_x, raycast_end_y, cur_z)),  # Main raycast
+                                                        (math3d.vector(cur_x, 300, cur_z), math3d.vector(cur_x, -100, cur_z)),  # Lobby area raycast
+                                                        (math3d.vector(cur_x, 100, cur_z), math3d.vector(cur_x, -500, cur_z)),  # Mid-range raycast
+                                                    ]
+                                                    
+                                                    for attempt_idx, (ray_start, ray_end) in enumerate(raycast_attempts):
+                                                        hit_result = scn.scene_col.hit_by_ray(
+                                                            ray_start,
+                                                            ray_end,
+                                                            0,  # exclude_id
+                                                            collision_const.LAND_GROUP if hasattr(collision_const, 'LAND_GROUP') else 65535,
+                                                            collision_const.LAND_GROUP if hasattr(collision_const, 'LAND_GROUP') else 65535,
+                                                            collision.INCLUDE_FILTER
+                                                        )
+                                                        
+                                                        if hit_result and hit_result[0]:  # Got a hit
+                                                            break
                                                     
                                                     # hit_result is tuple: (hit, point, normal, fraction, color, obj)
                                                     if hit_result and hit_result[0]:  # hit_result[0] is hit boolean
@@ -1965,15 +1982,30 @@ class Revival(object):
                                                         # Place character at ground level + CHARACTER_STAND_HEIGHT
                                                         target_y = ground_y + CHARACTER_STAND_HEIGHT + 0.2  # Small offset above ground
                                                         if ground_detection_log['first_log']:
-                                                            global_log('[Ground] Raycast HIT: ground_y=%.2f, target_y=%.2f, cur_y=%.2f' % (ground_y, target_y, cur_y))
+                                                            global_log('[Ground] Raycast HIT (attempt %d): ground_y=%.2f, target_y=%.2f, cur_y=%.2f' % (attempt_idx + 1, ground_y, target_y, cur_y))
                                                             ground_detection_log['first_log'] = False
                                                     else:
-                                                        # No ground hit - use fallback lobby floor height
+                                                        # No ground hit even after multiple attempts
+                                                        # If character is currently ABOVE ground level, just adjust downward
+                                                        # If character is below ground level, use emergency teleport
                                                         lobby_floor_y = 23.6
-                                                        target_y = max(lobby_floor_y, cur_y, CHARACTER_STAND_HEIGHT + 0.2)
-                                                        if ground_detection_log['first_log']:
-                                                            global_log('[Ground] Raycast MISS: using fallback y=%.2f (cur_y=%.2f)' % (target_y, cur_y))
-                                                            ground_detection_log['first_log'] = False
+                                                        
+                                                        if cur_y < lobby_floor_y:
+                                                            # Character is UNDERGROUND - use emergency teleport
+                                                            if cur_y < -50:
+                                                                # Far underground
+                                                                target_y = 25.0 + CHARACTER_STAND_HEIGHT
+                                                                global_log('[Ground] Raycast MISS + Underground: Emergency teleport from y=%.2f to y=%.2f' % (cur_y, target_y))
+                                                            else:
+                                                                # Slightly underground (-50 to +23.6)
+                                                                target_y = lobby_floor_y + CHARACTER_STAND_HEIGHT
+                                                                global_log('[Ground] Raycast MISS: Lifting from y=%.2f to safe floor y=%.2f' % (cur_y, target_y))
+                                                        else:
+                                                            # Character is above floor - keep current position (probably OK)
+                                                            target_y = cur_y
+                                                            if ground_detection_log['first_log']:
+                                                                global_log('[Ground] Raycast MISS: character above floor (y=%.2f), keeping position' % cur_y)
+                                                                ground_detection_log['first_log'] = False
                                                     
                                                     # Set position if character is below target height
                                                     if cur_y < target_y:
@@ -1983,16 +2015,10 @@ class Revival(object):
                                                         if ground_detection_log['first_log']:
                                                             global_log('[Ground] Repositioned from y=%.2f to y=%.2f' % (cur_y, target_y))
                                                             ground_detection_log['first_log'] = False
-                                                                                                            
-                                                    # Reset any excessive downward velocity to avoid tunneling below ground
-                                                    try:
-                                                        if hasattr(lp, 'velocity'):
-                                                            vel = lp.velocity
-                                                            vy = getattr(vel, 'y', 0)
-                                                            if vy < 0:
-                                                                lp.velocity = math3d.vector(getattr(vel, 'x', 0), 0, getattr(vel, 'z', 0))
-                                                    except Exception:
-                                                        pass
+                                                    
+                                                    # CONTINUOUS MONITORING: Keep checking ground every 0.2s to catch character falling
+                                                    # This ensures emergency teleport activates whenever character goes underground
+                                                    global_data.game_mgr.register_logic_timer(_force_ground_avatar, interval=0.2, times=1, mode=2)
                                                     
                                                     if error_list:
                                                         global_log('Grounding errors: %s' % ', '.join(error_list))
