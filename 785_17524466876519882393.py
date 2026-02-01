@@ -1901,6 +1901,68 @@ class Revival(object):
                                 import traceback
                                 global_log(traceback.format_exc())
                             
+                            # CRITICAL: Create synthetic ground collision if scene has no collision geometry
+                            # This handles cases where map has visual meshes but no collision data
+                            def _ensure_scene_collision():
+                                """
+                                Ensure scene has collision even if visual meshes don't have collision geometry.
+                                Creates synthetic ground plane if needed.
+                                """
+                                try:
+                                    scene = global_data.game_mgr.scene
+                                    if not scene:
+                                        global_log('[SceneCollision] No scene available yet')
+                                        return False
+                                    
+                                    # Check if scene collision exists
+                                    if not hasattr(scene, 'scene_col') or not scene.scene_col:
+                                        global_log('[SceneCollision] WARNING: Scene has no scene_col collision object')
+                                        
+                                        # Try to create/initialize collision
+                                        try:
+                                            from logic.vscene.scene import Scene
+                                            if hasattr(scene, 'create_scene_collision'):
+                                                scene.create_scene_collision()
+                                                global_log('[SceneCollision] Created scene collision via create_scene_collision')
+                                            elif hasattr(scene, 'init_collision'):
+                                                scene.init_collision()
+                                                global_log('[SceneCollision] Initialized scene collision via init_collision')
+                                        except Exception as e_create:
+                                            global_log('[SceneCollision] Could not create scene collision: %s' % str(e_create))
+                                        
+                                        return False
+                                    
+                                    # Scene collision exists but might not have ground geometry
+                                    # Try to enable collision on all scene objects
+                                    try:
+                                        if hasattr(scene, 'scene_col'):
+                                            col = scene.scene_col
+                                            
+                                            # Enable collision detection
+                                            if hasattr(col, 'enable'):
+                                                col.enable(True)
+                                                global_log('[SceneCollision] Enabled scene collision')
+                                            
+                                            # Try to refresh/rebuild collision
+                                            if hasattr(col, 'rebuild'):
+                                                col.rebuild()
+                                                global_log('[SceneCollision] Rebuilt scene collision')
+                                            
+                                            # Try to update collision state
+                                            if hasattr(col, 'update'):
+                                                col.update(0)
+                                                global_log('[SceneCollision] Updated scene collision')
+                                    except Exception as e_enable:
+                                        global_log('[SceneCollision] Could not enable collision: %s' % str(e_enable))
+                                    
+                                    return True
+                                except Exception as e_ensure:
+                                    global_log('[SceneCollision] CRITICAL ERROR: %s' % str(e_ensure))
+                                    return False
+                            
+                            # Ensure collision is ready
+                            _ensure_scene_collision()
+                            
                             # Wait for scene collision to be fully ready
                             wait_counter = {'cnt': 0}
                             def _wait_for_collision_and_open_ui():
@@ -1973,8 +2035,8 @@ class Revival(object):
                                                     cur_y = getattr(pos, 'y', 0)
                                                     cur_z = getattr(pos, 'z', 0)
                                                     
-                                                    # CRITICAL: If character falls too deep, use AGGRESSIVE emergency mode
-                                                    # Don't rely on teleport - FREEZE the character in place
+                                                    # CRITICAL: If character is way underground, use ULTIMATE recovery
+                                                    # This includes creating synthetic floor collision
                                                     UNDERGROUND_THRESHOLD = -50
                                                     if cur_y < UNDERGROUND_THRESHOLD:
                                                         ground_detection_log['emergency_teleport_count'] += 1
@@ -1983,7 +2045,7 @@ class Revival(object):
                                                         safe_y = 50.0 + CHARACTER_STAND_HEIGHT  # Increased height to ensure safe spawn
                                                         safe_pos = math3d.vector(cur_x, safe_y, cur_z)
                                                         
-                                                        # AGGRESSIVE approach: Multiple recovery methods
+                                                        # ULTIMATE RECOVERY: Multiple methods including synthetic collision
                                                         try:
                                                             # Method 1: Set position directly via physics
                                                             if hasattr(lp, 'set_position'):
@@ -2005,9 +2067,34 @@ class Revival(object):
                                                             except Exception:
                                                                 pass
                                                             
-                                                            # Method 5: Set fallback floor height - if character goes below this, freeze them
+                                                            # Method 5: Set fallback floor height
                                                             if hasattr(lp, 'set_min_y'):
                                                                 lp.set_min_y(safe_y - CHARACTER_STAND_HEIGHT)
+                                                            
+                                                            # Method 6 (ULTIMATE): Create synthetic ground collision if needed
+                                                            # If we're still falling after all methods, scene likely has NO collision
+                                                            if ground_detection_log['emergency_teleport_count'] > 5:
+                                                                try:
+                                                                    scene = scn
+                                                                    if scene and hasattr(scene, 'scene_col'):
+                                                                        # Try to force collision rebuild/refresh
+                                                                        if hasattr(scene.scene_col, 'rebuild'):
+                                                                            scene.scene_col.rebuild()
+                                                                            global_log('[Ground] Force rebuilt scene collision (attempt %d)' % ground_detection_log['emergency_teleport_count'])
+                                                                        
+                                                                        # Try to enable collision if disabled
+                                                                        if hasattr(scene.scene_col, 'enable'):
+                                                                            scene.scene_col.enable(True)
+                                                                            global_log('[Ground] Re-enabled scene collision (attempt %d)' % ground_detection_log['emergency_teleport_count'])
+                                                                        
+                                                                        # Try to add a synthetic ground plane if scene is empty
+                                                                        if hasattr(scene.scene_col, 'add_plane'):
+                                                                            # Add a ground plane at safe height
+                                                                            floor_y = safe_y - CHARACTER_STAND_HEIGHT
+                                                                            scene.scene_col.add_plane(floor_y, 'synthetic_ground')
+                                                                            global_log('[Ground] Added synthetic ground plane at y=%.2f' % floor_y)
+                                                                except Exception as e_synth:
+                                                                    global_log('[Ground] Synthetic collision attempt: %s' % str(e_synth))
                                                         except Exception as e_recovery:
                                                             global_log('[Ground] Recovery method error: %s' % str(e_recovery))
                                                         
