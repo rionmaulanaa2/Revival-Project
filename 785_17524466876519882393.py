@@ -7,79 +7,86 @@ import game3d, zlib, C_file, json
 NPK_VERSION_FILE_NAME = 'npk_version.config'
 revivalinjectstatus = False
 
-# Global logging configuration
-# Set to 'log_error' to use game's built-in logging (default)
-# Set to 'raidis' to use Discord webhook logging
-GLOBAL_LOG_METHOD = 'log_error'
-
-def global_log(message):
-    """
-    Global logging function that respects GLOBAL_LOG_METHOD setting
-    Default: uses log_error (game's built-in)
-    Alternative: raidis (Discord webhook)
-    """
-    try:
-        if GLOBAL_LOG_METHOD == 'raidis':
-            global_log(message)
-        else:
-            # Default to log_error
-            log_error(message)
-    except Exception:
-        pass  # Fail silently if both methods fail
-
-# Module-level logging functions - available immediately when module loads
-def raidis(message):
-    """Discord webhook logger for debugging - safe to call anytime"""
-    try:
-        import httplib
-        import urllib
-        webhook_url = 'https://discord.com/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
-        payload = {'content': message}
-        form_data = urllib.urlencode(payload)
-        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        conn = httplib.HTTPSConnection('discord.com')
-        conn.request("POST", webhook_url, form_data, headers)
-        response = conn.getresponse()
-        conn.close()
-    except Exception:
-        pass  # Silent failure by design
-
-def logdis(message):
-    """Discord webhook logger with file attachment"""
-    try:
-        import httplib
-        import os
-        webhook_url = '/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
-        file_path = '/storage/emulated/0/android/data/com.netease.g93na/files/netease/smc/log.txt'
-        boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW'
-        
-        body = '--' + boundary + '\r\nContent-Disposition: form-data; name="content"\r\n\r\n' + message + '\r\n'
-        
-        if os.path.isfile(file_path):
-            with open(file_path, 'rb') as f:
-                file_content = f.read()
-            body += '--' + boundary + '\r\nContent-Disposition: form-data; name="file"; filename="log.txt"\r\nContent-Type: text/plain\r\n\r\n'
-            body += file_content + '\r\n--' + boundary + '--\r\n'
-        else:
-            body += '--' + boundary + '--\r\n'
-        
-        headers = {
-            'Content-Type': 'multipart/form-data; boundary=%s' % boundary,
-            'Content-Length': str(len(body))
-        }
-        
-        conn = httplib.HTTPSConnection('discord.com')
-        conn.request('POST', webhook_url, body, headers)
-        response = conn.getresponse()
-        conn.close()
-    except Exception:
-        pass  # Silent failure
-
 class Revival(object):
     __isInitialized = False
     @staticmethod
     def initialize():
         if not Revival.__isInitialized:
+            # ============================================================================
+            # LOGGING FUNCTIONS - Defined inside Revival for organized code structure
+            # ============================================================================
+            
+            # Global logging configuration
+            GLOBAL_LOG_METHOD = 'log_error'
+            # Set to 'log_error' to use game's built-in logging (default)
+            # Set to 'raidis' to use Discord webhook logging
+            
+            def global_log(message):
+                """
+                Global logging function that respects GLOBAL_LOG_METHOD setting
+                Default: uses log_error (game's built-in)
+                Alternative: raidis (Discord webhook)
+                """
+                try:
+                    if GLOBAL_LOG_METHOD == 'raidis':
+                        raidis(message)
+                    else:
+                        # Default to log_error
+                        log_error(message)
+                except Exception:
+                    pass  # Fail silently if both methods fail
+            
+            def raidis(message):
+                """Discord webhook logger for debugging - safe to call anytime"""
+                try:
+                    import httplib
+                    import urllib
+                    webhook_url = 'https://discord.com/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
+                    payload = {'content': message}
+                    form_data = urllib.urlencode(payload)
+                    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+                    conn = httplib.HTTPSConnection('discord.com')
+                    conn.request("POST", webhook_url, form_data, headers)
+                    response = conn.getresponse()
+                    conn.close()
+                except Exception:
+                    pass  # Silent failure by design
+            
+            def logdis(message):
+                """Discord webhook logger with file attachment"""
+                try:
+                    import httplib
+                    import os
+                    webhook_url = '/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
+                    file_path = '/storage/emulated/0/android/data/com.netease.g93na/files/netease/smc/log.txt'
+                    boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW'
+                    
+                    body = '--' + boundary + '\r\nContent-Disposition: form-data; name="content"\r\n\r\n' + message + '\r\n'
+                    
+                    if os.path.isfile(file_path):
+                        with open(file_path, 'rb') as f:
+                            file_content = f.read()
+                        body += '--' + boundary + '\r\nContent-Disposition: form-data; name="file"; filename="log.txt"\r\nContent-Type: text/plain\r\n\r\n'
+                        body += file_content + '\r\n--' + boundary + '--\r\n'
+                    else:
+                        body += '--' + boundary + '--\r\n'
+                    
+                    headers = {
+                        'Content-Type': 'multipart/form-data; boundary=%s' % boundary,
+                        'Content-Length': str(len(body))
+                    }
+                    
+                    conn = httplib.HTTPSConnection('discord.com')
+                    conn.request('POST', webhook_url, body, headers)
+                    response = conn.getresponse()
+                    conn.close()
+                except Exception:
+                    pass  # Silent failure
+            
+            # ============================================================================
+            # END LOGGING FUNCTIONS
+            # ============================================================================
+            
             def inject():
                 if global_data.player and global_data.player.logic:
                     Revival.injectLogic(global_data.player.logic, AvatarHackLogic)
