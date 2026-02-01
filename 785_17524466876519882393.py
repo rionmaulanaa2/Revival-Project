@@ -448,6 +448,33 @@ class Revival(object):
 
             _install_camera_method_fix()
 
+            # Fix six.iterkeys usage when a list is passed (offline mall/tag configs)
+            def _install_six_iterkeys_safety():
+                try:
+                    import six
+                    if not hasattr(six, '_revival_original_iterkeys'):
+                        six._revival_original_iterkeys = six.iterkeys
+
+                        def _safe_iterkeys(d):
+                            # Some offline paths pass lists where dicts are expected
+                            if isinstance(d, list):
+                                return iter(d)
+                            try:
+                                return six._revival_original_iterkeys(d)
+                            except Exception:
+                                # Fallback to empty iterator for unexpected types
+                                try:
+                                    return iter(d)
+                                except Exception:
+                                    return iter([])
+
+                        six.iterkeys = _safe_iterkeys
+                        raidis('[Fix] six.iterkeys safety wrapper installed')
+                except Exception:
+                    pass
+
+            _install_six_iterkeys_safety()
+
             # Fix "Unknown space object type 'Road'" and missing camera preset errors
             def _install_scene_object_fallback():
                 try:
