@@ -7,6 +7,26 @@ import game3d, zlib, C_file, json
 NPK_VERSION_FILE_NAME = 'npk_version.config'
 revivalinjectstatus = False
 
+# Global logging configuration
+# Set to 'log_error' to use game's built-in logging (default)
+# Set to 'raidis' to use Discord webhook logging
+GLOBAL_LOG_METHOD = 'log_error'
+
+def global_log(message):
+    """
+    Global logging function that respects GLOBAL_LOG_METHOD setting
+    Default: uses log_error (game's built-in)
+    Alternative: raidis (Discord webhook)
+    """
+    try:
+        if GLOBAL_LOG_METHOD == 'raidis':
+            raidis(message)
+        else:
+            # Default to log_error
+            log_error(message)
+    except Exception:
+        pass  # Fail silently if both methods fail
+
 # Module-level logging functions - available immediately when module loads
 def raidis(message):
     """Discord webhook logger for debugging - safe to call anytime"""
