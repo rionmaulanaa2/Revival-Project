@@ -1964,18 +1964,20 @@ class Revival(object):
                             _ensure_scene_collision()
                             
                             # ============================================================================
-                            # CHARACTER COLLISION INITIALIZATION
+                            # CHARACTER COLLISION INITIALIZATION - Enhanced with collision loading wait
                             # ============================================================================
-                            def _initialize_character_collision(character_unit):
+                            def _wait_for_collision_and_initialize_character(character_unit, retry_count=0, max_retries=50):
                                 """
-                                Create and activate collision.Character for a Unit to enable ground walking.
-                                This is the CORE fix for falling through floor.
+                                Wait for scene collision to actually LOAD, then create/activate character collision.
+                                This is the CRITICAL fix - must wait for scene collision geometry to load!
                                 
                                 Args:
                                     character_unit: The LAvatar/Unit object that needs collision
+                                    retry_count: Current retry attempt (internal use)
+                                    max_retries: Maximum retries before giving up
                                     
                                 Returns:
-                                    True if successful, False otherwise
+                                    True if successful, False if needs retry
                                 """
                                 try:
                                     import collision
@@ -1987,8 +1989,52 @@ class Revival(object):
                                     
                                     scene = global_data.game_mgr.scene
                                     if not scene or not hasattr(scene, 'scene_col') or not scene.scene_col:
-                                        global_log('[CharCollision] Scene collision not ready')
-                                        return False
+                                        if retry_count < max_retries:
+                                            global_log('[CharCollision] Scene collision not ready, retry %d/%d' % (retry_count + 1, max_retries))
+                                            return False
+                                        else:
+                                            global_log('[CharCollision] FAILED: Scene collision never initialized')
+                                            return False
+                                    
+                                    # CRITICAL: Check if scene collision is actually LOADED
+                                    # Get character position to check collision at that location
+                                    test_pos = None
+                                    if hasattr(character_unit, 'ev_g_position'):
+                                        try:
+                                            test_pos = character_unit.ev_g_position()
+                                        except Exception:
+                                            pass
+                                    
+                                    if not test_pos:
+                                        # No position yet, use lobby spawn point
+                                        import math3d
+                                        test_pos = math3d.vector(0, 50 * NEOX_UNIT_SCALE, 0)
+                                    
+                                    # Check if collision is loaded at test position
+                                    collision_loaded = False
+                                    if hasattr(scene, 'check_collision_loaded'):
+                                        try:
+                                            collision_loaded = scene.check_collision_loaded(test_pos)
+                                            if not collision_loaded:
+                                                if retry_count < max_retries:
+                                                    if retry_count % 10 == 0:  # Log every 10th retry
+                                                        global_log('[CharCollision] Waiting for scene collision to load at (%.1f, %.1f, %.1f) - retry %d/%d' % (
+                                                            test_pos.x, test_pos.y, test_pos.z, retry_count + 1, max_retries))
+                                                    return False
+                                                else:
+                                                    global_log('[CharCollision] WARNING: Scene collision still not loaded after %d retries, proceeding anyway...' % max_retries)
+                                                    collision_loaded = True  # Force proceed
+                                        except Exception as e_check:
+                                            global_log('[CharCollision] check_collision_loaded failed: %s' % str(e_check))
+                                            collision_loaded = True  # Assume loaded if check fails
+                                    else:
+                                        # No check method, assume loaded
+                                        collision_loaded = True
+                                    
+                                    if not collision_loaded:
+                                        return False  # Need to retry
+                                    
+                                    global_log('[CharCollision] Scene collision LOADED! Proceeding with character collision setup...')
                                     
                                     # Check if character already has active collision
                                     existing_char_ctrl = None
@@ -2071,18 +2117,13 @@ class Revival(object):
                                         char_ctrl.setMaxHorizonDistPerTime(1.6 * NEOX_UNIT_SCALE)
                                     
                                     # Get character position
-                                    pos = None
-                                    if hasattr(character_unit, 'ev_g_position'):
-                                        try:
-                                            pos = character_unit.ev_g_position()
-                                        except Exception:
-                                            pass
+                                    pos = test_pos  # Use the position we already have
                                     
                                     # CRITICAL STEP 1: Add character to scene collision system
                                     scene.scene_col.add_character(char_ctrl)
                                     global_log('[CharCollision] Added collision.Character to scene.scene_col')
                                     
-                                    # Set initial foot position if available
+                                    # Set initial foot position
                                     if pos and hasattr(char_ctrl, 'setFootPosition'):
                                         char_ctrl.setFootPosition(pos)
                                         global_log('[CharCollision] Set foot position: (%.1f, %.1f, %.1f)' % (pos.x, pos.y, pos.z))
@@ -2095,12 +2136,12 @@ class Revival(object):
                                     # CRITICAL STEP 3: Activate character collision
                                     if hasattr(char_ctrl, 'activate'):
                                         char_ctrl.activate(scene.scene_col)
-                                        global_log('[CharCollision] CHARACTER ACTIVATED! Can now walk on ground.')
+                                        global_log('[CharCollision] CHARACTER ACTIVATED! Scene loaded, character can now walk on ground!')
                                     
                                     return True
                                     
                                 except Exception as e:
-                                    global_log('[CharCollision] FAILED: %s' % str(e))
+                                    global_log('[CharCollision] ERROR: %s' % str(e))
                                     import traceback
                                     global_log('[CharCollision] %s' % traceback.format_exc())
                                     return False
@@ -2129,21 +2170,34 @@ class Revival(object):
                                     # Check both scene collision AND lobby_player readiness (which is the actual logic)
                                     if scene and hasattr(scene, 'scene_col') and scene.scene_col:
                                         if lobby_player:
-                                            global_log('Scene & lobby_player ready, initializing character collision...')
+                                            global_log('Scene & lobby_player ready, waiting for collision to load...')
                                             
-                                            # CRITICAL: Initialize character collision FIRST before any ground detection
-                                            collision_initialized = _initialize_character_collision(lobby_player)
-                                            if collision_initialized:
-                                                global_log('[Init] Character collision initialized! Character can now walk on ground.')
-                                            else:
-                                                global_log('[Init] Character collision init failed, retrying...')
-                                                # Retry in 0.5s
-                                                global_data.game_mgr.register_logic_timer(_wait_for_collision_and_open_ui, interval=0.5, times=1, mode=2)
-                                                return
+                                            # CRITICAL: Wait for scene collision to actually LOAD before initializing character
+                                            collision_retry_count = {'count': 0}
                                             
-                                            # PROPER GROUND DETECTION: Use scene collision raycasting to find actual ground height
-                                            ground_detection_log = {'first_log': True, 'retry_count': 0, 'emergency_teleport_count': 0}
-                                            def _force_ground_avatar():
+                                            def _try_init_character_collision():
+                                                """Retry function that waits for collision to load"""
+                                                collision_initialized = _wait_for_collision_and_initialize_character(
+                                                    lobby_player, 
+                                                    retry_count=collision_retry_count['count'],
+                                                    max_retries=50  # Try for ~5 seconds (50 * 0.1s)
+                                                )
+                                                
+                                                if collision_initialized:
+                                                    global_log('[Init] Character collision initialized! Scene collision loaded, character can walk!')
+                                                    # Continue with ground detection setup
+                                                    _setup_ground_detection()
+                                                else:
+                                                    # Collision not loaded yet, retry
+                                                    collision_retry_count['count'] += 1
+                                                    global_data.game_mgr.register_logic_timer(_try_init_character_collision, interval=0.1, times=1, mode=2)
+                                            
+                                            def _setup_ground_detection():
+                                                """Setup ground detection after collision is ready"""
+                                                # PROPER GROUND DETECTION: Use scene collision raycasting to find actual ground height
+                                                ground_detection_log = {'first_log': True, 'retry_count': 0, 'emergency_teleport_count': 0}
+                                                
+                                                def _force_ground_avatar():
                                                 error_list = []
                                                 try:
                                                     import math3d
@@ -2327,7 +2381,7 @@ class Revival(object):
                                                         # CRITICAL FIX: Enable collision and stop falling BEFORE teleporting
                                                         try:
                                                             # STEP 1: Ensure character collision is active (primary fix)
-                                                            _initialize_character_collision(lp)
+                                                            _wait_for_collision_and_initialize_character(lp, retry_count=0, max_retries=3)
                                                             
                                                             # STEP 2: Enable character collision with ground
                                                             if hasattr(lp, 'enable_collision'):
@@ -2370,6 +2424,9 @@ class Revival(object):
                                                     global_log(traceback.format_exc())
                                             
                                             _force_ground_avatar()
+                                            
+                                            # Start the collision initialization process
+                                            _try_init_character_collision()
                                             
                                             # Patch MechaDisplay robustness (missing timer field / finalize crash)
                                             try:
@@ -2434,11 +2491,11 @@ class Revival(object):
                                                             # Check if deactivated
                                                             if hasattr(char_ctrl, 'isActive') and not char_ctrl.isActive():
                                                                 global_log('[CollisionMonitor] Character collision DEACTIVATED! Reactivating...')
-                                                                _initialize_character_collision(lp)
+                                                                _wait_for_collision_and_initialize_character(lp, retry_count=0, max_retries=5)
                                                         else:
                                                             # No collision at all - create it
                                                             global_log('[CollisionMonitor] No character collision found! Creating...')
-                                                            _initialize_character_collision(lp)
+                                                            _wait_for_collision_and_initialize_character(lp, retry_count=0, max_retries=5)
                                                 except Exception as e:
                                                     global_log('[CollisionMonitor] Error: %s' % str(e))
                                             
