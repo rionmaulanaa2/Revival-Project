@@ -1238,6 +1238,10 @@ class Revival(object):
                         self._new_items = set()
                         self._purchased_items = set()
                         
+                            # Initialize mall_tag_conf as dict-of-dicts (page -> subpage -> config)
+                            # This is accessed by mall_utils.get_all_mall_red_point via six.iterkeys()
+                            self.mall_tag_conf = {}
+                        
                         # Initialize default shop categories
                         self._shop_categories = ['weapon', 'character', 'mecha', 'item', 'gift', 'yueka']
                         for category in self._shop_categories:
@@ -1307,8 +1311,8 @@ class Revival(object):
                     
                     def get_mall_tag_conf(self):
                         """Get mall tag configuration for UI tabs/categories"""
-                        # Return empty list or default mall tags for offline mode
-                        return []
+                            # Return dict (not list) - mall_utils expects dict for iterkeys()
+                            return self.mall_tag_conf
                     
                     def get_shop_item_list(self, category=None):
                         """Get list of shop items for a category"""
