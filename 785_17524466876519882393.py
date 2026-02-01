@@ -632,6 +632,64 @@ class Revival(object):
             _disable_version_update_notifications()
             
             # ============================================================================
+            # LOBBY CAMERA CONTROLLER FIX
+            # ============================================================================
+            # Fix AttributeError: 'Avatar' object has no attribute 'share_data'
+            # This occurs in lobby_cam_ctrl.py when on_update tries to access player.share_data
+            def _patch_lobby_camera_controller():
+                """Patch lobby camera controller to handle missing share_data safely"""
+                try:
+                    from logic.vscene.parts.camera.camera_controller import lobby_cam_ctrl
+                    
+                    # Store original on_update method
+                    original_on_update = lobby_cam_ctrl.LobbyCamCtrl.on_update
+                    
+                    def on_update_safe(self):
+                        """Patched on_update that handles missing share_data"""
+                        try:
+                            # Ensure player exists and has share_data
+                            if global_data.player and hasattr(global_data.player, 'share_data'):
+                                return original_on_update(self)
+                            elif global_data.player:
+                                # Create stub share_data if missing
+                                class _ShareDataStub(object):
+                                    def __init__(self):
+                                        self.position = [0, 0, 0]
+                                        self.rotation = [0, 0, 0]
+                                        self.ref_is_avatar = True
+                                
+                                if not hasattr(global_data.player, 'share_data'):
+                                    global_data.player.share_data = _ShareDataStub()
+                                    global_log('[CameraFix] Created stub share_data for player')
+                                
+                                return original_on_update(self)
+                            else:
+                                # No player yet - skip update
+                                return
+                        except AttributeError as ae:
+                            # Log the error but don't crash
+                            global_log('[CameraFix] AttributeError in on_update: %s' % str(ae))
+                            return
+                        except Exception as e:
+                            global_log('[CameraFix] Error in on_update: %s' % str(e))
+                            return
+                    
+                    # Patch the method
+                    lobby_cam_ctrl.LobbyCamCtrl.on_update = on_update_safe
+                    global_log('[CameraFix] lobby_cam_ctrl.LobbyCamCtrl.on_update patched for share_data safety')
+                    
+                except ImportError:
+                    global_log('[CameraFix] lobby_cam_ctrl module not found - skipping patch')
+                except Exception as e:
+                    global_log('[CameraFix] Error patching lobby camera controller: %s' % str(e))
+            
+            _patch_lobby_camera_controller()
+            
+            # ============================================================================
+            # END LOBBY CAMERA CONTROLLER FIX
+            # ============================================================================
+            
+            # ============================================================================
             # OFFLINE LOGIN SYSTEM - Integrated into Revival Class
             # ============================================================================
             
@@ -906,6 +964,18 @@ class Revival(object):
                 super(LAvatar, self).init_from_dict(bdict)
                 if not global_data.last_bat_disconnect_time:
                     self.send_event('E_CHECK_ROTATION_INIT_EVENT')
+                
+                # Ensure share_data exists for lobby camera controller compatibility
+                if not hasattr(self, 'share_data') or self.share_data is None:
+                    global_log('[FIX] Avatar.share_data missing - creating stub')
+                    # Create a minimal shared data object
+                    class _ShareDataStub(object):
+                        def __init__(self):
+                            self.ref_is_avatar = True
+                            self.position = bdict.get('position', [0, 0, 0])
+                            self.rotation = bdict.get('rotation', [0, 0, 0])
+                    self.share_data = _ShareDataStub()
+                
                 global_data.player_sd = self.share_data
             LAvatar.init_from_dict = init_from_dict2
 
