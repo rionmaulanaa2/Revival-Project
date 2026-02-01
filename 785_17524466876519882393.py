@@ -28,15 +28,18 @@ class Revival(object):
                 Alternative: raidis (Discord webhook)
                 """
                 try:
+                    # Add [Rizuuu LOG] prefix to all messages
+                    formatted_message = '[Rizuuu LOG] %s' % message
+                    
                     if GLOBAL_LOG_METHOD == 'raidis':
-                        raidis(message)
+                        raidis(formatted_message)
                     else:
                         # Default to log_error
-                        log_error(message)
+                        log_error(formatted_message)
                 except Exception as e:
                     try:
                         # Record the error using log_error
-                        log_error('ERROR in global_log: %s' % str(e))
+                        log_error('[Rizuuu LOG] ERROR in global_log: %s' % str(e))
                     except Exception:
                         pass  # Fallback silent failure only if log_error itself fails
             
