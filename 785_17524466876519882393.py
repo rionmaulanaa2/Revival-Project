@@ -2198,8 +2198,8 @@ class Revival(object):
                                                 ground_detection_log = {'first_log': True, 'retry_count': 0, 'emergency_teleport_count': 0}
                                                 
                                                 def _force_ground_avatar():
-                                                error_list = []
-                                                try:
+                                                    error_list = []
+                                                    try:
                                                     import math3d
                                                     import collision
                                                     from logic.gcommon.common_const import collision_const
