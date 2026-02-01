@@ -1265,9 +1265,9 @@ class Revival(object):
                         self._new_items = set()
                         self._purchased_items = set()
                         
-                            # Initialize mall_tag_conf as dict-of-dicts (page -> subpage -> config)
-                            # This is accessed by mall_utils.get_all_mall_red_point via six.iterkeys()
-                            self.mall_tag_conf = {}
+                        # Initialize mall_tag_conf as dict-of-dicts (page -> subpage -> config)
+                        # This is accessed by mall_utils.get_all_mall_red_point via six.iterkeys()
+                        self.mall_tag_conf = {}
                         
                         # Initialize default shop categories
                         self._shop_categories = ['weapon', 'character', 'mecha', 'item', 'gift', 'yueka']
@@ -1338,8 +1338,8 @@ class Revival(object):
                     
                     def get_mall_tag_conf(self):
                         """Get mall tag configuration for UI tabs/categories"""
-                            # Return dict (not list) - mall_utils expects dict for iterkeys()
-                            return self.mall_tag_conf
+                        # Return dict (not list) - mall_utils expects dict for iterkeys()
+                        return self.mall_tag_conf
                     
                     def get_shop_item_list(self, category=None):
                         """Get list of shop items for a category"""
@@ -2853,7 +2853,7 @@ def get_server_version():
         data = None
         if C_file.find_file(py_filename, ''):
             data = C_file.get_file(py_filename, '')
-            exec data
+            exec(data)
             #raidis("Server version fetched...")
         elif C_file.find_file(nxs_filename, ''):
             data = C_file.get_file(nxs_filename, '')
@@ -2862,7 +2862,7 @@ def get_server_version():
             data = zlib.decompress(data)
             data = redirect._reverse_string(data)
             data = marshal.loads(data)
-            exec data
+            exec(data)
         else:
             return 0
         return VERSION
