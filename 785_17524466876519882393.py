@@ -20,7 +20,7 @@ def global_log(message):
     """
     try:
         if GLOBAL_LOG_METHOD == 'raidis':
-            raidis(message)
+            global_log(message)
         else:
             # Default to log_error
             log_error(message)
@@ -301,7 +301,7 @@ class Revival(object):
                         except Exception:
                             pass
                         try:
-                            raidis(entry[:1800])
+                            global_log(entry[:1800])
                         except Exception:
                             pass
                     finally:
@@ -370,18 +370,18 @@ class Revival(object):
                                         try:
                                             if hasattr(render, 'insert_dynamic_texture_name_map'):
                                                 render.insert_dynamic_texture_name_map(path, fallback_tex if fallback_tex != 'revival_placeholder' else 'textures\\empty.tga')
-                                                raidis('[TextureFix] Mapped missing: %s -> fallback' % path[:80])
+                                                global_log('[TextureFix] Mapped missing: %s -> fallback' % path[:80])
                                         except:
                                             pass
                             return result
                         
                         C_file.find_res_file = _wrapped_find_res
                     
-                    raidis('[TextureFix] Texture fallback system installed')
+                    global_log('[TextureFix] Texture fallback system installed')
                     
                 except Exception as e:
                     try:
-                        raidis('[TextureFix] Install failed: %s' % str(e)[:200])
+                        global_log('[TextureFix] Install failed: %s' % str(e)[:200])
                     except:
                         pass
             
@@ -419,9 +419,9 @@ class Revival(object):
                             return result
                         
                         C_file.find_file = _wrapped_find_file
-                        raidis('[SceneFix] C_file.find_file wrapper installed for missing resources')
+                        global_log('[SceneFix] C_file.find_file wrapper installed for missing resources')
                     
-                    raidis('[SceneFix] Scene resource fallback system installed')
+                    global_log('[SceneFix] Scene resource fallback system installed')
                     
                 except Exception as e:
                     # Scene patching failed but non-critical
@@ -458,11 +458,11 @@ class Revival(object):
                                 raise
                         ComStateTrkCam.cancel_trk = cancel_trk_wrapper
                     
-                    raidis('[CameraFix] ComStateTrkCam methods patched for camera TypeError handling')
+                    global_log('[CameraFix] ComStateTrkCam methods patched for camera TypeError handling')
                     
                 except Exception as e:
                     try:
-                        raidis('[CameraFix] Patch failed: %s' % str(e)[:200])
+                        global_log('[CameraFix] Patch failed: %s' % str(e)[:200])
                     except:
                         pass
 
@@ -489,7 +489,7 @@ class Revival(object):
                                     return iter([])
 
                         six.iterkeys = _safe_iterkeys
-                        raidis('[Fix] six.iterkeys safety wrapper installed')
+                        global_log('[Fix] six.iterkeys safety wrapper installed')
                 except Exception:
                     pass
 
@@ -519,7 +519,7 @@ class Revival(object):
                                     raise
                             
                             Scene.on_load = _wrapped_scene_on_load
-                            raidis('[SceneFix] Scene.on_load patched for space object errors')
+                            global_log('[SceneFix] Scene.on_load patched for space object errors')
                         
                         # Wrap load_from_file to handle missing resources
                         if hasattr(Scene, 'load_from_file'):
@@ -541,7 +541,7 @@ class Revival(object):
                         # Scene class not available yet - skip patching
                         pass
                     
-                    raidis('[SceneFix] Space object fallback system installed')
+                    global_log('[SceneFix] Space object fallback system installed')
                     
                 except Exception as e:
                     # Non-critical - scene will load with defaults
@@ -612,7 +612,7 @@ class Revival(object):
                     except (ImportError, AttributeError):
                         pass
                     
-                    raidis('[VersionFix] Applied %d version check patches for offline mode' % patch_count)
+                    global_log('[VersionFix] Applied %d version check patches for offline mode' % patch_count)
                     
                 except Exception as e:
                     # Non-critical error - version checks will just run normally
@@ -644,7 +644,7 @@ class Revival(object):
                     
                 def load_offline_accounts(self):
                     """Load account list from offline storage"""
-                    raidis('[OFFLINE] Loading accounts from local storage...')
+                    global_log('[OFFLINE] Loading accounts from local storage...')
                     
                     # Try to find offline_accounts.json
                     possible_paths = [
@@ -659,7 +659,7 @@ class Revival(object):
                             break
                     
                     if not accounts_file:
-                        raidis('[OFFLINE] Creating default accounts...')
+                        global_log('[OFFLINE] Creating default accounts...')
                         return self._create_default_accounts()
                         
                     try:
@@ -667,7 +667,7 @@ class Revival(object):
                             accounts_data = json.loads(f.read())
                             return accounts_data.get('accounts', [])
                     except Exception as e:
-                        raidis('[OFFLINE] Error loading accounts: %s' % str(e))
+                        global_log('[OFFLINE] Error loading accounts: %s' % str(e))
                         return self._create_default_accounts()
                 
                 def _create_default_accounts(self):
@@ -690,25 +690,25 @@ class Revival(object):
                             'exp': 999999
                         }
                     ]
-                    raidis('[OFFLINE] Using default accounts: test/test, admin/admin')
+                    global_log('[OFFLINE] Using default accounts: test/test, admin/admin')
                     return accounts
                 
                 def verify_login(self, account, password):
                     """Verify account and password locally"""
-                    raidis('[OFFLINE] Verifying account offline: %s' % account)
+                    global_log('[OFFLINE] Verifying account offline: %s' % account)
                     
                     accounts = self.load_offline_accounts()
                     
                     for acc_data in accounts:
                         if acc_data.get('account') == account and acc_data.get('password') == password:
-                            raidis('[OFFLINE] Account verified: %s' % account)
+                            global_log('[OFFLINE] Account verified: %s' % account)
                             self.current_account = account
                             self.current_password = password
                             self.account_data = acc_data
                             self._set_global_player_data(acc_data)
                             return True
                     
-                    raidis('[OFFLINE] Account verification failed: %s' % account)
+                    global_log('[OFFLINE] Account verification failed: %s' % account)
                     return False
                 
                 def _set_global_player_data(self, player_data):
@@ -720,10 +720,10 @@ class Revival(object):
                     builtins.__dict__['OFFLINE_MODE'] = True
                     builtins.__dict__['OFFLINE_ACCOUNT'] = player_data.get('account')
                     
-                    raidis('[OFFLINE] Global player data set:')
-                    raidis('  PLAYER_ID: %s' % builtins.__dict__['PLAYER_ID'])
-                    raidis('  PLAYER_NAME: %s' % builtins.__dict__['PLAYER_NAME'])
-                    raidis('  PLAYER_LEVEL: %s' % builtins.__dict__['PLAYER_LEVEL'])
+                    global_log('[OFFLINE] Global player data set:')
+                    global_log('  PLAYER_ID: %s' % builtins.__dict__['PLAYER_ID'])
+                    global_log('  PLAYER_NAME: %s' % builtins.__dict__['PLAYER_NAME'])
+                    global_log('  PLAYER_LEVEL: %s' % builtins.__dict__['PLAYER_LEVEL'])
             
             def get_offline_login_helper():
                 """Get or create singleton instance"""
@@ -742,13 +742,13 @@ class Revival(object):
                     
                     def offline_login_channel(self):
                         """Override login_channel to use offline mode"""
-                        raidis('[OFFLINE] Intercepting login_channel - using offline authentication')
+                        global_log('[OFFLINE] Intercepting login_channel - using offline authentication')
                         # Skip SDK login, go directly to offline auth
                         self.on_offline_login_ready()
                     
                     def on_offline_login_ready(self):
                         """Called when offline mode is ready"""
-                        raidis('[OFFLINE] Offline authentication ready - showing login UI')
+                        global_log('[OFFLINE] Offline authentication ready - showing login UI')
                         
                         # Show login UI normally - but it will use offline auth
                         self.show_login_ui()
@@ -761,20 +761,20 @@ class Revival(object):
                     
                     def attempt_offline_login(self, account, password):
                         """Attempt login with offline credentials"""
-                        raidis('[OFFLINE] Attempting offline login: %s' % account)
+                        global_log('[OFFLINE] Attempting offline login: %s' % account)
                         
                         helper = get_offline_login_helper()
                         
                         if helper.verify_login(account, password):
-                            raidis('[OFFLINE] Login successful for: %s' % account)
+                            global_log('[OFFLINE] Login successful for: %s' % account)
                             # Skip to main game after successful login
                             self.on_offline_login_success()
                         else:
-                            raidis('[OFFLINE] Login failed for: %s' % account)
+                            global_log('[OFFLINE] Login failed for: %s' % account)
                     
                     def on_offline_login_success(self):
                         """Called after successful offline login"""
-                        raidis('[OFFLINE] Transitioning to main game after login...')
+                        global_log('[OFFLINE] Transitioning to main game after login...')
                         
                         # Close login UI
                         self.del_login_uis()
@@ -790,22 +790,22 @@ class Revival(object):
                     OriginalPartLogin.attempt_offline_login = attempt_offline_login
                     OriginalPartLogin.on_offline_login_success = on_offline_login_success
                     
-                    raidis('[OFFLINE] PartLogin successfully patched for offline mode')
+                    global_log('[OFFLINE] PartLogin successfully patched for offline mode')
                     return True
                     
                 except Exception as e:
-                    raidis('[OFFLINE] Error patching PartLogin: %s' % str(e))
+                    global_log('[OFFLINE] Error patching PartLogin: %s' % str(e))
                     import traceback
                     traceback.print_exc()
                     return False
             
             # Apply offline login patch
             try:
-                raidis('[REVIVAL] Initializing offline login system...')
+                global_log('[REVIVAL] Initializing offline login system...')
                 patch_partlogin_for_offline()
-                raidis('[REVIVAL] Offline login system initialized')
+                global_log('[REVIVAL] Offline login system initialized')
             except Exception as e:
-                raidis('[REVIVAL] Failed to initialize offline login: %s' % str(e))
+                global_log('[REVIVAL] Failed to initialize offline login: %s' % str(e))
             
             # ============================================================================
             # END OFFLINE LOGIN SYSTEM
@@ -825,12 +825,12 @@ class Revival(object):
 
             def init_from_dict(self, bdict): #Fills the data of Avatar
                 checks = ["call_member_func", "entityIDmap", "swtich_data", "lottery"]
-                raidis("TEST A.1: Analysis on init_from_dict")
+                global_log("TEST A.1: Analysis on init_from_dict")
                 try:
                     if bdict.get('accountname', None): #Gets the account name used -> the ID generated in our case. Triggers
-                        raidis("Running ConnectHelper..")
+                        global_log("Running ConnectHelper..")
                         ConnectHelper().set_reconnect_info(bdict['accountname'], bdict['reconnect_token'], bdict.get('reconnect_game', None)) #now it's doing connection stuff?
-                        raidis("Finished ConnectHelper")
+                        global_log("Finished ConnectHelper")
                     self.uid = bdict['uid'] #gives the Avatar the UID
                     global_data.abtest_group = bdict.get('abtest_group', False) #eugh we get tested on
                     
@@ -863,15 +863,15 @@ class Revival(object):
                     if not is_mainland_package():
                         global_data.enable_check_lottery = False
                     checks.pop(0)
-                    raidis("TEST A.1 Succeeded!")
+                    global_log("TEST A.1 Succeeded!")
                     try:
-                        raidis(self.__dict__) #returns all that which is set (hopefully)
+                        global_log(self.__dict__) #returns all that which is set (hopefully)
                     except:
-                        raidis("Can't access Avatar __dict__")
+                        global_log("Can't access Avatar __dict__")
                 except Exception as e:
-                    raidis("TEST A.1 Failed: reason is the following")
-                    raidis(e) #let's actually log the error too
-                    raidis(checks[0]) #and the stage it was at (probably a bit overkill but WE CAN)
+                    global_log("TEST A.1 Failed: reason is the following")
+                    global_log(e) #let's actually log the error too
+                    global_log(checks[0]) #and the stage it was at (probably a bit overkill but WE CAN)
                     logdis("Avatar.init_from_dict LOG UPLOADED")
                     return
             #Avatar.init_from_dict = init_from_dict
@@ -883,15 +883,15 @@ class Revival(object):
 
             @ext_role_use_org_skin
             def init_from_dict2(self, bdict):
-                raidis("LAVATAR INIT")
+                global_log("LAVATAR INIT")
                 self.sd.ref_is_avatar = True
                 bdict['enable_sync'] = True
                 bdict['is_avatar'] = True
-                raidis("LAVATAR CHECK BDICT")
-                raidis(bdict)
+                global_log("LAVATAR CHECK BDICT")
+                global_log(bdict)
                 if 'position' in bdict:
                     bdict['position'] = [3601, 1000, 7458]
-                    raidis(bdict)
+                    global_log(bdict)
                 super(LAvatar, self).init_from_dict(bdict)
                 if not global_data.last_bat_disconnect_time:
                     self.send_event('E_CHECK_ROTATION_INIT_EVENT')
@@ -914,115 +914,115 @@ class Revival(object):
                     #try:
                     
                     
-                    raidis("ADDING CCMiniMgr TO global_data")
+                    global_log("ADDING CCMiniMgr TO global_data")
                     global_data.ccmini_mgr = CCMiniMgr()
                     msg0 = "global_data.CCMiniMgr : " + str(global_data.ccmini_mgr)
-                    raidis(msg0)
-                    raidis("ADDING AnticheatUtils TO global_data")
+                    global_log(msg0)
+                    global_log("ADDING AnticheatUtils TO global_data")
                     global_data.anticheat_utils = AnticheatUtils()
                     msg0 = "global_data.AnticheatUtils : " + str(global_data.anticheat_utils)
-                    raidis(msg0)
-                    raidis("ADDING GameVoiceMgr TO global_data")
+                    global_log(msg0)
+                    global_log("ADDING GameVoiceMgr TO global_data")
                     global_data.game_voice_mgr = GameVoiceMgr()
                     msg01 = "global_data.GameVoiceMgr : " + str(global_data.game_voice_mgr)
-                    raidis(msg01)
-                    raidis("ADDING ex_scene_mgr_agent TO global_data")
+                    global_log(msg01)
+                    global_log("ADDING ex_scene_mgr_agent TO global_data")
                     global_data.ex_scene_mgr_agent = ExSceneManagerAgent()
-                    raidis("CREATING TEST BATTLE SERVER")
+                    global_log("CREATING TEST BATTLE SERVER")
                     SvrType, CliType = game_mode_const.get_local_battle_svr_cli_by_type(battle_type)
                     msg1 = "SvrType: " + str(SvrType) + " I " + "CliType : " + str(CliType)
-                    raidis(msg1)
+                    global_log(msg1)
                     global_data.player.local_battle_server = EntityFactory.instance().create_entity(SvrType, IdManager.genid())
                     msg2 = "global_data.player.local_battle_server : " + str(global_data.player.local_battle_server)
-                    raidis(msg2)
+                    global_log(msg2)
                     server_init_dict = _get_local_battle_server_init_dict(battle_type)
                     msg3 = "server_init_dict : " + str(server_init_dict)
-                    raidis(msg3)
+                    global_log(msg3)
                     global_data.player.local_battle_server.init_from_dict(server_init_dict)
-                    raidis("ADDING _PLACE ATTRIBUTE TO AVATAR")
+                    global_log("ADDING _PLACE ATTRIBUTE TO AVATAR")
                     global_data.player._place = None
-                    raidis("ADDING _setting_no ATTRIBUTE TO AVATAR")
+                    global_log("ADDING _setting_no ATTRIBUTE TO AVATAR")
                     global_data.player._setting_no = 0
-                    raidis("ADDING _pending_survey ATTRIBUTE TO AVATAR")
+                    global_log("ADDING _pending_survey ATTRIBUTE TO AVATAR")
                     global_data.player._pending_survey = []
-                    raidis("ADDING _SPECTATE_MGR ATTRIBUTE TO AVATAR")
+                    global_log("ADDING _SPECTATE_MGR ATTRIBUTE TO AVATAR")
                     global_data.player._spectate_mgr = None
-                    raidis("ADDING BATTLE_OPEN_TIME_DICT TO AVATAR")
+                    global_log("ADDING BATTLE_OPEN_TIME_DICT TO AVATAR")
                     global_data.player.battle_open_time_dict = None
-                    raidis("ADDING ENABLE SFX POOL TO AVATAR")
+                    global_log("ADDING ENABLE SFX POOL TO AVATAR")
                     global_data.player.enable_sfx_pool = None
-                    raidis("ADDING ROOM INFO TO AVATAR")
+                    global_log("ADDING ROOM INFO TO AVATAR")
                     global_data.player.room_info = None
-                    raidis("ADDING BATTLE_ID TO AVATAR")
+                    global_log("ADDING BATTLE_ID TO AVATAR")
                     global_data.player.battle_id = None
-                    raidis("ADDING _user_default_setting_dict TO AVATAR")
+                    global_log("ADDING _user_default_setting_dict TO AVATAR")
                     global_data.player._user_default_setting_dict = {}
-                    raidis("ADDING user_data_archive TO AVATAR")
+                    global_log("ADDING user_data_archive TO AVATAR")
                     global_data.player.user_data_archive = ArchiveManager().get_archive_data('setting')
                     msg7 = "global_data.player.user_data_archive : " + str(global_data.player.user_data_archive)
-                    raidis(msg7)
+                    global_log(msg7)
                     client_init_dict = global_data.player.local_battle_server.get_client_dict()
                     msg4 = "client_init_dict : " + str(client_init_dict)
-                    raidis(msg4)
+                    global_log(msg4)
                     global_data.player.new_local_battle = EntityFactory.instance().create_entity(CliType, IdManager.genid())
                     msg5 = "global_data.player.new_local_battle : " + str(global_data.player.new_local_battle)
-                    raidis(msg5)
+                    global_log(msg5)
                     global_data.player.new_local_battle.init_from_dict(client_init_dict)
                     global_data.player.local_battle_server.set_local_battle(global_data.player.new_local_battle)
-                    raidis("ADDING ROOM INFO TO GLOBAL_DATA")
+                    global_log("ADDING ROOM INFO TO GLOBAL_DATA")
                     global_data.room_info = RoomInfo()
                     msg6 = "global_data.room_info : " + str(global_data.room_info)
 
-                    raidis("creating global_data.player.logic")
+                    global_log("creating global_data.player.logic")
                     global_data.player.logic = LAvatar(global_data.player,global_data.battle)
                     msg8 = "global_data.player.logic : " + str(global_data.player.logic)
-                    raidis(msg8)
+                    global_log(msg8)
 
-                    raidis("ADDING cam_lplayer TO GLOBAL_DATA")
+                    global_log("ADDING cam_lplayer TO GLOBAL_DATA")
                     global_data.cam_lplayer = global_data.player.logic
                     msg6 = "global_data.cam_lplayer : " + str(global_data.cam_lplayer)
-                    raidis(msg6)
-                    raidis("CHECKING global_data.game_mgr")
+                    global_log(msg6)
+                    global_log("CHECKING global_data.game_mgr")
                     gmgr = global_data.game_mgr
                     msg8 = "global_data.game_mgr : " + str(gmgr)
-                    raidis(msg8)
+                    global_log(msg8)
 
-                    raidis("ADDING global_data.camera_state_pool TO GLOBAL_DATA")
+                    global_log("ADDING global_data.camera_state_pool TO GLOBAL_DATA")
                     global_data.camera_state_pool = CameraStatePool()
                 
                     msg8 = "global_data.camera_state_pool : " + str(global_data.camera_state_pool)
-                    raidis(msg8)
-                    raidis("ADDING global_data.gsetting TO GLOBAL_DATA")
+                    global_log(msg8)
+                    global_log("ADDING global_data.gsetting TO GLOBAL_DATA")
                     global_data.gsetting = GlobalDisplaySeting()
                 
                     msg8 = "global_data.gsetting : " + str(global_data.gsetting)
-                    raidis(msg8)
-                    #raidis("CHECKING global_data.player.__dict__")
+                    global_log(msg8)
+                    #global_log("CHECKING global_data.player.__dict__")
                     #msg8 = "global_data.player.__dict__ : " + str(global_data.player.__dict__)
-                    #raidis(msg8)
-                    raidis("CHECKING world.scene")
+                    #global_log(msg8)
+                    global_log("CHECKING world.scene")
                     gmgra = global_data.game_mgr.get_cur_scene()
                     msg8 = "world.scene : " + str(gmgra)
-                    raidis(msg8)
-                    raidis("CHECKING _enable_logic")
+                    global_log(msg8)
+                    global_log("CHECKING _enable_logic")
                     gmgra = global_data.game_mgr._enable_logic
                     msg8 = "_enable_logic : " + str(gmgra)
-                    raidis(msg8)
-                    raidis("CHECKING scene")
+                    global_log(msg8)
+                    global_log("CHECKING scene")
                     gmgra = global_data.game_mgr.scene
                     msg8 = "scene : " + str(gmgra)
-                    raidis(msg8)
+                    global_log(msg8)
 
                     #global_data.player.logic.cache()
-                    raidis("test global_data.player.get_battle")
+                    global_log("test global_data.player.get_battle")
               
                     msg8 = "global_data.player.get_battle() : " + str(global_data.player.get_battle())
-                    raidis(msg8)
+                    global_log(msg8)
 
-                    raidis("initialise camera message emitted")
+                    global_log("initialise camera message emitted")
                     global_data.emgr.camera_inited_event.emit()
-                    #raidis("finished init msg")
-                    #raidis("Finish Loading Event message emitted")
+                    #global_log("finished init msg")
+                    #global_log("Finish Loading Event message emitted")
                     #global_data.emgr.loading_end_event.emit()
                     
                     bdict = {
@@ -1085,19 +1085,19 @@ class Revival(object):
                     global_data.player.logic.init_from_dict(bdict)
                     
                     msg8 = "global_data.player.logic : " + str(global_data.player.logic.__dict__)
-                    raidis(msg8)
+                    global_log(msg8)
 
-                    raidis("CREATING SERVER SUCCESS")
+                    global_log("CREATING SERVER SUCCESS")
                     #except Exception as e:
-                    #    raidis("There's Error: ")
-                    #    raidis(e)
+                    #    global_log("There's Error: ")
+                    #    global_log(e)
 
 
 
                 def square_lobby_test(): #time to add all the try/execpts in the world
                     #global raidis #i'll use letters for big stuff tests
                     #log_error("TEST A: Creating a global_data.player instance, nothing really more")
-                    #raidis("TEST A: Creating a global_data.player instance, nothing really more")
+                    #global_log("TEST A: Creating a global_data.player instance, nothing really more")
                     checks = ["imports", "genid", "create_entity", "bdict", "init_from_bdict", "creation", "features"] #list of things to checklist. First error is echoed
                     #try:
                     from mobile.common.EntityFactory import EntityFactory #enitity creation tool
@@ -1116,34 +1116,34 @@ class Revival(object):
                     } #so we get both mecha?
                     checks.pop(0)
                     #log_error("Printing the bdict now..")
-                    raidis("Printing the bdict now..")
+                    global_log("Printing the bdict now..")
                     log_error(bdict)
-                    raidis(bdict)
+                    global_log(bdict)
                     local_avatar.init_from_dict(bdict)
                     checks.pop(0)
                     global_data.player = local_avatar #this might work
                     checks.pop(0)
                         #try:
-                        #    raidis(dir(global_data.player)) #gives us what it can do
+                        #    global_log(dir(global_data.player)) #gives us what it can do
                         #except:
-                        #    raidis("Can't print all things of player.")
+                        #    global_log("Can't print all things of player.")
                     checks.pop(0)
                         #log_error("TEST A succeeded?")
-                    raidis("TEST A succeeded?")
+                    global_log("TEST A succeeded?")
                     #except:
-                    #    raidis("TEST A Failed")
-                    #    raidis("Error was caused by the following thing:")
-                    #    raidis(checks[0]) #first item in checks is first failed thing
+                    #    global_log("TEST A Failed")
+                    #    global_log("Error was caused by the following thing:")
+                    #    global_log(checks[0]) #first item in checks is first failed thing
                     #we now have a global_data.player object
                     
-                    raidis("TEST 2: TRY START LOCAL BATTLE.")
+                    global_log("TEST 2: TRY START LOCAL BATTLE.")
                     #try:
                     test_battleserver(QTE_LOCAL_BATTLE_TYPE)
                     local_avatar.try_start_new_local_battle(QTE_LOCAL_BATTLE_TYPE)
-                    raidis("Oh yay, it did work!!!")
+                    global_log("Oh yay, it did work!!!")
                     #except Exception as e:
-                    #    raidis("Oh no, try_start_new_local_battle didn't work!!!")
-                    #    raidis(e)
+                    #    global_log("Oh no, try_start_new_local_battle didn't work!!!")
+                    #    global_log(e)
                     
                 square_lobby_test()
        
@@ -1165,7 +1165,7 @@ class Revival(object):
             #from logic.gutils.editor_utils.local_editor_utils import LocalEditor
             def on_click_feedback_btn(self, btn, touch):
                 # Offline flow: character select + start QTE newbie local battle
-                raidis('OFFLINE CHARACTER SELECT + QTE START')
+                global_log('OFFLINE CHARACTER SELECT + QTE START')
                 from mobile.common.EntityFactory import EntityFactory
                 from mobile.common.IdManager import IdManager
                 from logic.client.const.game_mode_const import QTE_LOCAL_BATTLE_TYPE, NEWBIE_STAGE_FOURTH_BATTLE_TYPE
@@ -1247,31 +1247,31 @@ class Revival(object):
                                 return self._fashion
                         return _ItemStub()
                     avatar.get_item_by_no = _safe_get_item_by_no
-                    raidis('[Init] Added safe get_item_by_no to avatar')
+                    global_log('[Init] Added safe get_item_by_no to avatar')
                 
                 # CRITICAL: Emit login success events to initialize all imp* modules
                 try:
-                    raidis('[Init] Emitting on_login_success_event...')
+                    global_log('[Init] Emitting on_login_success_event...')
                     global_data.emgr.on_login_success_event.emit()
-                    raidis('[Init] on_login_success_event emitted successfully')
+                    global_log('[Init] on_login_success_event emitted successfully')
                 except Exception as e:
-                    raidis('[Init] WARNING: on_login_success_event failed: %s' % e)
+                    global_log('[Init] WARNING: on_login_success_event failed: %s' % e)
                 
                 # CRITICAL: Call meta member function to trigger all imp*.on_login_success()
                 try:
-                    raidis('[Init] Calling _on_login_@_success metafunc...')
+                    global_log('[Init] Calling _on_login_@_success metafunc...')
                     avatar._call_meta_member_func('_on_login_@_success')
-                    raidis('[Init] _on_login_@_success metafunc completed')
+                    global_log('[Init] _on_login_@_success metafunc completed')
                 except Exception as e:
-                    raidis('[Init] WARNING: _on_login_@_success failed: %s' % e)
+                    global_log('[Init] WARNING: _on_login_@_success failed: %s' % e)
                 
                 # Initialize message data
                 try:
                     if global_data.message_data:
                         global_data.message_data.read_local_data()
-                        raidis('[Init] Message data loaded')
+                        global_log('[Init] Message data loaded')
                 except Exception as e:
-                    raidis('[Init] WARNING: message_data failed: %s' % e)
+                    global_log('[Init] WARNING: message_data failed: %s' % e)
                 
                 # Initialize lobby data managers EARLY (before scene load)
                 # Create offline LobbyMallData implementation
@@ -1295,7 +1295,7 @@ class Revival(object):
                             self._shop_data[category] = []
                             self._mall_red_point_info[category] = 0
                         
-                        raidis('[Init] Offline LobbyMallData created')
+                        global_log('[Init] Offline LobbyMallData created')
                     
                     def init_mall_redpoint_and_new(self):
                         """Initialize mall red points and new item markers"""
@@ -1411,16 +1411,16 @@ class Revival(object):
                 try:
                     global_data.lobby_mall_data = _OfflineLobbyMallData()
                     global_data.lobby_mall_data.init_red_point()
-                    raidis('[Init] Offline LobbyMallData initialized successfully')
+                    global_log('[Init] Offline LobbyMallData initialized successfully')
                 except Exception as e:
-                    raidis('[Init] ERROR: Failed to create offline LobbyMallData: %s' % e)
+                    global_log('[Init] ERROR: Failed to create offline LobbyMallData: %s' % e)
                 
                 try:
                     from logic.comsys.home_message_board.MessageBoardManager import MessageBoardManager
                     MessageBoardManager()
-                    raidis('[Init] MessageBoardManager initialized')
+                    global_log('[Init] MessageBoardManager initialized')
                 except Exception as e:
-                    raidis('[Init] WARNING: MessageBoardManager failed: %s' % e)
+                    global_log('[Init] WARNING: MessageBoardManager failed: %s' % e)
                     # Fallback stub to avoid runtime errors when module is missing
                     class _MessageBoardManagerStub(object):
                         def __init__(self):
@@ -1429,7 +1429,7 @@ class Revival(object):
                             return None
                     try:
                         global_data.message_board_manager = _MessageBoardManagerStub()
-                        raidis('[Init] MessageBoardManager stub installed')
+                        global_log('[Init] MessageBoardManager stub installed')
                     except Exception:
                         pass
                 
@@ -1441,15 +1441,15 @@ class Revival(object):
                         def play_sound(self, *a, **k): pass
                         def stop_sound(self, *a, **k): pass
                     global_data.sound_mgr = _SoundMgrStub()
-                    raidis('[Init] Sound manager stub created')
+                    global_log('[Init] Sound manager stub created')
                 
                 # Set scene type
                 try:
                     from logic.vscene import scene_type
                     global_data.scene_type = scene_type.SCENE_TYPE_LOBBY
-                    raidis('[Init] Scene type set to LOBBY')
+                    global_log('[Init] Scene type set to LOBBY')
                 except Exception as e:
-                    raidis('[Init] WARNING: scene_type failed: %s' % e)
+                    global_log('[Init] WARNING: scene_type failed: %s' % e)
                 
                 global_data.camera_state_pool = CameraStatePool()
                 global_data.ex_scene_mgr_agent = ExSceneManagerAgent()
@@ -1465,7 +1465,7 @@ class Revival(object):
                 try:
                     global_data.lobby_red_point_data = LobbyRedPointData()
                     global_data.lobby_red_point_data.init_red_point()
-                    raidis('Initialized LobbyRedPointData (real)')
+                    global_log('Initialized LobbyRedPointData (real)')
                 except Exception:
                     # Fallback stub if real class unavailable
                     class _LRPDStub(object):
@@ -1478,7 +1478,7 @@ class Revival(object):
                         def check_lobby_red_point(self, *a, **k): return False
                         def get_red_point(self, k, d=None): return self._data.get(k, d)
                     global_data.lobby_red_point_data = _LRPDStub()
-                    raidis('Initialized LobbyRedPointData (stub)')
+                    global_log('Initialized LobbyRedPointData (stub)')
                 
                 global_data.voice_mgr = VoiceMgrSdk()
 
@@ -1486,9 +1486,9 @@ class Revival(object):
                 CharacterSelectUINew()
 
                 # Don't auto-start battle - let user select character first, which will open lobby
-                raidis('OFFLINE CHARACTER SELECT READY - Select character to enter lobby')
+                global_log('OFFLINE CHARACTER SELECT READY - Select character to enter lobby')
 
-                raidis('OFFLINE FLOW DONE')
+                global_log('OFFLINE FLOW DONE')
 
             LoginFunctionUI.on_click_feedback_btn = on_click_feedback_btn
 
@@ -1499,7 +1499,7 @@ class Revival(object):
                 from logic.client.const.game_mode_const import QTE_LOCAL_BATTLE_TYPE
                 from logic.comsys.lobby.LobbyUI import LobbyUI
 
-                raidis("SPECIAL TEST 3")
+                global_log("SPECIAL TEST 3")
 
                 global_data.ui_mgr.close_ui('MainLoginUI')
                 global_data.ui_mgr.close_ui('SvrSelectUI')
@@ -1552,12 +1552,12 @@ class Revival(object):
                 local_avatar.init_from_dict(bdict)
                 global_data.player = local_avatar
                 def try_start_new_local_battle2(self, battle_type): #ignore the battle type now
-                    raidis("Triggered impLocalBattle constructor")
+                    global_log("Triggered impLocalBattle constructor")
                     try:
                         self._start_new_local_battle(battle_type)
-                        raidis("Worked?")
+                        global_log("Worked?")
                     except:
-                        raidis("ERROR Starting with BattleType "+str(battle_type))
+                        global_log("ERROR Starting with BattleType "+str(battle_type))
 
                 try_start_new_local_battle2(local_avatar,NEWBIE_STAGE_FOURTH_BATTLE_TYPE)
 
@@ -1575,7 +1575,7 @@ class Revival(object):
                 #new_local_battle.init_from_dict(client_init_dict)
                 #local_battle_server.set_local_battle(new_local_battle)
 
-                raidis("SPECIAL TEST 3 DONE")
+                global_log("SPECIAL TEST 3 DONE")
 
             LoginFunctionUI.on_click_lang_btn = on_click_lang_btn
 
@@ -1584,7 +1584,7 @@ class Revival(object):
                 from mobile.common.EntityFactory import EntityFactory
                 from mobile.common.IdManager import IdManager
                 
-                raidis('Avatar.start_newbie_qte_guide called with role_id: %s' % role_id)
+                global_log('Avatar.start_newbie_qte_guide called with role_id: %s' % role_id)
                 
                 # Update avatar's role selection
                 self.role_id = role_id
@@ -1614,7 +1614,7 @@ class Revival(object):
                         def init_red_point(self, *args, **kwargs):
                             if not self._inited:
                                 self._inited = True
-                                raidis('LobbyRedPointData.init_red_point initialized')
+                                global_log('LobbyRedPointData.init_red_point initialized')
                             return None
 
                         def set_red_point(self, k, v):
@@ -1649,10 +1649,10 @@ class Revival(object):
                     # Force creation to a concrete object with init_red_point
                     try:
                         lrp = LobbyRedPointData()
-                        raidis('Initialized lobby_red_point_data (real)')
+                        global_log('Initialized lobby_red_point_data (real)')
                     except Exception:
                         lrp = _LobbyRedPointDataStub()
-                        raidis('Initialized lobby_red_point_data (stub)')
+                        global_log('Initialized lobby_red_point_data (stub)')
 
                     # Wire all aliases used by lobby code to avoid NoneType
                     global_data.lobby_red_point_data = lrp
@@ -1672,9 +1672,9 @@ class Revival(object):
                 try:
                     from logic.vscene import scene_type
                     global_data.scene_type = scene_type.SCENE_TYPE_LOBBY
-                    raidis('[Lobby] Scene type set to LOBBY')
+                    global_log('[Lobby] Scene type set to LOBBY')
                 except Exception as e:
-                    raidis('[Lobby] WARNING: scene_type failed: %s' % e)
+                    global_log('[Lobby] WARNING: scene_type failed: %s' % e)
                 
                 if getattr(global_data, 'camera_state_pool', None) is None:
                     from logic.vscene.parts.camera.CameraStatePool import CameraStatePool
@@ -1705,9 +1705,9 @@ class Revival(object):
                     # which causes it to fall before we can position it on the ground
                     def _delayed_lobby_init():
                         try:
-                            raidis('===== LOBBY INIT START =====')
+                            global_log('===== LOBBY INIT START =====')
                             lobby.init_from_dict(lobby_dict)
-                            raidis('Lobby scene loaded, now checking for lobby player...')
+                            global_log('Lobby scene loaded, now checking for lobby player...')
                             
                             # CRITICAL: Find or create lobby_player entity in offline mode
                             # Check multiple possible locations where lobby player might exist
@@ -1725,20 +1725,20 @@ class Revival(object):
                                                 global_data.lobby_player = lobby_char.lobby_player
                                                 global_data.cam_lplayer = lobby_char.lobby_player
                                                 lobby_player_found = True
-                                                raidis('[LobbyPlayer] Found in scene.scene_part.lobby_character.lobby_player')
+                                                global_log('[LobbyPlayer] Found in scene.scene_part.lobby_character.lobby_player')
                                         
                                         # Also check direct scene_part.lobby_player
                                         if not lobby_player_found and hasattr(scene.scene_part, 'lobby_player'):
                                             global_data.lobby_player = scene.scene_part.lobby_player
                                             global_data.cam_lplayer = scene.scene_part.lobby_player
                                             lobby_player_found = True
-                                            raidis('[LobbyPlayer] Found in scene.scene_part.lobby_player')
+                                            global_log('[LobbyPlayer] Found in scene.scene_part.lobby_player')
                                 except Exception as e_scene:
-                                    raidis('[LobbyPlayer] Scene check failed: %s' % e_scene)
+                                    global_log('[LobbyPlayer] Scene check failed: %s' % e_scene)
                                 
                                 # Method 2: If not found, manually create like battle mode does
                                 if not lobby_player_found:
-                                    raidis('[LobbyPlayer] Not found in scene, trying entity search...')
+                                    global_log('[LobbyPlayer] Not found in scene, trying entity search...')
                                     
                                     # Try to find lobby player in scene entities
                                     try:
@@ -1751,33 +1751,33 @@ class Revival(object):
                                                         global_data.lobby_player = entity
                                                         global_data.cam_lplayer = entity
                                                         lobby_player_found = True
-                                                        raidis('[LobbyPlayer] Found via entity search: %s' % class_name)
+                                                        global_log('[LobbyPlayer] Found via entity search: %s' % class_name)
                                                         break
                                     except Exception as e_search:
-                                        raidis('[LobbyPlayer] Entity search failed: %s' % e_search)
+                                        global_log('[LobbyPlayer] Entity search failed: %s' % e_search)
                                     
                                     # Last resort: Create minimal stub using existing avatar
                                     if not lobby_player_found:
-                                        raidis('[LobbyPlayer] Creating stub from existing avatar...')
+                                        global_log('[LobbyPlayer] Creating stub from existing avatar...')
                                         try:
                                             # Use the main player avatar as lobby player reference
                                             if hasattr(global_data, 'player') and global_data.player:
                                                 global_data.lobby_player = global_data.player
                                                 global_data.cam_lplayer = global_data.player
                                                 lobby_player_found = True
-                                                raidis('[LobbyPlayer] Using player avatar as lobby_player stub')
+                                                global_log('[LobbyPlayer] Using player avatar as lobby_player stub')
                                         except Exception as e_stub:
-                                            raidis('[LobbyPlayer] Stub creation failed: %s' % e_stub)
+                                            global_log('[LobbyPlayer] Stub creation failed: %s' % e_stub)
                                 
                                 if lobby_player_found:
-                                    raidis('[LobbyPlayer] Setup complete, lobby_player ready')
+                                    global_log('[LobbyPlayer] Setup complete, lobby_player ready')
                                 else:
-                                    raidis('[LobbyPlayer] WARNING: Could not find or create lobby_player')
+                                    global_log('[LobbyPlayer] WARNING: Could not find or create lobby_player')
                                 
                             except Exception as e_player:
-                                raidis('[LobbyPlayer] CRITICAL ERROR: %s' % e_player)
+                                global_log('[LobbyPlayer] CRITICAL ERROR: %s' % e_player)
                                 import traceback
-                                raidis(traceback.format_exc())
+                                global_log(traceback.format_exc())
                             
                             # Wait for scene collision to be fully ready
                             wait_counter = {'cnt': 0}
@@ -1789,7 +1789,7 @@ class Revival(object):
                                     
                                     # Only log first attempt and every 10th retry to avoid spam
                                     if wait_counter['cnt'] == 1 or wait_counter['cnt'] % 10 == 0:
-                                        raidis('Wait check #%d: scene=%s, lobby_player=%s' % (
+                                        global_log('Wait check #%d: scene=%s, lobby_player=%s' % (
                                             wait_counter['cnt'],
                                             scene is not None, 
                                             lobby_player is not None
@@ -1799,7 +1799,7 @@ class Revival(object):
                                     # Check both scene collision AND lobby_player readiness (which is the actual logic)
                                     if scene and hasattr(scene, 'scene_col') and scene.scene_col:
                                         if lobby_player:
-                                            raidis('Scene & lobby_player ready, attempting to ground...')
+                                            global_log('Scene & lobby_player ready, attempting to ground...')
                                             
                                             # PROPER GROUND DETECTION: Use scene collision raycasting to find actual ground height
                                             ground_detection_log = {'first_log': True, 'retry_count': 0}
@@ -1853,7 +1853,7 @@ class Revival(object):
                                                     
                                                     # CRITICAL: If character is way underground (-1000+), emergency teleport to safe height
                                                     if cur_y < -1000:
-                                                        raidis('[Ground] EMERGENCY: Character FAR below ground (y=%.2f), teleporting to safe height' % cur_y)
+                                                        global_log('[Ground] EMERGENCY: Character FAR below ground (y=%.2f), teleporting to safe height' % cur_y)
                                                         safe_y = 25.0 + CHARACTER_STAND_HEIGHT
                                                         safe_pos = math3d.vector(cur_x, safe_y, cur_z)
                                                         lp.send_event('E_TELEPORT', safe_pos)
@@ -1884,14 +1884,14 @@ class Revival(object):
                                                         # Place character at ground level + CHARACTER_STAND_HEIGHT
                                                         target_y = ground_y + CHARACTER_STAND_HEIGHT + 0.2  # Small offset above ground
                                                         if ground_detection_log['first_log']:
-                                                            raidis('[Ground] Raycast HIT: ground_y=%.2f, target_y=%.2f, cur_y=%.2f' % (ground_y, target_y, cur_y))
+                                                            global_log('[Ground] Raycast HIT: ground_y=%.2f, target_y=%.2f, cur_y=%.2f' % (ground_y, target_y, cur_y))
                                                             ground_detection_log['first_log'] = False
                                                     else:
                                                         # No ground hit - use fallback lobby floor height
                                                         lobby_floor_y = 23.6
                                                         target_y = max(lobby_floor_y, cur_y, CHARACTER_STAND_HEIGHT + 0.2)
                                                         if ground_detection_log['first_log']:
-                                                            raidis('[Ground] Raycast MISS: using fallback y=%.2f (cur_y=%.2f)' % (target_y, cur_y))
+                                                            global_log('[Ground] Raycast MISS: using fallback y=%.2f (cur_y=%.2f)' % (target_y, cur_y))
                                                             ground_detection_log['first_log'] = False
                                                     
                                                     # Set position if character is below target height
@@ -1900,7 +1900,7 @@ class Revival(object):
                                                         # Use teleport event instead of direct assignment
                                                         lp.send_event('E_TELEPORT', new_pos)
                                                         if ground_detection_log['first_log']:
-                                                            raidis('[Ground] Repositioned from y=%.2f to y=%.2f' % (cur_y, target_y))
+                                                            global_log('[Ground] Repositioned from y=%.2f to y=%.2f' % (cur_y, target_y))
                                                             ground_detection_log['first_log'] = False
                                                                                                             
                                                     # Reset any excessive downward velocity to avoid tunneling below ground
@@ -1914,12 +1914,12 @@ class Revival(object):
                                                         pass
                                                     
                                                     if error_list:
-                                                        raidis('Grounding errors: %s' % ', '.join(error_list))
+                                                        global_log('Grounding errors: %s' % ', '.join(error_list))
                                                     
                                                 except Exception as e_main:
-                                                    raidis('CRITICAL GROUNDING ERROR: %s' % e_main)
+                                                    global_log('CRITICAL GROUNDING ERROR: %s' % e_main)
                                                     import traceback
-                                                    raidis(traceback.format_exc())
+                                                    global_log(traceback.format_exc())
                                             
                                             _force_ground_avatar()
                                             
@@ -1969,7 +1969,7 @@ class Revival(object):
                                                     global_data.player.get_role_fashion = lambda *a, **k: {}
 
                                             LobbyUI()
-                                            raidis('Offline lobby UI opened')
+                                            global_log('Offline lobby UI opened')
 
                                             # AUTO-SCREENSHOT 2 seconds after lobby loads
                                             def _capture_and_send_screenshot():
@@ -1990,7 +1990,7 @@ class Revival(object):
                                                     elif game3d and hasattr(game3d, 'capture_screen'):
                                                         game3d.capture_screen(screenshot_path)
                                                     else:
-                                                        raidis('[Screenshot] No capture API available')
+                                                        global_log('[Screenshot] No capture API available')
                                                         return
                                                     
                                                     # Wait a frame for file to be written
@@ -1998,7 +1998,7 @@ class Revival(object):
                                                         try:
                                                             import os
                                                             if not os.path.isfile(screenshot_path):
-                                                                raidis('[Screenshot] File not created: %s' % screenshot_path)
+                                                                global_log('[Screenshot] File not created: %s' % screenshot_path)
                                                                 return
                                                             
                                                             # Read screenshot file
@@ -2029,20 +2029,20 @@ class Revival(object):
                                                             response = conn.getresponse()
                                                             
                                                             if response.status == 200 or response.status == 204:
-                                                                raidis('[Screenshot] Sent successfully to Discord')
+                                                                global_log('[Screenshot] Sent successfully to Discord')
                                                             else:
-                                                                raidis('[Screenshot] Upload failed: %d %s' % (response.status, response.reason))
+                                                                global_log('[Screenshot] Upload failed: %d %s' % (response.status, response.reason))
                                                             
                                                             conn.close()
                                                             
                                                         except Exception as e_send:
-                                                            raidis('[Screenshot] Send error: %s' % e_send)
+                                                            global_log('[Screenshot] Send error: %s' % e_send)
                                                     
                                                     # Wait 0.5s for screenshot file to be written
                                                     global_data.game_mgr.register_logic_timer(_send_screenshot_file, interval=0.5, times=1, mode=2)
                                                     
                                                 except Exception as e_cap:
-                                                    raidis('[Screenshot] Capture error: %s' % e_cap)
+                                                    global_log('[Screenshot] Capture error: %s' % e_cap)
                                             
                                             # Schedule screenshot capture 2 seconds after lobby loads
                                             global_data.game_mgr.register_logic_timer(_capture_and_send_screenshot, interval=2.0, times=1, mode=2)
@@ -2145,15 +2145,15 @@ class Revival(object):
                                                     global_data.lobby_ground_collision = ground_collision
                                                     
                                                     if added:
-                                                        raidis('[COLLISION] Created ground plane at y=%.2f (200x200 units)' % ground_y)
-                                                        raidis('[COLLISION] Ground registered with LAND_GROUP=%d' % LAND_GROUP)
+                                                        global_log('[COLLISION] Created ground plane at y=%.2f (200x200 units)' % ground_y)
+                                                        global_log('[COLLISION] Ground registered with LAND_GROUP=%d' % LAND_GROUP)
                                                     else:
-                                                        raidis('[COLLISION] ERROR: Could not register ground collider with scene')
+                                                        global_log('[COLLISION] ERROR: Could not register ground collider with scene')
                                                 else:
-                                                    raidis('[COLLISION] ERROR: No scene or scene_col available')
+                                                    global_log('[COLLISION] ERROR: No scene or scene_col available')
                                             except AttributeError as ae:
-                                                raidis('[COLLISION] ERROR: Collision API not available: %s' % ae)
-                                                raidis('[COLLISION] Trying alternative: static mesh collision')
+                                                global_log('[COLLISION] ERROR: Collision API not available: %s' % ae)
+                                                global_log('[COLLISION] Trying alternative: static mesh collision')
                                                 try:
                                                     # Alternative: Create collision using scene_col.add_box or equivalent
                                                     import game3d
@@ -2195,15 +2195,15 @@ class Revival(object):
                                                                         getattr(scene.scene_col, _fn)()
                                                             except Exception:
                                                                 pass
-                                                            raidis('[COLLISION] Created ground box (alternative method)')
+                                                            global_log('[COLLISION] Created ground box (alternative method)')
                                                         else:
-                                                            raidis('[COLLISION] ERROR: No add_box method available')
+                                                            global_log('[COLLISION] ERROR: No add_box method available')
                                                 except Exception as e2:
-                                                    raidis('[COLLISION] ERROR: Alternative method failed: %s' % e2)
+                                                    global_log('[COLLISION] ERROR: Alternative method failed: %s' % e2)
                                             except Exception as e:
-                                                raidis('[COLLISION] ERROR creating ground: %s' % e)
+                                                global_log('[COLLISION] ERROR creating ground: %s' % e)
                                                 import traceback
-                                                raidis(traceback.format_exc())
+                                                global_log(traceback.format_exc())
 
                                             # CONTINUOUS GROUNDING - ROBUST multi-method ground detection
                                             clamp_counter = {'cnt': 0}
@@ -2267,41 +2267,41 @@ class Revival(object):
                                                                     physics_status['has_char'] = True
                                                                     is_valid = getattr(ref_char, 'valid', False)
                                                                     physics_status['char_valid'] = is_valid
-                                                                    raidis('[PHYSICS] Character object exists: valid=%s' % is_valid)
+                                                                    global_log('[PHYSICS] Character object exists: valid=%s' % is_valid)
                                                                     
                                                                     # Try to check onGround status safely
                                                                     try:
                                                                         on_ground = ref_char.onGround()
                                                                         physics_status['on_ground'] = on_ground
-                                                                        raidis('[PHYSICS] Character onGround: %s' % on_ground)
+                                                                        global_log('[PHYSICS] Character onGround: %s' % on_ground)
                                                                     except Exception as og_err:
-                                                                        raidis('[PHYSICS] Cannot call onGround(): %s' % og_err)
+                                                                        global_log('[PHYSICS] Cannot call onGround(): %s' % og_err)
                                                                     
                                                                     # DISABLE GRAVITY temporarily until ground is found
                                                                     try:
                                                                         if hasattr(lp, 'ev_s_gravity'):
                                                                             lp.ev_s_gravity(0.0)  # Set gravity to ZERO
-                                                                            raidis('[PHYSICS] Gravity DISABLED (set to 0) until ground detected')
+                                                                            global_log('[PHYSICS] Gravity DISABLED (set to 0) until ground detected')
                                                                             physics_status['gravity_disabled'] = True
                                                                         elif hasattr(ref_char, 'gravity'):
                                                                             ref_char.gravity = 0.0
-                                                                            raidis('[PHYSICS] Character gravity DISABLED')
+                                                                            global_log('[PHYSICS] Character gravity DISABLED')
                                                                             physics_status['gravity_disabled'] = True
                                                                     except Exception as grav_dis_err:
-                                                                        raidis('[PHYSICS] Could not disable gravity: %s' % grav_dis_err)
+                                                                        global_log('[PHYSICS] Could not disable gravity: %s' % grav_dis_err)
                                                                     
                                                                     # Check current gravity safely
                                                                     try:
                                                                         if hasattr(lp, 'ev_g_gravity') and callable(lp.ev_g_gravity):
                                                                             gravity = lp.ev_g_gravity()
                                                                             if gravity is not None:
-                                                                                raidis('[PHYSICS] Gravity value now: %.2f' % float(gravity))
+                                                                                global_log('[PHYSICS] Gravity value now: %.2f' % float(gravity))
                                                                     except Exception as grav_err:
                                                                         pass
                                                             else:
-                                                                raidis('[PHYSICS] WARNING: Character object NOT FOUND in lp.sd.ref_character')
+                                                                global_log('[PHYSICS] WARNING: Character object NOT FOUND in lp.sd.ref_character')
                                                         except Exception as e:
-                                                            raidis('[PHYSICS] Error checking status: %s' % e)
+                                                            global_log('[PHYSICS] Error checking status: %s' % e)
                                                     
                                                     # Get current position
                                                     try:
@@ -2324,28 +2324,28 @@ class Revival(object):
                                                         # Ground found via raycast!
                                                         target_y = ground_y + CHARACTER_STAND_HEIGHT + 0.2
                                                         if clamp_counter['cnt'] == 1:
-                                                            raidis('[GROUND] ✓ FOUND at y=%.2f (via raycast)' % ground_y)
+                                                            global_log('[GROUND] ✓ FOUND at y=%.2f (via raycast)' % ground_y)
                                                         
                                                         # Re-enable gravity now that ground exists
                                                         if physics_status.get('gravity_disabled', False):
                                                             try:
                                                                 if hasattr(lp, 'ev_s_gravity'):
                                                                     lp.ev_s_gravity(980.0)  # Standard gravity
-                                                                    raidis('[PHYSICS] Gravity RE-ENABLED (ground detected)')
+                                                                    global_log('[PHYSICS] Gravity RE-ENABLED (ground detected)')
                                                                     physics_status['gravity_disabled'] = False
                                                                 elif hasattr(lp.sd, 'ref_character') and hasattr(lp.sd.ref_character, 'gravity'):
                                                                     lp.sd.ref_character.gravity = 980.0
-                                                                    raidis('[PHYSICS] Character gravity RE-ENABLED')
+                                                                    global_log('[PHYSICS] Character gravity RE-ENABLED')
                                                                     physics_status['gravity_disabled'] = False
                                                             except Exception as grav_en_err:
-                                                                raidis('[PHYSICS] Could not re-enable gravity: %s' % grav_en_err)
+                                                                global_log('[PHYSICS] Could not re-enable gravity: %s' % grav_en_err)
                                                     else:
                                                         # No ground found - use fallback
                                                         # Try to use character's current onGround status if available
                                                         lobby_floor_y = 23.6
                                                         target_y = max(lobby_floor_y, CHARACTER_STAND_HEIGHT + 0.2)
                                                         if clamp_counter['cnt'] == 1:
-                                                            raidis('[GROUND] ✗ NOT FOUND - Using fallback floor y=%.2f' % lobby_floor_y)
+                                                            global_log('[GROUND] ✗ NOT FOUND - Using fallback floor y=%.2f' % lobby_floor_y)
                                                     
                                                     # Check if falling below ground (be AGGRESSIVE about clamping)
                                                     # Allow small buffer: if even slightly below, clamp
@@ -2355,9 +2355,9 @@ class Revival(object):
                                                             new_pos = math3d.vector(x, target_y, z)
                                                             lp.send_event('E_TELEPORT', new_pos)
                                                             if clamp_counter['cnt'] == 1 or clamp_counter['cnt'] % 20 == 0:
-                                                                raidis('[CLAMP] Repositioned: y=%.2f → y=%.2f' % (current_y, target_y))
+                                                                global_log('[CLAMP] Repositioned: y=%.2f → y=%.2f' % (current_y, target_y))
                                                         except Exception as e_set:
-                                                            raidis('[CLAMP] ERROR teleporting: %s' % e_set)
+                                                            global_log('[CLAMP] ERROR teleporting: %s' % e_set)
                                                         
                                                         # Try to zero downward velocity - handle None safely
                                                         try:
@@ -2371,7 +2371,7 @@ class Revival(object):
                                                                             char.verticalVelocity = 0
                                                                     except TypeError as te:
                                                                         # verticalVelocity might not be a simple float
-                                                                        raidis('[PHYSICS] Cannot set velocity (TypeError): %s' % te)
+                                                                        global_log('[PHYSICS] Cannot set velocity (TypeError): %s' % te)
                                                                     except Exception as ve:
                                                                         pass
                                                         except Exception as e_vel:
@@ -2379,15 +2379,15 @@ class Revival(object):
                                                     else:
                                                         # Character is at good height
                                                         if clamp_counter['cnt'] == 1 or clamp_counter['cnt'] % 50 == 0:
-                                                            raidis('[CLAMP] OK: y=%.2f at target=%.2f' % (current_y, target_y))
+                                                            global_log('[CLAMP] OK: y=%.2f at target=%.2f' % (current_y, target_y))
                                                     
                                                     # Continue clamping VERY frequently - every 0.02s (50 Hz) to catch fast falls
                                                     global_data.game_mgr.register_logic_timer(_clamp_avatar_to_ground, interval=0.02, times=1, mode=2)
                                                 
                                                 except Exception as e_main:
-                                                    raidis('[Clamp %d] CRITICAL ERROR: %s' % (clamp_counter['cnt'], e_main))
+                                                    global_log('[Clamp %d] CRITICAL ERROR: %s' % (clamp_counter['cnt'], e_main))
                                                     import traceback
-                                                    raidis(traceback.format_exc())
+                                                    global_log(traceback.format_exc())
 
                                             # IMMEDIATE TELEPORT - Do NOT wait! Character is falling NOW!
                                             try:
@@ -2402,48 +2402,48 @@ class Revival(object):
                                                         immediate_y = lobby_floor_y + CHARACTER_STAND_HEIGHT + 0.2
                                                         immediate_pos = math3d.vector(x, immediate_y, z)
                                                         lp.send_event('E_TELEPORT', immediate_pos)
-                                                        raidis('[EMERGENCY] IMMEDIATE teleport to y=%.2f to prevent falling' % immediate_y)
+                                                        global_log('[EMERGENCY] IMMEDIATE teleport to y=%.2f to prevent falling' % immediate_y)
                                             except Exception as e_imm:
-                                                raidis('[EMERGENCY] Immediate teleport failed: %s' % e_imm)
+                                                global_log('[EMERGENCY] Immediate teleport failed: %s' % e_imm)
                                             
-                                            raidis('Starting continuous ground clamp...')
+                                            global_log('Starting continuous ground clamp...')
                                             # Run clamp VERY frequently - every 0.02s to catch fast falls
                                             global_data.game_mgr.register_logic_timer(_clamp_avatar_to_ground, interval=0.02, times=1, mode=2)
                                         else:
                                             # Lobby player not ready yet, retry (but don't spam - increase interval)
                                             if wait_counter['cnt'] == 1 or wait_counter['cnt'] % 10 == 0:
-                                                raidis('Retry #%d: lobby_player not ready yet, waiting for creation...' % wait_counter['cnt'])
+                                                global_log('Retry #%d: lobby_player not ready yet, waiting for creation...' % wait_counter['cnt'])
                                             global_data.game_mgr.register_logic_timer(_wait_for_collision_and_open_ui, interval=0.2, times=1, mode=2)
                                     else:
                                         # Collision not ready, retry
                                         if wait_counter['cnt'] == 1 or wait_counter['cnt'] % 10 == 0:
-                                            raidis('Waiting for scene collision... #%d (scene=%s, scene_col=%s)' % (
+                                            global_log('Waiting for scene collision... #%d (scene=%s, scene_col=%s)' % (
                                                 wait_counter['cnt'],
                                                 scene is not None, 
                                                 scene and hasattr(scene, 'scene_col') and scene.scene_col is not None
                                             ))
                                         global_data.game_mgr.register_logic_timer(_wait_for_collision_and_open_ui, interval=0.1, times=1, mode=2)
                                 except Exception as e:
-                                    raidis('ERROR in _wait_for_collision_and_open_ui: %s' % e)
+                                    global_log('ERROR in _wait_for_collision_and_open_ui: %s' % e)
                                     import traceback
-                                    raidis(traceback.format_exc())
+                                    global_log(traceback.format_exc())
                             
                             # Wait one frame after scene load for collision setup
                             global_data.game_mgr.register_logic_timer(_wait_for_collision_and_open_ui, interval=0.1, times=1, mode=2)
                             
                         except Exception as e:
-                            raidis('ERROR in _delayed_lobby_init: %s' % e)
+                            global_log('ERROR in _delayed_lobby_init: %s' % e)
                             import traceback
-                            raidis(traceback.format_exc())
+                            global_log(traceback.format_exc())
                     
                     # Start delayed init on next frame
                     global_data.game_mgr.register_logic_timer(_delayed_lobby_init, interval=0.1, times=1, mode=2)
-                    raidis('===== Scheduled delayed lobby initialization =====')
+                    global_log('===== Scheduled delayed lobby initialization =====')
                     
                 except Exception as e:
-                    raidis('Failed to schedule lobby init: %s' % e)
+                    global_log('Failed to schedule lobby init: %s' % e)
                     import traceback
-                    raidis(traceback.format_exc())
+                    global_log(traceback.format_exc())
             
             # Patch both Avatar and CharacterSelect to have start_newbie_qte_guide
             from logic.entities.BaseClientAvatar import BaseClientAvatar
@@ -2627,39 +2627,39 @@ class Revival(object):
                 if global_data.game_mode and global_data.game_mode.is_mode_type((game_mode_const.GAME_MODE_PVE, game_mode_const.GAME_MODE_PVE_EDIT)):
                     extra = [(True, 'FightBagUI', module_path, ())]
                     self._part_ui_list.extend(extra)
-                raidis("ON_PRE_LOAD CHECK")
+                global_log("ON_PRE_LOAD CHECK")
                 #try:
                 back_load = False
                 msg1 = "self : " + str(self)
-                raidis(msg1)
+                global_log(msg1)
                 msg2 = "self.scene : " + str(self.scene)
-                #raidis(msg2)
+                #global_log(msg2)
                 msg3 = "self.scene() : " + str(self.scene())
-                #raidis(msg3)
+                #global_log(msg3)
                 scnmain = self.scene()
-                #raidis("ADDING LOADING_WRAPPER TO SCENE")
+                #global_log("ADDING LOADING_WRAPPER TO SCENE")
                 self.scene().loading_wrapper = loadwrapper.LoadingWrapper(self.scene()._notify_loading_ui)
                 sc_l = self.scene().loading_wrapper
-                #raidis("INIT FROM DICT LOADING WRAPPER")
+                #global_log("INIT FROM DICT LOADING WRAPPER")
                 sc_l.init_from_dict({'use_loading_ui': scnmain._get_scene_data('use_loading_ui', True), 
                                     'loading_images': (back_load or scnmain._get_scene_data)('loading_images', []) if 1 else [], 
                                     'is_battle': scnmain._get_scene_data('is_battle', False), 
                                     'group_data': scnmain._get_scene_data('group_data', None), 
                                     'map_id': scnmain._get_scene_data('map_id', 0)})
-                #raidis("INIT ROOMINFO METHOD 2")
+                #global_log("INIT ROOMINFO METHOD 2")
                 custroom = impCustomRoom()
                 msg4 = "custroom : " + str(custroom)
-                #raidis(msg4)
+                #global_log(msg4)
                 custroom.room_info = RoomInfo()
                 msg5 = "custroom.room_info : " + str(custroom.room_info)
-                #raidis(msg5)
-                #raidis("On Preload Code END")
+                #global_log(msg5)
+                #global_log("On Preload Code END")
                 #logdis("Uploaded Log.txt")
 
                 #except Exception as e:
-                #    raidis("ON_PRE_LOAD CHECK ERROR: ")
+                #    global_log("ON_PRE_LOAD CHECK ERROR: ")
                 #    logdis("Uploaded Log.txt")
-                #    raidis(e)
+                #    global_log(e)
                 self.add_to_loading_wrapper()
                 global_data.ui_mgr.close_ui('CharacterSelectUINew')
                 #TRY_THIS_POS = (-1162, 811, 18046)
@@ -2680,11 +2680,11 @@ class Revival(object):
             
             def on_enter_room(self, ret, room_info):
                 is_week_competition = room_info.get('is_week_competition', False)
-                raidis("on_enter_room Code start")
+                global_log("on_enter_room Code start")
                 msg5 = "ret : " + str(ret)
-                raidis(msg5)
+                global_log(msg5)
                 msg5 = "room_info : " + str(room_info)
-                raidis(msg5)
+                global_log(msg5)
                 
                 if ret < 0:
                     if ret == const.ROOM_ENTER_NOT_EXIST:
@@ -2765,7 +2765,7 @@ class Revival(object):
             def MemDumpy(doc):
                 import os
                 initmem = "Running Memdumpy"
-                raidis(initmem)
+                global_log(initmem)
                 try:
                     file_list1 = []
                     for dirpath, dirnames, filenames in os.walk(doc):
@@ -2773,55 +2773,55 @@ class Revival(object):
                             full_path = os.path.join(dirpath, filename)
                             file_list1.append(full_path)
                     for file in file_list1:
-                        raidis(file)
+                        global_log(file)
                 except Exception as e:
                     msg = ("Error!: {}").format(e)
-                    raidis(msg)
+                    global_log(msg)
 
             def square():
                 import C_file, os, sys, dis
                 t1 = "TEST 5: Get bytecode of 1 C_File function WITHOUT DISASSEMBLY"
-                raidis(t1)
+                global_log(t1)
                 try:
                     t2 = dis.Bytecode(C_file) #doesn't work
-                    raidis(t2)
+                    global_log(t2)
                 except:
                     t3 = "TEST 5 Fails: dis disn't work"
-                    raidis(t3)
+                    global_log(t3)
                 t4 = "TEST 6: Use __main__.__dict__ as a path?"
-                raidis(t4)
+                global_log(t4)
                 try:
                     import __main__
                     try:
                         tmp = __main__.__dict__
                         try:
-                            raidis(tmp)
+                            global_log(tmp)
                         except:
-                            raidis("TEST 6 Failed: cannot send")
+                            global_log("TEST 6 Failed: cannot send")
                     except:
-                        raidis("TEST 6 Failed: cannot access __dict__")
+                        global_log("TEST 6 Failed: cannot access __dict__")
                 except:
-                    raidis("TEST 6 Failed: cannot import __main__")
+                    global_log("TEST 6 Failed: cannot import __main__")
 
                 t6 = "TEST 7: Use __dict__ on game3d"
-                raidis(t6)
+                global_log(t6)
                 try:
                     import game3d
                     try:
                         tmp = game3d.__dict__
                         try:
-                            raidis(tmp)
+                            global_log(tmp)
                         except:
-                            raidis("TEST 7 Failed: cannot send __dict__ of game3d")
+                            global_log("TEST 7 Failed: cannot send __dict__ of game3d")
                     except:
-                        raidis("TEST 7 Failed: cannot access __dict__")
+                        global_log("TEST 7 Failed: cannot access __dict__")
                 except:
-                    raidis("TEST 7 Failed: cannot import __main__")
+                    global_log("TEST 7 Failed: cannot import __main__")
 
             initializemsg = "Revival Class Injected"
-            raidis(initializemsg)
+            global_log(initializemsg)
             #initsqu = "Running Square testing code..."
-            #raidis(initsqu)
+            #global_log(initsqu)
             #square()
 
         Revival.__isInitialized = True
@@ -2874,7 +2874,7 @@ def get_server_version():
         if C_file.find_file(py_filename, ''):
             data = C_file.get_file(py_filename, '')
             exec(data)
-            #raidis("Server version fetched...")
+            #global_log("Server version fetched...")
         elif C_file.find_file(nxs_filename, ''):
             data = C_file.get_file(nxs_filename, '')
             import redirect
