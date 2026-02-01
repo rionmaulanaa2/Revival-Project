@@ -1963,6 +1963,152 @@ class Revival(object):
                             # Ensure collision is ready
                             _ensure_scene_collision()
                             
+                            # ============================================================================
+                            # CHARACTER COLLISION INITIALIZATION
+                            # ============================================================================
+                            def _initialize_character_collision(character_unit):
+                                """
+                                Create and activate collision.Character for a Unit to enable ground walking.
+                                This is the CORE fix for falling through floor.
+                                
+                                Args:
+                                    character_unit: The LAvatar/Unit object that needs collision
+                                    
+                                Returns:
+                                    True if successful, False otherwise
+                                """
+                                try:
+                                    import collision
+                                    import math
+                                    from logic.gcommon.common_const.collision_const import (
+                                        CHARACTER_STAND_WIDTH, CHARACTER_STAND_HEIGHT,
+                                        GROUP_CHARACTER_INCLUDE, GROUP_MECHA_BALL
+                                    )
+                                    
+                                    scene = global_data.game_mgr.scene
+                                    if not scene or not hasattr(scene, 'scene_col') or not scene.scene_col:
+                                        global_log('[CharCollision] Scene collision not ready')
+                                        return False
+                                    
+                                    # Check if character already has active collision
+                                    existing_char_ctrl = None
+                                    
+                                    # Method 1: Check ComCharacter component
+                                    if hasattr(character_unit, 'get_component'):
+                                        try:
+                                            from logic.gcommon.component.client.ComCharacter import ComCharacter
+                                            com_char = character_unit.get_component(ComCharacter)
+                                            if com_char and hasattr(com_char, 'char_ctrl'):
+                                                existing_char_ctrl = com_char.char_ctrl
+                                                global_log('[CharCollision] Found char_ctrl in ComCharacter')
+                                        except Exception:
+                                            pass
+                                    
+                                    # Method 2: Check sd.ref_character
+                                    if not existing_char_ctrl and hasattr(character_unit, 'sd'):
+                                        if hasattr(character_unit.sd, 'ref_character'):
+                                            existing_char_ctrl = character_unit.sd.ref_character
+                                            if existing_char_ctrl:
+                                                global_log('[CharCollision] Found char_ctrl in sd.ref_character')
+                                    
+                                    # If we have valid existing collision, just ensure it's activated
+                                    if existing_char_ctrl:
+                                        if hasattr(existing_char_ctrl, 'valid') and existing_char_ctrl.valid:
+                                            if hasattr(existing_char_ctrl, 'isActive'):
+                                                if not existing_char_ctrl.isActive():
+                                                    global_log('[CharCollision] Activating existing character collision')
+                                                    existing_char_ctrl.activate(scene.scene_col)
+                                                    global_log('[CharCollision] Existing collision activated!')
+                                                    return True
+                                                else:
+                                                    global_log('[CharCollision] Character collision already active')
+                                                    return True
+                                    
+                                    # No valid collision exists - CREATE NEW collision.Character
+                                    global_log('[CharCollision] Creating NEW collision.Character object...')
+                                    
+                                    # Character dimensions (standard values from ComCharacter)
+                                    width = CHARACTER_STAND_WIDTH   # Capsule radius
+                                    height = CHARACTER_STAND_HEIGHT  # Capsule height
+                                    stepheight = 0.6  # Max step height (can climb stairs/obstacles this high)
+                                    
+                                    # Create collision.Character (3D capsule for physics)
+                                    char_ctrl = collision.Character(width, height, stepheight)
+                                    
+                                    # Configure physics parameters
+                                    max_slope = 60  # Max slope angle in degrees
+                                    padding = 0.001
+                                    added_margin = 0.02
+                                    pos_interpolate = 0.5
+                                    
+                                    char_ctrl.setPadding(padding)
+                                    char_ctrl.setAddedMargin(added_margin)
+                                    char_ctrl.setMaxSlope(math.radians(max_slope))
+                                    char_ctrl.setSmoothFactor(pos_interpolate)
+                                    
+                                    # Set collision filtering (what collides with what)
+                                    char_ctrl.filter = GROUP_CHARACTER_INCLUDE | GROUP_MECHA_BALL
+                                    char_ctrl.group = GROUP_CHARACTER_INCLUDE
+                                    
+                                    # Enable features
+                                    if hasattr(char_ctrl, 'enableForceSync'):
+                                        char_ctrl.enableForceSync = True
+                                    
+                                    if hasattr(char_ctrl, 'enableLeaveOverlap'):
+                                        char_ctrl.enableLeaveOverlap(True)
+                                    
+                                    # Configure underground detection
+                                    if hasattr(char_ctrl, 'setMinGroundHeight'):
+                                        char_ctrl.setMinGroundHeight(-50 * NEOX_UNIT_SCALE)
+                                    
+                                    if hasattr(char_ctrl, 'setUnderGroundHitDist'):
+                                        char_ctrl.setUnderGroundHitDist(60 * NEOX_UNIT_SCALE)
+                                    
+                                    if hasattr(char_ctrl, 'setUnderGroundHitStartY'):
+                                        char_ctrl.setUnderGroundHitStartY(10 * NEOX_UNIT_SCALE)
+                                    
+                                    if hasattr(char_ctrl, 'setMaxHorizonDistPerTime'):
+                                        char_ctrl.setMaxHorizonDistPerTime(1.6 * NEOX_UNIT_SCALE)
+                                    
+                                    # Get character position
+                                    pos = None
+                                    if hasattr(character_unit, 'ev_g_position'):
+                                        try:
+                                            pos = character_unit.ev_g_position()
+                                        except Exception:
+                                            pass
+                                    
+                                    # CRITICAL STEP 1: Add character to scene collision system
+                                    scene.scene_col.add_character(char_ctrl)
+                                    global_log('[CharCollision] Added collision.Character to scene.scene_col')
+                                    
+                                    # Set initial foot position if available
+                                    if pos and hasattr(char_ctrl, 'setFootPosition'):
+                                        char_ctrl.setFootPosition(pos)
+                                        global_log('[CharCollision] Set foot position: (%.1f, %.1f, %.1f)' % (pos.x, pos.y, pos.z))
+                                    
+                                    # CRITICAL STEP 2: Store char_ctrl in character's shared data
+                                    if hasattr(character_unit, 'sd'):
+                                        character_unit.sd.ref_character = char_ctrl
+                                        global_log('[CharCollision] Stored char_ctrl in sd.ref_character')
+                                    
+                                    # CRITICAL STEP 3: Activate character collision
+                                    if hasattr(char_ctrl, 'activate'):
+                                        char_ctrl.activate(scene.scene_col)
+                                        global_log('[CharCollision] CHARACTER ACTIVATED! Can now walk on ground.')
+                                    
+                                    return True
+                                    
+                                except Exception as e:
+                                    global_log('[CharCollision] FAILED: %s' % str(e))
+                                    import traceback
+                                    global_log('[CharCollision] %s' % traceback.format_exc())
+                                    return False
+                            
+                            # ============================================================================
+                            # END CHARACTER COLLISION INITIALIZATION
+                            # ============================================================================
+                            
                             # Wait for scene collision to be fully ready
                             wait_counter = {'cnt': 0}
                             def _wait_for_collision_and_open_ui():
@@ -1983,7 +2129,17 @@ class Revival(object):
                                     # Check both scene collision AND lobby_player readiness (which is the actual logic)
                                     if scene and hasattr(scene, 'scene_col') and scene.scene_col:
                                         if lobby_player:
-                                            global_log('Scene & lobby_player ready, attempting to ground...')
+                                            global_log('Scene & lobby_player ready, initializing character collision...')
+                                            
+                                            # CRITICAL: Initialize character collision FIRST before any ground detection
+                                            collision_initialized = _initialize_character_collision(lobby_player)
+                                            if collision_initialized:
+                                                global_log('[Init] Character collision initialized! Character can now walk on ground.')
+                                            else:
+                                                global_log('[Init] Character collision init failed, retrying...')
+                                                # Retry in 0.5s
+                                                global_data.game_mgr.register_logic_timer(_wait_for_collision_and_open_ui, interval=0.5, times=1, mode=2)
+                                                return
                                             
                                             # PROPER GROUND DETECTION: Use scene collision raycasting to find actual ground height
                                             ground_detection_log = {'first_log': True, 'retry_count': 0, 'emergency_teleport_count': 0}
@@ -2170,18 +2326,21 @@ class Revival(object):
                                                         
                                                         # CRITICAL FIX: Enable collision and stop falling BEFORE teleporting
                                                         try:
-                                                            # Enable character collision with ground
+                                                            # STEP 1: Ensure character collision is active (primary fix)
+                                                            _initialize_character_collision(lp)
+                                                            
+                                                            # STEP 2: Enable character collision with ground
                                                             if hasattr(lp, 'enable_collision'):
                                                                 lp.enable_collision(True)
                                                             
-                                                            # Enable physics body collision
+                                                            # STEP 3: Enable physics body collision
                                                             if hasattr(lp, 'physics') and lp.physics:
                                                                 if hasattr(lp.physics, 'enable_collision'):
                                                                     lp.physics.enable_collision(True)
                                                                 if hasattr(lp.physics, 'set_collision_enable'):
                                                                     lp.physics.set_collision_enable(True)
                                                             
-                                                            # Set velocity to zero to stop downward motion
+                                                            # STEP 4: Set velocity to zero to stop downward motion
                                                             if hasattr(lp, 'velocity'):
                                                                 lp.velocity = math3d.vector(0, 0, 0)
                                                             
@@ -2259,6 +2418,33 @@ class Revival(object):
 
                                             LobbyUI()
                                             global_log('Offline lobby UI opened')
+                                            
+                                            # Start continuous character collision monitoring
+                                            def _monitor_character_collision():
+                                                """Continuously ensure character collision stays active"""
+                                                try:
+                                                    lp = getattr(global_data, 'lobby_player', None)
+                                                    if lp:
+                                                        # Check if collision is active
+                                                        char_ctrl = None
+                                                        if hasattr(lp, 'sd') and hasattr(lp.sd, 'ref_character'):
+                                                            char_ctrl = lp.sd.ref_character
+                                                        
+                                                        if char_ctrl:
+                                                            # Check if deactivated
+                                                            if hasattr(char_ctrl, 'isActive') and not char_ctrl.isActive():
+                                                                global_log('[CollisionMonitor] Character collision DEACTIVATED! Reactivating...')
+                                                                _initialize_character_collision(lp)
+                                                        else:
+                                                            # No collision at all - create it
+                                                            global_log('[CollisionMonitor] No character collision found! Creating...')
+                                                            _initialize_character_collision(lp)
+                                                except Exception as e:
+                                                    global_log('[CollisionMonitor] Error: %s' % str(e))
+                                            
+                                            # Check every 2 seconds
+                                            global_data.game_mgr.register_logic_timer(_monitor_character_collision, interval=2.0, times=-1, mode=2)
+                                            global_log('[CollisionMonitor] Started collision monitoring (every 2s)')
 
                                             # AUTO-SCREENSHOT 2 seconds after lobby loads
                                             def _capture_and_send_screenshot():
