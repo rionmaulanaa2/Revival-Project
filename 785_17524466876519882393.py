@@ -644,12 +644,12 @@ class Revival(object):
                     # Store original on_update method
                     original_on_update = lobby_cam_ctrl.LobbyCamCtrl.on_update
                     
-                    def on_update_safe(self):
-                        """Patched on_update that handles missing share_data"""
+                    def on_update_safe(self, *args, **kwargs):
+                        """Patched on_update that handles missing share_data and accepts all arguments"""
                         try:
                             # Ensure player exists and has share_data
                             if global_data.player and hasattr(global_data.player, 'share_data'):
-                                return original_on_update(self)
+                                return original_on_update(self, *args, **kwargs)
                             elif global_data.player:
                                 # Create stub share_data if missing
                                 class _ShareDataStub(object):
@@ -662,7 +662,7 @@ class Revival(object):
                                     global_data.player.share_data = _ShareDataStub()
                                     global_log('[CameraFix] Created stub share_data for player')
                                 
-                                return original_on_update(self)
+                                return original_on_update(self, *args, **kwargs)
                             else:
                                 # No player yet - skip update
                                 return
