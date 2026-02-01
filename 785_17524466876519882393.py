@@ -388,43 +388,24 @@ class Revival(object):
                                     '_reflect.',         # Reflection maps
                                     'skybox_',           # Skybox resources
                                     '_content/',         # Scene content folders
+                                    '/environment/',     # Environment maps
                                 ])
                                 
                                 if is_env_resource and path not in _missing_scene_resources:
                                     _missing_scene_resources.add(path)
                                     # Silently handle missing environment maps - they're non-critical
                                     # The engine will use default/fallback lighting
-                                    raidis('[SceneFix] Missing env resource (using fallback): %s' % path[:100])
                             
                             return result
                         
                         C_file.find_file = _wrapped_find_file
-                    
-                    # Also patch scene loading to gracefully handle missing environment data
-                    if hasattr(world, 'scene') and hasattr(world.scene, 'load'):
-                        orig_scene_load = world.scene.load
-                        
-                        def _wrapped_scene_load(*args, **kwargs):
-                            try:
-                                return orig_scene_load(*args, **kwargs)
-                            except Exception as e:
-                                error_str = str(e)
-                                # If error is about missing probe/irradiance files, return success anyway
-                                if any(keyword in error_str.lower() for keyword in ['probe', 'irrad', 'skybox', 'sh not found']):
-                                    raidis('[SceneFix] Scene load continued despite missing env map: %s' % error_str[:150])
-                                    return True  # Scene loaded despite missing environment map
-                                else:
-                                    raise  # Re-raise non-environment errors
-                        
-                        world.scene.load = _wrapped_scene_load
+                        raidis('[SceneFix] C_file.find_file wrapper installed for missing resources')
                     
                     raidis('[SceneFix] Scene resource fallback system installed')
                     
                 except Exception as e:
-                    try:
-                        raidis('[SceneFix] Install failed: %s' % str(e)[:200])
-                    except:
-                        pass
+                    # Scene patching failed but non-critical
+                    pass
             
             _install_scene_resource_fallback()
 
@@ -470,81 +451,62 @@ class Revival(object):
             # Fix "Unknown space object type 'Road'" and missing camera preset errors
             def _install_scene_object_fallback():
                 try:
-                    # Patch world.scene to handle unknown space object types gracefully
-                    if hasattr(world, 'scene'):
-                        # Hook scene loading to suppress "Unknown space object type" errors
-                        if hasattr(world.scene, 'get_space_obj_by_id'):
-                            orig_get_space_obj = world.scene.get_space_obj_by_id
-                            
-                            def _wrapped_get_space_obj(*args, **kwargs):
-                                try:
-                                    return orig_get_space_obj(*args, **kwargs)
-                                except Exception as e:
-                                    error_str = str(e).lower()
-                                    if 'unknown space object type' in error_str or 'road' in error_str:
-                                        # Return None for unknown types like "Road" - they're non-critical
-                                        raidis('[SceneFix] Suppressed unknown space object error: %s' % str(e)[:120])
-                                        return None
-                                    raise
-                            
-                            world.scene.get_space_obj_by_id = _wrapped_get_space_obj
-                        
-                        # Hook camera preset loading to provide fallback for missing presets
-                        if hasattr(world.scene, 'get_preset_camera'):
-                            orig_get_preset_camera = world.scene.get_preset_camera
-                            
-                            def _wrapped_get_preset_camera(camera_name):
-                                try:
-                                    result = orig_get_preset_camera(camera_name)
-                                    if result is None:
-                                        # Return identity matrix for missing camera presets
-                                        raidis('[SceneFix] Using identity matrix for missing camera: %s' % camera_name)
-                                    return result
-                                except Exception as e:
-                                    # Return None to trigger default identity matrix
-                                    raidis('[SceneFix] Camera preset error, using fallback: %s' % str(e)[:120])
-                                    return None
-                            
-                            world.scene.get_preset_camera = _wrapped_get_preset_camera
-                    
-                    # Also patch the scene module directly if available
+                    # Patch the Scene class to handle unknown space object types gracefully
+                    # Don't try to patch world.scene directly as it's a built-in/extension type
                     try:
-                        from logic.vscene import scene as scene_module
+                        from logic.vscene.scene import Scene
                         
                         # Suppress space object type errors in scene loading
-                        if hasattr(scene_module, 'Scene'):
-                            Scene = scene_module.Scene
+                        if hasattr(Scene, 'on_load'):
+                            orig_scene_on_load = Scene.on_load
                             
-                            if hasattr(Scene, 'on_load'):
-                                orig_scene_on_load = Scene.on_load
-                                
-                                def _wrapped_scene_on_load(self, *args, **kwargs):
-                                    try:
-                                        return orig_scene_on_load(self, *args, **kwargs)
-                                    except Exception as e:
-                                        error_str = str(e).lower()
-                                        if any(keyword in error_str for keyword in ['unknown space object', 'road', 'mapping table']):
-                                            raidis('[SceneFix] Scene loaded despite space object error: %s' % str(e)[:150])
-                                            return True  # Continue loading
-                                        raise
-                                
-                                Scene.on_load = _wrapped_scene_on_load
+                            def _wrapped_scene_on_load(self, *args, **kwargs):
+                                try:
+                                    return orig_scene_on_load(self, *args, **kwargs)
+                                except Exception as e:
+                                    error_str = str(e).lower()
+                                    # Suppress non-critical space object errors
+                                    if any(keyword in error_str for keyword in ['unknown space object', 'road', 'mapping table', 'space obj']):
+                                        # Log but continue - these are often non-critical decorative objects
+                                        return True  # Continue loading
+                                    raise
+                            
+                            Scene.on_load = _wrapped_scene_on_load
+                            raidis('[SceneFix] Scene.on_load patched for space object errors')
+                        
+                        # Wrap load_from_file to handle missing resources
+                        if hasattr(Scene, 'load_from_file'):
+                            orig_load_from_file = Scene.load_from_file
+                            
+                            def _wrapped_load_from_file(self, *args, **kwargs):
+                                try:
+                                    return orig_load_from_file(self, *args, **kwargs)
+                                except Exception as e:
+                                    error_str = str(e).lower()
+                                    if 'file not found' in error_str or 'cannot find' in error_str:
+                                        # Continue with defaults for missing scene files
+                                        return True
+                                    raise
+                            
+                            Scene.load_from_file = _wrapped_load_from_file
+                    
                     except ImportError:
+                        # Scene class not available yet - skip patching
                         pass
                     
-                    raidis('[SceneFix] Space object and camera fallback system installed')
+                    raidis('[SceneFix] Space object fallback system installed')
                     
                 except Exception as e:
-                    try:
-                        raidis('[SceneFix] Space object fallback install failed: %s' % str(e)[:200])
-                    except:
-                        pass
+                    # Non-critical - scene will load with defaults
+                    pass
             
             _install_scene_object_fallback()
 
             # Disable client version update notifications (offline mode doesn't need them)
             def _disable_version_update_notifications():
                 """Patch version checking to prevent update notifications in offline mode"""
+                patch_count = 0
+                
                 try:
                     # Disable ExtPackageManager version checks
                     try:
@@ -552,42 +514,46 @@ class Revival(object):
                         if hasattr(ExtPackageManager, 'check_new_packages'):
                             original_check = ExtPackageManager.check_new_packages
                             def _stub_check_new_packages(self, *args, **kwargs):
-                                # Don't check for package updates in offline mode
                                 return False
                             ExtPackageManager.check_new_packages = _stub_check_new_packages
-                            raidis('[VersionFix] ExtPackageManager.check_new_packages disabled')
-                    except Exception as e:
-                        raidis('[VersionFix] ExtPackageManager patch failed: %s' % e)
+                            patch_count += 1
+                    except (ImportError, AttributeError):
+                        pass  # Module doesn't exist in this version
                     
-                    # Disable version update UI popups
+                    # Try both possible PatchUI locations
                     try:
-                        from logic.comsys.loading.PatchUI import PatchUI
+                        try:
+                            from logic.comsys.ext.ExtPatchUI import ExtPatchUI as PatchUI
+                        except ImportError:
+                            from logic.comsys.ext.PatchUI import PatchUI
+                        
                         if hasattr(PatchUI, 'show_patch_update_dialog'):
                             original_show = PatchUI.show_patch_update_dialog
                             def _stub_show_dialog(self, *args, **kwargs):
-                                # Don't show version update dialogs
-                                raidis('[VersionFix] Version update dialog suppressed')
                                 return None
                             PatchUI.show_patch_update_dialog = _stub_show_dialog
-                            raidis('[VersionFix] PatchUI.show_patch_update_dialog disabled')
-                    except Exception as e:
-                        raidis('[VersionFix] PatchUI patch failed: %s' % e)
+                            patch_count += 1
+                    except (ImportError, AttributeError):
+                        pass  # Module doesn't exist
                     
-                    # Disable version check on startup
+                    # Disable VersionCheckUI if it exists
                     try:
-                        from logic.vscene.VersionCheckUI import VersionCheckUI
+                        # VersionCheckUI might be in different locations depending on version
+                        try:
+                            from logic.comsys.version_check import VersionCheckUI
+                        except ImportError:
+                            from logic.vscene.version_check import VersionCheckUI
+                        
                         if hasattr(VersionCheckUI, 'start_version_check'):
                             original_version_check = VersionCheckUI.start_version_check
                             def _stub_version_check(self, *args, **kwargs):
-                                # Skip version checking
-                                raidis('[VersionFix] Version check skipped')
                                 return None
                             VersionCheckUI.start_version_check = _stub_version_check
-                            raidis('[VersionFix] VersionCheckUI.start_version_check disabled')
-                    except Exception as e:
-                        raidis('[VersionFix] VersionCheckUI patch failed: %s' % e)
+                            patch_count += 1
+                    except (ImportError, AttributeError):
+                        pass  # Module doesn't exist
                     
-                    # Disable update notifications/red points for version updates
+                    # Disable LobbyUI version notifications
                     try:
                         from logic.comsys.lobby.LobbyUI import LobbyUI
                         if hasattr(LobbyUI, 'show_version_update_notification'):
@@ -595,16 +561,15 @@ class Revival(object):
                             def _stub_show_notif(self, *args, **kwargs):
                                 return None
                             LobbyUI.show_version_update_notification = _stub_show_notif
-                            raidis('[VersionFix] LobbyUI version notifications disabled')
-                    except Exception as e:
-                        pass  # Optional - might not exist
+                            patch_count += 1
+                    except (ImportError, AttributeError):
+                        pass
                     
-                    raidis('[VersionFix] All version update notifications disabled for offline mode')
+                    raidis('[VersionFix] Applied %d version check patches for offline mode' % patch_count)
                     
                 except Exception as e:
-                    raidis('[VersionFix] ERROR: %s' % e)
-                    import traceback
-                    raidis(traceback.format_exc())
+                    # Non-critical error - version checks will just run normally
+                    pass
             
             _disable_version_update_notifications()
             
