@@ -1855,6 +1855,44 @@ class Revival(object):
                                 
                                 if lobby_player_found:
                                     global_log('[LobbyPlayer] Setup complete, lobby_player ready')
+                                    
+                                    # CRITICAL FIX: Enable collision immediately when lobby_player is found
+                                    # This prevents the character from falling through the ground
+                                    try:
+                                        lp = global_data.lobby_player
+                                        if lp:
+                                            # Enable collision at character level
+                                            if hasattr(lp, 'enable_collision'):
+                                                lp.enable_collision(True)
+                                                global_log('[LobbyPlayer] Enabled character collision')
+                                            
+                                            # Enable physics body collision
+                                            if hasattr(lp, 'physics') and lp.physics:
+                                                if hasattr(lp.physics, 'enable_collision'):
+                                                    lp.physics.enable_collision(True)
+                                                    global_log('[LobbyPlayer] Enabled physics collision')
+                                                if hasattr(lp.physics, 'set_collision_enable'):
+                                                    lp.physics.set_collision_enable(True)
+                                            
+                                            # Enable collision via component
+                                            if hasattr(lp, 'collision') and lp.collision:
+                                                if hasattr(lp.collision, 'enable'):
+                                                    lp.collision.enable(True)
+                                                    global_log('[LobbyPlayer] Enabled collision component')
+                                            
+                                            # If character has ComHumanCollison component, enable it
+                                            try:
+                                                from logic.gcommon.component.client.ComHumanCollison import ComHumanCollison
+                                                if hasattr(lp, 'get_component'):
+                                                    coll_comp = lp.get_component(ComHumanCollison)
+                                                    if coll_comp:
+                                                        if hasattr(coll_comp, 'enable_collision'):
+                                                            coll_comp.enable_collision(True)
+                                                            global_log('[LobbyPlayer] Enabled ComHumanCollison')
+                                            except Exception:
+                                                pass
+                                    except Exception as e_coll:
+                                        global_log('[LobbyPlayer] Collision enable warning: %s' % str(e_coll))
                                 else:
                                     global_log('[LobbyPlayer] WARNING: Could not find or create lobby_player')
                                 
@@ -1942,10 +1980,37 @@ class Revival(object):
                                                         global_log('[Ground] EMERGENCY: Character FAR below ground (y=%.2f), teleporting to safe height' % cur_y)
                                                         safe_y = 25.0 + CHARACTER_STAND_HEIGHT
                                                         safe_pos = math3d.vector(cur_x, safe_y, cur_z)
+                                                        
+                                                        # CRITICAL FIX: Enable collision BEFORE teleporting
+                                                        # This prevents the character from falling through the ground again
+                                                        try:
+                                                            # Enable character collision with ground
+                                                            if hasattr(lp, 'enable_collision'):
+                                                                lp.enable_collision(True)
+                                                            
+                                                            # Enable physics body if it exists
+                                                            if hasattr(lp, 'physics') and lp.physics:
+                                                                if hasattr(lp.physics, 'enable_collision'):
+                                                                    lp.physics.enable_collision(True)
+                                                                if hasattr(lp.physics, 'set_collision_enable'):
+                                                                    lp.physics.set_collision_enable(True)
+                                                            
+                                                            # Set velocity to zero to stop falling
+                                                            if hasattr(lp, 'velocity'):
+                                                                lp.velocity = math3d.vector(0, 0, 0)
+                                                            
+                                                            # Try to enable collision via component if available
+                                                            if hasattr(lp, 'collision') and lp.collision:
+                                                                if hasattr(lp.collision, 'enable'):
+                                                                    lp.collision.enable(True)
+                                                        except Exception as e_coll:
+                                                            global_log('[Ground] Warning: Could not enable collision: %s' % str(e_coll))
+                                                        
                                                         lp.send_event('E_TELEPORT', safe_pos)
                                                         ground_detection_log['retry_count'] = 0
-                                                        # Try ground detection again after teleport
-                                                        global_data.game_mgr.register_logic_timer(_force_ground_avatar, interval=0.1, times=1, mode=2)
+                                                        
+                                                        # Wait longer before checking again to let physics settle
+                                                        global_data.game_mgr.register_logic_timer(_force_ground_avatar, interval=0.5, times=1, mode=2)
                                                         return
                                                     
                                                     # RAYCAST DOWNWARD to find actual ground height
@@ -2013,15 +2078,40 @@ class Revival(object):
                                                     # Set position if character is below target height
                                                     if cur_y < target_y:
                                                         new_pos = math3d.vector(cur_x, target_y, cur_z)
-                                                        # Use teleport event instead of direct assignment
+                                                        
+                                                        # CRITICAL FIX: Enable collision and stop falling BEFORE teleporting
+                                                        try:
+                                                            # Enable character collision with ground
+                                                            if hasattr(lp, 'enable_collision'):
+                                                                lp.enable_collision(True)
+                                                            
+                                                            # Enable physics body collision
+                                                            if hasattr(lp, 'physics') and lp.physics:
+                                                                if hasattr(lp.physics, 'enable_collision'):
+                                                                    lp.physics.enable_collision(True)
+                                                                if hasattr(lp.physics, 'set_collision_enable'):
+                                                                    lp.physics.set_collision_enable(True)
+                                                            
+                                                            # Set velocity to zero to stop downward motion
+                                                            if hasattr(lp, 'velocity'):
+                                                                lp.velocity = math3d.vector(0, 0, 0)
+                                                            
+                                                            # Try component-level collision enable
+                                                            if hasattr(lp, 'collision') and lp.collision:
+                                                                if hasattr(lp.collision, 'enable'):
+                                                                    lp.collision.enable(True)
+                                                        except Exception as e_coll:
+                                                            pass  # Silent - not critical
+                                                        
+                                                        # Use teleport event to move character
                                                         lp.send_event('E_TELEPORT', new_pos)
                                                         if ground_detection_log['first_log']:
                                                             global_log('[Ground] Repositioned from y=%.2f to y=%.2f' % (cur_y, target_y))
                                                             ground_detection_log['first_log'] = False
                                                     
-                                                    # CONTINUOUS MONITORING: Keep checking ground every 0.2s to catch character falling
+                                                    # CONTINUOUS MONITORING: Keep checking ground every 0.3s (slower to reduce spam)
                                                     # This ensures emergency teleport activates whenever character goes underground
-                                                    global_data.game_mgr.register_logic_timer(_force_ground_avatar, interval=0.2, times=1, mode=2)
+                                                    global_data.game_mgr.register_logic_timer(_force_ground_avatar, interval=0.3, times=1, mode=2)
                                                     
                                                     if error_list:
                                                         global_log('Grounding errors: %s' % ', '.join(error_list))
