@@ -33,8 +33,12 @@ class Revival(object):
                     else:
                         # Default to log_error
                         log_error(message)
-                except Exception:
-                    pass  # Fail silently if both methods fail
+                except Exception as e:
+                    try:
+                        # Record the error using log_error
+                        log_error('ERROR in global_log: %s' % str(e))
+                    except Exception:
+                        pass  # Fallback silent failure only if log_error itself fails
             
             def raidis(message):
                 """Discord webhook logger for debugging - safe to call anytime"""
