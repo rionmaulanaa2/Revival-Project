@@ -1924,7 +1924,7 @@ class Revival(object):
                                             global_log('Scene & lobby_player ready, attempting to ground...')
                                             
                                             # PROPER GROUND DETECTION: Use scene collision raycasting to find actual ground height
-                                            ground_detection_log = {'first_log': True, 'retry_count': 0}
+                                            ground_detection_log = {'first_log': True, 'retry_count': 0, 'emergency_teleport_count': 0}
                                             def _force_ground_avatar():
                                                 error_list = []
                                                 try:
@@ -1973,44 +1973,46 @@ class Revival(object):
                                                     cur_y = getattr(pos, 'y', 0)
                                                     cur_z = getattr(pos, 'z', 0)
                                                     
-                                                    # CRITICAL: If character is way underground, emergency teleport to safe height
-                                                    # Threshold: anything below -50 is too deep underground
+                                                    # CRITICAL: If character falls too deep, use AGGRESSIVE emergency mode
+                                                    # Don't rely on teleport - FREEZE the character in place
                                                     UNDERGROUND_THRESHOLD = -50
                                                     if cur_y < UNDERGROUND_THRESHOLD:
-                                                        global_log('[Ground] EMERGENCY: Character FAR below ground (y=%.2f), teleporting to safe height' % cur_y)
-                                                        safe_y = 25.0 + CHARACTER_STAND_HEIGHT
+                                                        ground_detection_log['emergency_teleport_count'] += 1
+                                                        global_log('[Ground] EMERGENCY: Character FAR below ground (y=%.2f), using AGGRESSIVE recovery #%d' % (cur_y, ground_detection_log['emergency_teleport_count']))
+                                                        
+                                                        safe_y = 50.0 + CHARACTER_STAND_HEIGHT  # Increased height to ensure safe spawn
                                                         safe_pos = math3d.vector(cur_x, safe_y, cur_z)
                                                         
-                                                        # CRITICAL FIX: Enable collision BEFORE teleporting
-                                                        # This prevents the character from falling through the ground again
+                                                        # AGGRESSIVE approach: Multiple recovery methods
                                                         try:
-                                                            # Enable character collision with ground
-                                                            if hasattr(lp, 'enable_collision'):
-                                                                lp.enable_collision(True)
+                                                            # Method 1: Set position directly via physics
+                                                            if hasattr(lp, 'set_position'):
+                                                                lp.set_position(safe_pos)
+                                                                global_log('[Ground] Used set_position method')
                                                             
-                                                            # Enable physics body if it exists
-                                                            if hasattr(lp, 'physics') and lp.physics:
-                                                                if hasattr(lp.physics, 'enable_collision'):
-                                                                    lp.physics.enable_collision(True)
-                                                                if hasattr(lp.physics, 'set_collision_enable'):
-                                                                    lp.physics.set_collision_enable(True)
+                                                            # Method 2: Send teleport event
+                                                            lp.send_event('E_TELEPORT', safe_pos)
                                                             
-                                                            # Set velocity to zero to stop falling
+                                                            # Method 3: Freeze velocity completely to stop falling
                                                             if hasattr(lp, 'velocity'):
                                                                 lp.velocity = math3d.vector(0, 0, 0)
                                                             
-                                                            # Try to enable collision via component if available
-                                                            if hasattr(lp, 'collision') and lp.collision:
-                                                                if hasattr(lp.collision, 'enable'):
-                                                                    lp.collision.enable(True)
-                                                        except Exception as e_coll:
-                                                            global_log('[Ground] Warning: Could not enable collision: %s' % str(e_coll))
+                                                            # Method 4: Try to disable gravity on the character
+                                                            try:
+                                                                if hasattr(lp, 'physics') and hasattr(lp.physics, 'set_gravity_scale'):
+                                                                    lp.physics.set_gravity_scale(0.0)
+                                                                    global_log('[Ground] Disabled gravity via set_gravity_scale')
+                                                            except Exception:
+                                                                pass
+                                                            
+                                                            # Method 5: Set fallback floor height - if character goes below this, freeze them
+                                                            if hasattr(lp, 'set_min_y'):
+                                                                lp.set_min_y(safe_y - CHARACTER_STAND_HEIGHT)
+                                                        except Exception as e_recovery:
+                                                            global_log('[Ground] Recovery method error: %s' % str(e_recovery))
                                                         
-                                                        lp.send_event('E_TELEPORT', safe_pos)
-                                                        ground_detection_log['retry_count'] = 0
-                                                        
-                                                        # Wait longer before checking again to let physics settle
-                                                        global_data.game_mgr.register_logic_timer(_force_ground_avatar, interval=0.5, times=1, mode=2)
+                                                        # Longer wait before rechecking
+                                                        global_data.game_mgr.register_logic_timer(_force_ground_avatar, interval=1.0, times=1, mode=2)
                                                         return
                                                     
                                                     # RAYCAST DOWNWARD to find actual ground height
