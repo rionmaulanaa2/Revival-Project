@@ -64,9 +64,9 @@ class Revival(object):
                 if global_data.player and global_data.player.logic:
                     Revival.injectLogic(global_data.player.logic, AvatarHackLogic)
             global_data.game_mgr.register_logic_timer(inject, interval=1.0, times=-1, mode=2)
-#======================================================================================================================
-# Imports
-#======================================================================================================================
+            #======================================================================================================================
+            # Imports
+            #======================================================================================================================
             # Core stdlib / engine deps
             global math, time, random, math3d, collision, os, gc, sys, traceback, datetime, render
             import render
@@ -2804,7 +2804,7 @@ class Revival(object):
             #raidis(initsqu)
             #square()
 
-            __isInitialized = True
+        Revival.__isInitialized = True
 
 def get_engine_version():
     return game3d.get_engine_version()
